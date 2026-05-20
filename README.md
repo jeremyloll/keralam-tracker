@@ -6,28 +6,6 @@ No databases, no servers, no complex hosting fees. The entire infrastructure run
 
 ---
 
-## 🚀 Quick Start: Deploying This Site (Zero Cost)
-
-You don't need to know how to code to deploy or maintain this website. It takes about 30 minutes from scratch.
-
-### Step 1: Set up GitHub
-1. Create a free account at [github.com](https://github.com) if you don't have one.
-2. Create a new repository. Name it `keralam-tracker` and make sure to set it to **Public**.
-3. Upload all the files from this project into the repository (you can literally drag and drop them using the GitHub web interface).
-
-### Step 2: Connect to Cloudflare Pages
-1. Create a free account at [cloudflare.com](https://cloudflare.com).
-2. On your Cloudflare dashboard, go to **Workers & Pages** → **Create** → **Pages** → **Connect to Git**.
-3. Select your GitHub account and pick the `keralam-tracker` repository.
-4. In the build settings:
-   * Leave the **Build command** completely blank.
-   * Set the **Build output directory** to `public` (or your static folder directory).
-5. Click **Save and Deploy**. 
-
-Within a minute, you will get a free live URL (like `keralam-tracker.pages.dev`). Every single time you update `promises.json` on GitHub, your website will automatically update within 60 seconds.
-
----
-
 ## 🏗️ How the System Works
 
 This project is built to run entirely on file changes (GitOps). Here is what each file does:
