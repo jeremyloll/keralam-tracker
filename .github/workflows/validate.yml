@@ -1,0 +1,43 @@
+name: Validate promises.json
+
+on:
+  pull_request:
+    paths:
+      - "data/promises.json"
+      - "scripts/validate.js"
+  push:
+    branches:
+      - main
+    paths:
+      - "data/promises.json"
+
+jobs:
+  validate:
+    name: Schema validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run promise validator
+        run: node scripts/validate.js
+
+      - name: Count promises by status
+        if: always()
+        run: |
+          echo "── Promise status summary ──"
+          node -e "
+            const data = require('./data/promises.json');
+            const counts = data.reduce((acc, p) => {
+              acc[p.status] = (acc[p.status] || 0) + 1;
+              return acc;
+            }, {});
+            console.log('Total:', data.length);
+            Object.entries(counts).forEach(([k,v]) => console.log(k + ':', v));
+          "
