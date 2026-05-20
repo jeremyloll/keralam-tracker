@@ -1,0 +1,204 @@
+[
+  {
+    "id": 1,
+    "slug": "agricultural-loan-waiver",
+    "title_en": "Waive agricultural loans up to ₹2 lakh",
+    "title_ml": "₹2 ലക്ഷം വരെയുള്ള കാർഷിക വായ്പകൾ എഴുതിത്തള്ളൽ",
+    "verbatim": "The UDF government shall, within the first 100 days, waive all agricultural loans up to ₹2 lakh outstanding in cooperative banks and Kerala Bank.",
+    "manifesto_page": 12,
+    "category": "Economy",
+    "departments": ["Agriculture", "Finance"],
+    "status": "fulfilled",
+    "timeline_promised": "100 days",
+    "updates": [
+      {
+        "date": "2026-06-12",
+        "prev_status": "pending",
+        "new_status": "fulfilled",
+        "note_en": "Cabinet approved the agricultural loan waiver scheme. ₹3,200 crore allocated.",
+        "note_ml": "കൃഷി വായ്പ എഴുതിത്തള്ളൽ പദ്ധതിക്ക് മന്ത്രിസഭ അംഗീകാരം. ₹3,200 കോടി വകയിരുത്തി.",
+        "source_url": "https://www.thehindu.com/placeholder",
+        "source_label": "The Hindu, 12 June 2026",
+        "source_tier": 2,
+        "contributed_by": "github:maintainer"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "slug": "arogya-suraksha-women",
+    "title_en": "₹1,000/month Arogya Suraksha scheme for women below poverty line",
+    "title_ml": "ദാരിദ്ര്യരേഖയ്ക്ക് താഴെയുള്ള സ്ത്രീകൾക്ക് ₹1,000/മാസം ആരോഗ്യ സുരക്ഷ",
+    "verbatim": "Monthly financial assistance of ₹1,000 to all women below the poverty line for healthcare expenses through a dedicated Arogya Suraksha scheme.",
+    "manifesto_page": 18,
+    "category": "Health",
+    "departments": ["Health", "Social Welfare"],
+    "status": "progress",
+    "timeline_promised": "6 months",
+    "updates": [
+      {
+        "date": "2026-08-03",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Draft scheme circulated to district collectors for feedback. Cabinet note under preparation.",
+        "note_ml": "പദ്ധതിയുടെ കരടുരൂപം ജില്ലാ കലക്ടർമാർക്ക് അഭിപ്രായത്തിനായി അയച്ചു.",
+        "source_url": "https://www.mathrubhumi.com/placeholder",
+        "source_label": "Mathrubhumi, 3 August 2026",
+        "source_tier": 2,
+        "contributed_by": "github:maintainer"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "slug": "universal-minimum-wage",
+    "title_en": "Universal minimum wage of ₹800/day for unorganised sector workers",
+    "title_ml": "അസംഘടിത മേഖലയിൽ ₹800/ദിവസം ഏകീകൃത മിനിമം വേതനം",
+    "verbatim": "A uniform minimum wage floor of ₹800 per day will be notified by gazette for all unorganised sector workers in Kerala within 90 days of government formation.",
+    "manifesto_page": 31,
+    "category": "Labour",
+    "departments": ["Labour"],
+    "status": "progress",
+    "timeline_promised": "90 days",
+    "updates": [
+      {
+        "date": "2026-09-01",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Tripartite labour committee consultations ongoing. Employer associations have raised objections; notification delayed past the 90-day window.",
+        "note_ml": "ത്രിതല തൊഴിൽ സമിതി ചർച്ചകൾ നടക്കുന്നു. 90 ദിവസം കഴിഞ്ഞിട്ടും വിജ്ഞാപനം ഇറങ്ങിയിട്ടില്ല.",
+        "source_url": "https://www.business-standard.com/placeholder",
+        "source_label": "Business Standard, 1 September 2026",
+        "source_tier": 2,
+        "contributed_by": "github:maintainer"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "slug": "ews-reservation-restore",
+    "title_en": "Restore 10% EWS reservation in government jobs",
+    "title_ml": "സർക്കാർ ജോലിയിൽ 10% ഇഡബ്ല്യുഎസ് സംവരണം പുനഃസ്ഥാപിക്കൽ",
+    "verbatim": "The UDF shall restore and strictly implement the EWS 10% reservation in all direct recruitment to government posts and government-aided institution appointments.",
+    "manifesto_page": 44,
+    "category": "Social Justice",
+    "departments": ["General Administration", "Social Justice"],
+    "status": "fulfilled",
+    "timeline_promised": "First 100 days",
+    "updates": [
+      {
+        "date": "2026-07-05",
+        "prev_status": "pending",
+        "new_status": "fulfilled",
+        "note_en": "GO(P) No. 24/2026/GAD issued. Operative for all recruitments from 1 August 2026.",
+        "note_ml": "GO(P) No. 24/2026/GAD പുറപ്പെടുവിച്ചു. ഓഗസ്റ്റ് 1 മുതൽ നിയമനങ്ങൾക്ക് ബാധകം.",
+        "source_url": "https://www.kerala.gov.in/gazette/placeholder",
+        "source_label": "Kerala Gazette, 5 July 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "slug": "building-rules-repeal",
+    "title_en": "Repeal LDF's controversial Kerala Municipal Building Rules amendments",
+    "title_ml": "എൽഡിഎഫ് ഭേദഗതി ചെയ്ത കെഎംബിആർ റദ്ദ് ചെയ്യൽ",
+    "verbatim": "The UDF will immediately repeal the Kerala Municipal Building Rules amendments of 2024 that removed setback requirements in coastal CRZ zones.",
+    "manifesto_page": 57,
+    "category": "Governance",
+    "departments": ["Local Self Government"],
+    "status": "evaded",
+    "timeline_promised": "Immediately",
+    "updates": [
+      {
+        "date": "2026-07-16",
+        "prev_status": "pending",
+        "new_status": "evaded",
+        "note_en": "Government issued a 'review committee' order with an 18-month mandate instead of repealing. This structurally makes fulfilment impossible within a reasonable timeframe.",
+        "note_ml": "സർക്കാർ റദ്ദ് ചെയ്യുന്നതിനു പകരം 18 മാസം കാലാവധിയുള്ള 'അവലോകന സമിതി' ഉത്തരവ് ഇറക്കി.",
+        "source_url": "https://www.keralakaumudi.com/placeholder",
+        "source_label": "Kerala Kaumudi, 16 July 2026",
+        "source_tier": 2,
+        "contributed_by": "github:maintainer"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "slug": "ai-centres-of-excellence",
+    "title_en": "Establish AI/ML Centres of Excellence at all 14 district headquarters",
+    "title_ml": "14 ജില്ലകളിലും AI/ML സെന്റർ ഓഫ് എക്സലൻസ് സ്ഥാപിക്കൽ",
+    "verbatim": "14 AI and Machine Learning Centres of Excellence — one per district — will be established in government-aided institutions, each with dedicated infrastructure and faculty.",
+    "manifesto_page": 63,
+    "category": "Education",
+    "departments": ["Higher Education", "IT"],
+    "status": "pending",
+    "timeline_promised": "3 years",
+    "updates": []
+  },
+  {
+    "id": 7,
+    "slug": "aarogyakeralam-clinics",
+    "title_en": "Open 500 new Aarogyakeralam family health clinics in panchayats",
+    "title_ml": "പഞ്ചായത്തുകളിൽ 500 ആരോഗ്യകേരളം ക്ലിനിക്കുകൾ",
+    "verbatim": "500 new primary health clinics under the Aarogyakeralam brand to be set up in gram panchayats that currently lack a Primary Health Centre within 3 km.",
+    "manifesto_page": 19,
+    "category": "Health",
+    "departments": ["Health"],
+    "status": "pending",
+    "timeline_promised": "5 years",
+    "updates": []
+  },
+  {
+    "id": 8,
+    "slug": "river-living-entity-act",
+    "title_en": "Declare all 44 rivers of Kerala as living entities with legal rights",
+    "title_ml": "കേരളത്തിലെ 44 നദികളെ നിയമപരമായ അസ്തിത്വമുള്ള ജീവനുള്ള സ്ഥാപനങ്ങളായി പ്രഖ്യാപിക്കൽ",
+    "verbatim": "The UDF government will enact the Kerala Rivers Living Entity Act to confer legal personhood on all 44 rivers of Kerala, with appointed river guardians.",
+    "manifesto_page": 78,
+    "category": "Environment",
+    "departments": ["Environment", "Law"],
+    "status": "pending",
+    "timeline_promised": "2 years",
+    "updates": []
+  },
+  {
+    "id": 9,
+    "slug": "one-lakh-government-jobs",
+    "title_en": "Create 1 lakh government jobs in the first year",
+    "title_ml": "ആദ്യ വർഷം 1 ലക്ഷം സർക്കാർ ജോലി",
+    "verbatim": "The UDF government will fill all vacant government posts and create new positions to generate 1 lakh government employment opportunities within the first year.",
+    "manifesto_page": 35,
+    "category": "Economy",
+    "departments": ["Finance", "General Administration"],
+    "status": "progress",
+    "timeline_promised": "1 year",
+    "updates": [
+      {
+        "date": "2026-08-22",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "PSC advised to fast-track 67,000 pending rank lists. 14,200 appointments issued as of August 2026.",
+        "note_ml": "67,000 റാങ്ക് ലിസ്റ്റ് വേഗത്തിൽ തീർക്കാൻ പിഎസ്‌സിക്ക് നിർദേശം. ഓഗസ്റ്റ് വരെ 14,200 നിയമനം.",
+        "source_url": "https://www.deccanchronicle.com/placeholder",
+        "source_label": "Deccan Chronicle, 22 August 2026",
+        "source_tier": 2,
+        "contributed_by": "github:maintainer"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "slug": "rural-roads-5000km",
+    "title_en": "Lay 5,000 km of new rural roads under PMGSY+ scheme",
+    "title_ml": "പിഎംജിഎസ്‌വൈ+ പദ്ധതിയിൽ 5,000 കി.മി. ഗ്രാമീണ റോഡ്",
+    "verbatim": "5,000 km of all-weather rural roads to be constructed over the five-year term, leveraging enhanced PMGSY+ funding with state top-up.",
+    "manifesto_page": 49,
+    "category": "Infrastructure",
+    "departments": ["PWD", "Panchayat"],
+    "status": "pending",
+    "timeline_promised": "5 years",
+    "updates": []
+  }
+]
