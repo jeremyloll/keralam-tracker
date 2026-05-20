@@ -11,9 +11,20 @@
       "Transport",
       "Finance"
     ],
-    "status": "pending",
-    "timeline_promised": "100 days",
-    "updates": []
+    "status": "in progress",
+    "timeline_promised": "26 days",
+    "updates": [
+     {
+      "date": "2026-05-18",
+      "prev_status": "pending",
+      "new_status": "in progress",
+      "note_en": "Free travel for women on KSRTC from June 15.",
+      "source_url": "https://www.mathrubhumi.com/news/kerala/ksrtc-free-travel-women-june-15-kerala-kerala-cm-press-meet-as2oehjt",
+      "source_label": "Mathrubhumi, 18 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ] 
   },
   {
     "id": 2,
