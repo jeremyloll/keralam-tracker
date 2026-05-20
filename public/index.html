@@ -409,7 +409,7 @@ let mlMode = false;
 
 async function loadData() {
   try {
-    const res = await fetch('../data/promises.json');
+    const res = await fetch('/data/promises.json');
     allPromises = await res.json();
     boot();
   } catch (e) {
