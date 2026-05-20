@@ -13088,7 +13088,7 @@
   {
     "id": 840,
     "slug": "large-projects-the-unscientific-silver-line-project-proposed-by-the-ldf-government-wi",
-    "title_en": "The unscientific Silver Line project proposed by the LDF government will be completely abandoned. Cases related to th...",
+    "title_en": "LDF government’s unscientific Silver Line project to be completely abandoned, cases withdrawn, and land denotified",
     "verbatim": "The unscientific Silver Line project proposed by the LDF government will be completely abandoned. Cases related to this project will be withdrawn. Facilities will be provided to denotify the land notified for this project and to conduct purchases and sales.",
     "category": "Infrastructure",
     "section": "Large Projects",
@@ -13097,9 +13097,20 @@
       "Public Works",
       "Finance"
     ],
-    "status": "pending",
-    "timeline_promised": null,
-    "updates": []
+    "status": "fulfilled",
+    "timeline_promised": "100 days",
+    "updates": [
+     {
+      "date": "2026-05-20",
+      "prev_status": "pending",
+      "new_status": "fulfilled",
+      "note_en": "Satheesan Govt scraps Silver Line land acquisition, withdraws cases against protesters",
+      "source_url": "https://www.thenewsminute.com/kerala/satheesan-govt-scraps-silver-line-land-acquisition-withdraws-cases-against-protesters",
+      "source_label": "The News Minute, 20 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ] 
   },
   {
     "id": 841,
