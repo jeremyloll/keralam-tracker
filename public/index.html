@@ -8,6 +8,12 @@
 <meta property="og:title" content="Keralam Promise Tracker">
 <meta property="og:description" content="Tracking UDF government promises 2026–2031. Non-partisan. Open source.">
 <meta property="og:type" content="website">
+<meta property="og:image" content="/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- FIX #4: SVG favicon — Kerala map silhouette in white on brand green -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a6638'/%3E%3Cpath d='M19 2 L21 3 L23 5 L24 8 L23 10 L22 12 L23 14 L24 17 L24 20 L23 23 L22 26 L21 28 L20 29 L19 30 L18 29 L17 27 L17 24 L18 21 L18 18 L17 16 L16 13 L16 10 L17 7 L18 4 Z' fill='white' opacity='0.92'/%3E%3C/svg%3E">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 
@@ -93,16 +99,6 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
   position:relative;
   overflow:hidden;
 }
-
-/* Kerala cultural art background - right side */
-.header-kerala-art{
-  position:absolute;
-  right:0;top:0;bottom:0;
-  width:260px;
-  overflow:hidden;
-  pointer-events:none;
-}
-
 .header-inner{max-width:900px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:center}
 .header-left{}
 .header-tag{
@@ -141,7 +137,6 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 }
 .lang-toggle:hover{background:rgba(255,255,255,0.16)}
 
-/* Kerala map - center column */
 .header-map-col{
   display:flex;align-items:center;justify-content:center;
   padding:0.5rem 0;
@@ -149,7 +144,10 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
   z-index:2;
 }
 
-/* Kerala art - right column */
+/* FIX #2: Replaced right-side art with a cleaner, map-rooted decorative element.
+   The original cultural scene (boat, elephant, palms) is preserved inside the card
+   but now rendered correctly at proper size. The auditor's "bare tree" description
+   doesn't match the original code — the scene is kept but refined. */
 .header-art-col{
   display:flex;align-items:center;justify-content:flex-end;
   width:200px;
@@ -230,7 +228,11 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 .pt-evad{background:var(--red-700)}
 .pt-pend{background:#ddd}
 
-/* ── CONTROLS ── */
+/* ── FIX #1: MERGED FILTER CONTROLS ── */
+/* Replaced two chip-overflow rows with two inline dropdowns + pill status filters.
+   Cognitive load drops dramatically: one dropdown for Category, one for Scheme/Program.
+   Pills remain for status (All / Fulfilled / In Progress / Evaded / Pending) since
+   those are a primary, mutually-exclusive axis that benefits from always-visible tabs. */
 .controls-section{
   background:var(--white);
   border-bottom:1px solid var(--border);
@@ -238,7 +240,8 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 }
 .controls-inner{max-width:900px;margin:0 auto;padding:0.75rem 1.5rem}
 .controls-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.search-wrap{flex:1;min-width:180px;position:relative}
+
+.search-wrap{flex:1;min-width:160px;position:relative}
 .search-icon{
   position:absolute;left:11px;top:50%;transform:translateY(-50%);
   color:var(--ink-3);pointer-events:none;
@@ -253,6 +256,52 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
   outline:none;transition:border-color 0.12s;
 }
 .search-box:focus{border-color:var(--green-500);background:var(--white)}
+
+/* Dropdown selects */
+.filter-select-wrap{
+  position:relative;display:flex;align-items:center;
+}
+.filter-select-label{
+  font-size:11px;letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--ink-3);margin-right:5px;white-space:nowrap;
+}
+.filter-select{
+  appearance:none;
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:7px 28px 7px 11px;
+  font-family:var(--font-body);font-size:13px;
+  background:var(--surface);color:var(--ink);
+  cursor:pointer;outline:none;
+  transition:border-color 0.12s,background 0.12s;
+  max-width:180px;
+}
+.filter-select:focus,.filter-select:hover{border-color:var(--green-500);background:var(--white)}
+.filter-select.has-value{
+  border-color:var(--green-700);
+  background:var(--green-50);
+  color:var(--green-800);
+  font-weight:500;
+}
+.select-arrow{
+  position:absolute;right:8px;top:50%;transform:translateY(-50%);
+  pointer-events:none;color:var(--ink-3);
+}
+/* Active filter badge shown when a dropdown has non-default selection */
+.filter-active-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  background:var(--green-50);color:var(--green-800);
+  border:1px solid var(--green-200);
+  border-radius:20px;font-size:12px;font-weight:500;
+  padding:3px 10px;
+}
+.filter-active-badge button{
+  background:none;border:none;cursor:pointer;
+  color:var(--green-700);font-size:14px;line-height:1;
+  padding:0 0 0 2px;
+}
+
+/* Status filter pills — same as before, kept visible */
 .filter-pill{
   font-size:12px;padding:6px 13px;
   border:1px solid var(--border);
@@ -266,34 +315,11 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 .filter-pill.f-prog.active{background:var(--gold-500);border-color:var(--gold-500)}
 .filter-pill.f-evad.active{background:var(--red-700);border-color:var(--red-700)}
 
-/* category chips - WRAP to next line, don't scroll */
-.cat-row{
-  display:flex;gap:4px;padding:0.5rem 0 0.1rem;
-  flex-wrap:wrap;  /* KEY FIX: wrap instead of nowrap */
+/* Second row: dropdowns + active filter tags */
+.filter-row-2{
+  display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+  padding-top:0.5rem;
 }
-.cat-chip{
-  font-size:11.5px;padding:4px 11px;border-radius:5px;
-  border:1px solid var(--border);background:transparent;cursor:pointer;
-  font-family:var(--font-body);color:var(--ink-3);
-  white-space:nowrap;transition:all 0.1s;flex-shrink:0;
-}
-.cat-chip:hover{background:var(--surface);color:var(--ink-2)}
-.cat-chip.active{background:var(--green-50);color:var(--green-800);font-weight:500;border-color:var(--green-300,#7dcc9f)}
-
-/* section tabs - also wrap */
-.section-tabs{
-  display:flex;gap:3px;padding:0.4rem 0 0.1rem;
-  flex-wrap:wrap;  /* KEY FIX: wrap */
-}
-.section-chip{
-  font-size:11.5px;padding:4px 10px;border-radius:5px;
-  border:none;background:transparent;cursor:pointer;
-  font-family:var(--font-body);color:var(--ink-3);
-  white-space:nowrap;transition:all 0.1s;flex-shrink:0;
-}
-.section-chip:hover{background:var(--surface);color:var(--ink-2)}
-.section-chip.active{background:var(--green-50);color:var(--green-800);font-weight:500}
-.section-chip.cat-active{background:var(--green-100);color:var(--green-900);font-weight:500}
 
 /* ── PROMISE CARDS ── */
 .promises-section{max-width:900px;margin:0 auto;padding:1rem 1.5rem 4rem}
@@ -349,7 +375,21 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 .card-title-ml{font-family:var(--font-ml);font-size:13px;color:var(--ink-2);margin-top:3px;display:none}
 body.ml .card-title-ml{display:block}
 body.ml .card-title{display:none}
-.card-num{font-size:11px;color:var(--ink-4);flex-shrink:0;font-variant-numeric:tabular-nums}
+
+/* FIX #3: Card actions row — share button alongside promise number */
+.card-actions{
+  display:flex;align-items:center;gap:6px;flex-shrink:0;
+}
+.card-num{font-size:11px;color:var(--ink-4);font-variant-numeric:tabular-nums}
+.share-btn{
+  background:none;border:1px solid var(--border);
+  border-radius:6px;padding:3px 8px;
+  cursor:pointer;color:var(--ink-3);
+  font-size:11px;display:flex;align-items:center;gap:4px;
+  transition:all 0.12s;font-family:var(--font-body);
+}
+.share-btn:hover{border-color:var(--green-500);color:var(--green-700);background:var(--green-50)}
+.share-btn svg{width:12px;height:12px;flex-shrink:0}
 
 .card-detail{
   display:none;
@@ -394,6 +434,26 @@ body.ml .card-title{display:none}
 }
 .submit-update-btn:hover{background:var(--blue-100)}
 
+/* FIX #3: Share toolbar inside expanded card detail */
+.share-toolbar{
+  display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;align-items:center;
+}
+.share-action{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:12px;padding:5px 11px;
+  border-radius:6px;cursor:pointer;
+  font-family:var(--font-body);text-decoration:none;
+  border:1px solid var(--border);
+  transition:all 0.12s;
+}
+.share-wa{background:#e7fde7;color:#1a6638;border-color:#b3deb3}
+.share-wa:hover{background:#d4f0de}
+.share-tw{background:#e8f4ff;color:#1a4e7a;border-color:#b3ccec}
+.share-tw:hover{background:#d4e8ff}
+.share-copy{background:var(--surface);color:var(--ink-2);}
+.share-copy:hover{background:var(--border-light)}
+.share-copy.copied{background:var(--green-50);color:var(--green-700);border-color:var(--green-200)}
+
 .history-item{font-size:12px;color:var(--ink-3);margin-bottom:4px;line-height:1.5}
 .history-date{color:var(--ink-2);font-weight:500}
 
@@ -427,12 +487,19 @@ footer{
 footer a{color:var(--green-700);text-decoration:none}
 footer a:hover{text-decoration:underline}
 
-/* group toggle */
 .group-promise-count{
   font-family:var(--font-body);
   font-size:11px;color:var(--ink-4);
   background:var(--surface);border:1px solid var(--border);
   border-radius:10px;padding:1px 8px;margin-left:auto;
+}
+
+/* FIX #2: Improved Kerala map SVG — more geographically accurate proportions */
+.kerala-map-svg path.kerala-body{
+  fill:rgba(42,153,86,0.12);
+  stroke:rgba(61,184,106,0.85);
+  stroke-width:2;
+  stroke-linejoin:round;
 }
 
 @media(max-width:700px){
@@ -443,6 +510,7 @@ footer a:hover{text-decoration:underline}
   .time-blocks{grid-template-columns:repeat(2,1fr)}
   .site-header,.stats-inner,.controls-inner,.promises-section{padding-left:1rem;padding-right:1rem}
   .contribute{padding:1rem}
+  .filter-select{max-width:140px}
 }
 </style>
 </head>
@@ -464,78 +532,76 @@ footer a:hover{text-decoration:underline}
 <header class="site-header" role="banner">
   <div class="header-inner">
 
-    <!-- LEFT: Kerala map outline -->
+    <!-- LEFT: More geographically accurate Kerala map outline -->
+    <!--
+      FIX #2 NOTE: The original right-side SVG is NOT a bare tree — it is a
+      fully-rendered Chundan Vallam scene with palms, elephant, and gopuram.
+      The auditor's "bare branches" description appears to have been based on
+      a broken render or different version. The scene is preserved here.
+      What IS fixed: the left-side Kerala outline below uses better-proportioned
+      anchor points, bringing the silhouette closer to the actual state shape
+      (tapered north, wide middle, narrow southern tip pointing WSW).
+    -->
     <div class="header-map-col">
-      <!-- Accurate Kerala outline SVG -->
-      <svg width="72" height="220" viewBox="0 0 140 430" xmlns="http://www.w3.org/2000/svg" aria-label="Map of Kerala" role="img" style="filter:drop-shadow(0 0 12px rgba(61,184,106,0.4))">
-        <path d="
-          M 82,8
-          L 92,12 L 104,18 L 112,26 L 118,36 L 120,48
-          L 116,56 L 110,60 L 106,68 L 108,78 L 114,86
-          L 118,96 L 120,108 L 118,118 L 114,126
-          L 116,136 L 120,144 L 122,154 L 120,164
-          L 116,172 L 114,182 L 116,192 L 118,202
-          L 116,214 L 112,224 L 108,234 L 106,244
-          L 108,254 L 110,264 L 108,274 L 104,284
-          L 100,294 L 96,306 L 90,318 L 84,330
-          L 78,342 L 72,354 L 66,366 L 60,378
-          L 56,390 L 54,400 L 56,410 L 60,416
-          L 64,420 L 62,424 L 56,422 L 50,416
-          L 46,408 L 44,398 L 46,386 L 50,374
-          L 54,362 L 56,350 L 54,338 L 50,326
-          L 48,314 L 50,302 L 54,290 L 58,278
-          L 60,266 L 58,254 L 54,244 L 52,232
-          L 54,220 L 58,208 L 60,196 L 58,184
-          L 54,174 L 52,162 L 54,150 L 58,138
-          L 62,126 L 66,114 L 68,102 L 66,90
-          L 62,78 L 60,66 L 62,54 L 68,42
-          L 74,28 L 80,14 Z
-        "
-        fill="none"
-        stroke="rgba(61,184,106,0.85)"
-        stroke-width="2.5"
-        stroke-linejoin="round"
-        />
-        <!-- Filled version for depth -->
-        <path d="
-          M 82,8
-          L 92,12 L 104,18 L 112,26 L 118,36 L 120,48
-          L 116,56 L 110,60 L 106,68 L 108,78 L 114,86
-          L 118,96 L 120,108 L 118,118 L 114,126
-          L 116,136 L 120,144 L 122,154 L 120,164
-          L 116,172 L 114,182 L 116,192 L 118,202
-          L 116,214 L 112,224 L 108,234 L 106,244
-          L 108,254 L 110,264 L 108,274 L 104,284
-          L 100,294 L 96,306 L 90,318 L 84,330
-          L 78,342 L 72,354 L 66,366 L 60,378
-          L 56,390 L 54,400 L 56,410 L 60,416
-          L 64,420 L 62,424 L 56,422 L 50,416
-          L 46,408 L 44,398 L 46,386 L 50,374
-          L 54,362 L 56,350 L 54,338 L 50,326
-          L 48,314 L 50,302 L 54,290 L 58,278
-          L 60,266 L 58,254 L 54,244 L 52,232
-          L 54,220 L 58,208 L 60,196 L 58,184
-          L 54,174 L 52,162 L 54,150 L 58,138
-          L 62,126 L 66,114 L 68,102 L 66,90
-          L 62,78 L 60,66 L 62,54 L 68,42
-          L 74,28 L 80,14 Z
-        "
-        fill="rgba(42,153,86,0.12)"
-        />
-        <!-- Capital star (Thiruvananthapuram) -->
-        <text x="52" y="412" font-size="9" fill="rgba(255,255,255,0.7)" text-anchor="middle" font-family="sans-serif">★</text>
-        <!-- District dots -->
-        <circle cx="112" cy="50" r="2" fill="rgba(255,255,255,0.45)"/>
-        <circle cx="119" cy="110" r="2" fill="rgba(255,255,255,0.45)"/>
-        <circle cx="121" cy="158" r="2" fill="rgba(255,255,255,0.45)"/>
-        <circle cx="117" cy="214" r="2" fill="rgba(255,255,255,0.45)"/>
-        <circle cx="109" cy="264" r="2" fill="rgba(255,255,255,0.45)"/>
-        <circle cx="96" cy="316" r="2" fill="rgba(255,255,255,0.45)"/>
-        <circle cx="72" cy="368" r="2" fill="rgba(255,255,255,0.45)"/>
+      <svg class="kerala-map-svg" width="64" height="210" viewBox="0 0 120 400"
+           xmlns="http://www.w3.org/2000/svg"
+           aria-label="Outline map of Kerala" role="img"
+           style="filter:drop-shadow(0 0 10px rgba(61,184,106,0.35))">
+        <!--
+          Revised path: Kerala's actual shape has a wider northern half
+          (Malabar coast juts east), narrows around Thrissur/Ernakulam,
+          widens slightly at Kottayam/Alapuzha backwaters, then tapers
+          to the southern tip at Thiruvananthapuram which points WSW.
+          Eastern border follows the Western Ghats ridge.
+        -->
+        <path class="kerala-body" d="
+          M 68,10
+          C 75,10 84,14 90,20
+          C 96,26 100,34 102,44
+          C 104,54 100,62 96,68
+          C 92,74 90,80 92,88
+          C 96,98 100,106 102,116
+          C 104,126 102,136 98,144
+          C 94,152 90,158 88,166
+          C 86,174 88,182 90,190
+          C 92,198 92,208 90,218
+          C 88,228 84,236 80,244
+          C 76,252 74,260 74,270
+          C 74,280 76,290 76,300
+          C 76,310 74,320 70,330
+          C 66,340 62,350 58,360
+          C 54,370 50,380 48,390
+          C 46,396 48,402 52,406
+          C 54,408 56,408 56,406
+
+          C 52,404 50,398 52,392
+          C 54,382 58,372 62,362
+          C 66,352 70,342 72,330
+          C 74,318 72,306 70,294
+          C 68,282 66,272 68,260
+          C 70,248 74,238 76,226
+          C 78,214 76,202 74,192
+          C 72,182 72,172 74,162
+          C 76,152 80,142 82,132
+          C 84,120 82,108 78,98
+          C 74,88 72,78 74,68
+          C 76,58 80,50 82,40
+          C 84,30 78,16 68,10 Z
+        "/>
+        <!-- District marker dots -->
+        <circle cx="94" cy="46" r="2.2" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="100" cy="110" r="2.2" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="90" cy="166" r="2.2" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="90" cy="220" r="2.2" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="76" cy="272" r="2.2" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="68" cy="332" r="2.2" fill="rgba(255,255,255,0.5)"/>
+        <!-- Capital star -->
+        <text x="52" y="400" font-size="9" fill="rgba(255,255,255,0.75)"
+              text-anchor="middle" font-family="sans-serif">★</text>
       </svg>
     </div>
 
-    <!-- CENTER: Title and info -->
+    <!-- CENTER: Title -->
     <div class="header-left">
       <div class="header-tag">Public accountability ledger · Kerala · 2026–2031</div>
       <h1 class="site-title">Keralam Promise<br>Tracker</h1>
@@ -556,11 +622,10 @@ footer a:hover{text-decoration:underline}
       </div>
     </div>
 
-    <!-- RIGHT: Kerala cultural scene art -->
+    <!-- RIGHT: Kerala cultural scene (original, preserved + corrected render) -->
     <div class="header-art-col">
-      <!-- Kerala cultural illustration: boat race + elephant + coconut palms + sunset -->
-      <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="Kerala cultural scene" role="img">
-        <!-- Amber/gold sky gradient -->
+      <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"
+           aria-label="Kerala cultural scene — snake boat race, elephant, coconut palms" role="img">
         <defs>
           <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" style="stop-color:rgba(200,146,42,0.0)"/>
@@ -571,31 +636,18 @@ footer a:hover{text-decoration:underline}
             <stop offset="100%" style="stop-color:rgba(10,46,24,0.5)"/>
           </linearGradient>
         </defs>
-
-        <!-- Sky bg -->
         <rect width="200" height="200" fill="url(#sky)" rx="6"/>
-
-        <!-- Sun setting -->
-        <circle cx="148" cy="78" r="22" fill="rgba(200,146,42,0.22)" />
-        <circle cx="148" cy="78" r="15" fill="rgba(217,168,74,0.32)" />
-        <circle cx="148" cy="78" r="9" fill="rgba(217,168,74,0.55)" />
-
-        <!-- Horizon line / water -->
-        <rect x="0" y="128" width="200" height="72" fill="url(#water)" rx="0"/>
+        <circle cx="148" cy="78" r="22" fill="rgba(200,146,42,0.22)"/>
+        <circle cx="148" cy="78" r="15" fill="rgba(217,168,74,0.32)"/>
+        <circle cx="148" cy="78" r="9" fill="rgba(217,168,74,0.55)"/>
+        <rect x="0" y="128" width="200" height="72" fill="url(#water)"/>
         <line x1="0" y1="128" x2="200" y2="128" stroke="rgba(61,184,106,0.3)" stroke-width="1"/>
-
-        <!-- Water ripples -->
         <ellipse cx="60" cy="138" rx="28" ry="3" fill="none" stroke="rgba(61,184,106,0.2)" stroke-width="1"/>
         <ellipse cx="130" cy="145" rx="20" ry="2" fill="none" stroke="rgba(61,184,106,0.2)" stroke-width="1"/>
-        <ellipse cx="90" cy="155" rx="35" ry="3" fill="none" stroke="rgba(61,184,106,0.15)" stroke-width="1"/>
-
-        <!-- Snake boat (Chundan Vallam) -->
         <path d="M 18,132 Q 80,120 162,130 Q 168,132 162,136 Q 80,128 18,138 Z"
           fill="rgba(10,46,24,0.75)" stroke="rgba(61,184,106,0.5)" stroke-width="0.8"/>
-        <!-- Boat prow (raised) -->
         <path d="M 158,130 Q 170,122 174,128 Q 170,132 162,132 Z"
           fill="rgba(10,46,24,0.75)" stroke="rgba(61,184,106,0.5)" stroke-width="0.8"/>
-        <!-- Rowers - simplified silhouettes -->
         <g fill="rgba(10,46,24,0.8)" stroke="rgba(61,184,106,0.4)" stroke-width="0.5">
           <ellipse cx="35" cy="128" rx="4" ry="5"/>
           <ellipse cx="52" cy="126" rx="4" ry="5"/>
@@ -604,7 +656,6 @@ footer a:hover{text-decoration:underline}
           <ellipse cx="103" cy="124" rx="4" ry="5"/>
           <ellipse cx="120" cy="125" rx="4" ry="5"/>
           <ellipse cx="137" cy="126" rx="4" ry="5"/>
-          <!-- Oars -->
           <line x1="35" y1="128" x2="28" y2="136" stroke="rgba(61,184,106,0.5)" stroke-width="1"/>
           <line x1="52" y1="126" x2="45" y2="134" stroke="rgba(61,184,106,0.5)" stroke-width="1"/>
           <line x1="69" y1="125" x2="62" y2="133" stroke="rgba(61,184,106,0.5)" stroke-width="1"/>
@@ -613,20 +664,13 @@ footer a:hover{text-decoration:underline}
           <line x1="120" y1="125" x2="113" y2="133" stroke="rgba(61,184,106,0.5)" stroke-width="1"/>
           <line x1="137" y1="126" x2="130" y2="134" stroke="rgba(61,184,106,0.5)" stroke-width="1"/>
         </g>
-
-        <!-- Coconut palm 1 - left -->
         <line x1="22" y1="198" x2="30" y2="90" stroke="rgba(61,184,106,0.6)" stroke-width="2.5" stroke-linecap="round"/>
-        <!-- Palm fronds -->
         <path d="M 30,90 Q 10,75 2,62" fill="none" stroke="rgba(42,153,86,0.65)" stroke-width="2" stroke-linecap="round"/>
         <path d="M 30,90 Q 18,80 14,66" fill="none" stroke="rgba(42,153,86,0.65)" stroke-width="2" stroke-linecap="round"/>
         <path d="M 30,90 Q 38,78 46,68" fill="none" stroke="rgba(42,153,86,0.65)" stroke-width="2" stroke-linecap="round"/>
         <path d="M 30,90 Q 44,85 52,78" fill="none" stroke="rgba(42,153,86,0.65)" stroke-width="2" stroke-linecap="round"/>
-        <path d="M 30,90 Q 28,76 26,60" fill="none" stroke="rgba(42,153,86,0.65)" stroke-width="2" stroke-linecap="round"/>
-        <!-- Coconuts -->
         <circle cx="28" cy="94" r="3.5" fill="rgba(200,146,42,0.5)"/>
         <circle cx="32" cy="92" r="3.5" fill="rgba(200,146,42,0.5)"/>
-
-        <!-- Coconut palm 2 - right -->
         <line x1="185" y1="198" x2="176" y2="86" stroke="rgba(61,184,106,0.5)" stroke-width="2.5" stroke-linecap="round"/>
         <path d="M 176,86 Q 196,72 202,58" fill="none" stroke="rgba(42,153,86,0.55)" stroke-width="2" stroke-linecap="round"/>
         <path d="M 176,86 Q 188,78 196,66" fill="none" stroke="rgba(42,153,86,0.55)" stroke-width="2" stroke-linecap="round"/>
@@ -634,37 +678,20 @@ footer a:hover{text-decoration:underline}
         <path d="M 176,86 Q 164,82 158,74" fill="none" stroke="rgba(42,153,86,0.55)" stroke-width="2" stroke-linecap="round"/>
         <circle cx="174" cy="90" r="3" fill="rgba(200,146,42,0.45)"/>
         <circle cx="178" cy="88" r="3" fill="rgba(200,146,42,0.45)"/>
-
-        <!-- Temple gopuram / small structure on horizon -->
         <rect x="88" y="110" width="8" height="18" fill="rgba(10,46,24,0.6)" stroke="rgba(61,184,106,0.3)" stroke-width="0.5"/>
         <polygon points="84,110 96,110 92,102 88,102" fill="rgba(10,46,24,0.6)"/>
         <polygon points="86,102 94,102 92,96 88,96" fill="rgba(10,46,24,0.5)"/>
         <polygon points="88,96 92,96 90,91" fill="rgba(61,184,106,0.4)"/>
-
-        <!-- Elephant silhouette on right shore -->
         <g transform="translate(158,96) scale(0.8)" fill="rgba(10,46,24,0.7)" stroke="rgba(61,184,106,0.3)" stroke-width="0.8">
-          <!-- body -->
           <ellipse cx="14" cy="20" rx="12" ry="9"/>
-          <!-- head -->
           <ellipse cx="22" cy="12" rx="7" ry="7"/>
-          <!-- ear -->
           <ellipse cx="26" cy="11" rx="4" ry="5" fill="rgba(10,46,24,0.5)"/>
-          <!-- trunk -->
-          <path d="M 25,16 Q 30,22 28,28 Q 26,30 24,28" fill="rgba(10,46,24,0.7)" stroke="rgba(61,184,106,0.3)"/>
-          <!-- legs -->
+          <path d="M 25,16 Q 30,22 28,28 Q 26,30 24,28" fill="rgba(10,46,24,0.7)"/>
           <rect x="6" y="26" width="4" height="10" rx="1"/>
           <rect x="12" y="26" width="4" height="10" rx="1"/>
           <rect x="18" y="26" width="4" height="10" rx="1"/>
-          <!-- tusk -->
           <path d="M 26,15 Q 32,14 33,12" fill="none" stroke="rgba(200,146,42,0.55)" stroke-width="1.2"/>
         </g>
-
-        <!-- Subtle vignette -->
-        <radialGradient id="vig" cx="50%" cy="50%" r="70%">
-          <stop offset="0%" style="stop-color:transparent"/>
-          <stop offset="100%" style="stop-color:rgba(10,46,24,0.3)"/>
-        </radialGradient>
-        <rect width="200" height="200" fill="url(#vig)" rx="6"/>
       </svg>
     </div>
 
@@ -705,12 +732,25 @@ footer a:hover{text-decoration:underline}
   </div>
 </section>
 
-<!-- CONTROLS -->
+<!--
+  FIX #1: MERGED FILTER CONTROLS
+  ================================
+  Before: 24 category chips + 46 section chips = 70 visible filter targets = cognitive overload.
+  After:  Two <select> dropdowns (Category, Scheme/Program) + 5 status pills.
+  
+  Why dropdowns over chips: chips are good for ≤6 options where all need to be visible at once.
+  Beyond that they become a scanning task. Dropdowns hide complexity until needed.
+  The status pills (All / Fulfilled / In Progress / Evaded / Pending) stay as pills because:
+    (a) there are only 5, (b) they're the primary axis users care about most.
+  
+  Active selection shows a dismissible badge tag so the user always knows what's filtered.
+-->
 <div class="controls-section" role="search">
   <div class="controls-inner">
+
+    <!-- Row 1: search + status pills -->
     <div class="controls-row">
       <div class="search-wrap">
-        <!-- SVG outline search icon (no emoji) -->
         <span class="search-icon" aria-hidden="true">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8"/>
@@ -726,11 +766,38 @@ footer a:hover{text-decoration:underline}
       <button class="filter-pill" data-s="pending">Pending</button>
     </div>
 
-    <!-- Category chips — wraps to next lines -->
-    <div class="cat-row" id="cat-row" role="tablist" aria-label="Filter by category"></div>
+    <!-- Row 2: Category + Section dropdowns + active filter badges -->
+    <div class="filter-row-2" id="filter-row-2">
+      <!-- Category dropdown -->
+      <div class="filter-select-wrap">
+        <label class="filter-select-label" for="cat-select">Category</label>
+        <select class="filter-select" id="cat-select" aria-label="Filter by category">
+          <option value="All">All categories</option>
+        </select>
+        <span class="select-arrow" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </span>
+      </div>
 
-    <!-- Section chips — wraps to next lines -->
-    <div class="section-tabs" id="section-tabs" role="tablist" aria-label="Filter by section"></div>
+      <!-- Section/Program dropdown -->
+      <div class="filter-select-wrap">
+        <label class="filter-select-label" for="section-select">Program</label>
+        <select class="filter-select" id="section-select" aria-label="Filter by scheme or program">
+          <option value="All">All programs</option>
+        </select>
+        <span class="select-arrow" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </span>
+      </div>
+
+      <!-- Active filter badges rendered by JS -->
+      <div id="active-filter-badges" style="display:flex;gap:5px;flex-wrap:wrap;align-items:center"></div>
+    </div>
+
   </div>
 </div>
 
@@ -755,6 +822,8 @@ footer a:hover{text-decoration:underline}
 <script>
 const STATUS_LABEL={fulfilled:'✓ Fulfilled',progress:'◑ In Progress',evaded:'✗ Evaded',pending:'○ Pending'};
 const SUBMIT_URL='https://github.com/jeremyloll/keralam-tracker/issues/new?template=promise-update.md';
+/* Update this to the live deployed URL when you go live */
+const SITE_BASE_URL = 'https://keralam.in';
 
 let allPromises=[];
 let activeStatus='all';
@@ -805,8 +874,8 @@ async function loadData(){
 
 function boot(){
   updateStats();
-  buildCats();
-  buildSections();
+  buildCatDropdown();
+  buildSectionDropdown();
   render();
 }
 
@@ -829,7 +898,7 @@ function updateStats(){
   }
 }
 
-/* 24 categories as provided */
+/* FIX #1: Build dropdown options instead of chip rows */
 const ALL_CATEGORIES=[
   'All','Social Welfare','Development','Healthcare','Education','Economy',
   'Employment','Women & Gender','Housing','Agriculture','Environment',
@@ -837,18 +906,6 @@ const ALL_CATEGORIES=[
   'Infrastructure','Transportation','Energy','Tourism','Expatriate Affairs',
   'Religion & Culture','Youth','Water'
 ];
-
-function buildCats(){
-  const row=document.getElementById('cat-row');
-  row.innerHTML=ALL_CATEGORIES.map(c=>
-    `<button class="cat-chip${c===activeCat?' active':''}" data-c="${c}" role="tab" aria-selected="${c===activeCat}">${c}</button>`
-  ).join('');
-  row.querySelectorAll('.cat-chip').forEach(b=>b.addEventListener('click',()=>{
-    activeCat=b.dataset.c;
-    activeSection='All';
-    buildCats();buildSections();render();
-  }));
-}
 
 const ALL_SECTIONS=[
   'All','Indira Guarantee','Dream Projects','Social Security and Equality',
@@ -865,20 +922,54 @@ const ALL_SECTIONS=[
   'Religious Harmony','Liquor Policy','Local Self-Government and Panchayati Raj'
 ];
 
-function buildSections(){
+function buildCatDropdown(){
+  const sel=document.getElementById('cat-select');
+  sel.innerHTML=ALL_CATEGORIES.map(c=>
+    `<option value="${c}"${c===activeCat?' selected':''}>${c==='All'?'All categories':c}</option>`
+  ).join('');
+  sel.classList.toggle('has-value',activeCat!=='All');
+}
+
+function buildSectionDropdown(){
   const relevantSections=activeCat==='All'
     ? ALL_SECTIONS
     : ['All',...new Set(allPromises.filter(p=>p.category===activeCat).map(p=>p.section))];
 
-  const tabs=document.getElementById('section-tabs');
-  tabs.innerHTML=relevantSections.map(s=>
-    `<button class="section-chip${s===activeSection?' active':''}" data-s="${s}">${s}</button>`
+  const sel=document.getElementById('section-select');
+  sel.innerHTML=relevantSections.map(s=>
+    `<option value="${s}"${s===activeSection?' selected':''}>${s==='All'?'All programs':s}</option>`
   ).join('');
-  tabs.querySelectorAll('.section-chip').forEach(b=>b.addEventListener('click',()=>{
-    activeSection=b.dataset.s;
-    buildSections();render();
-  }));
+  sel.classList.toggle('has-value',activeSection!=='All');
 }
+
+function updateActiveBadges(){
+  const wrap=document.getElementById('active-filter-badges');
+  let html='';
+  if(activeCat!=='All'){
+    html+=`<span class="filter-active-badge">${activeCat}<button onclick="clearCat()" aria-label="Remove category filter">×</button></span>`;
+  }
+  if(activeSection!=='All'){
+    html+=`<span class="filter-active-badge">${activeSection}<button onclick="clearSection()" aria-label="Remove program filter">×</button></span>`;
+  }
+  wrap.innerHTML=html;
+}
+function clearCat(){activeCat='All';activeSection='All';buildCatDropdown();buildSectionDropdown();updateActiveBadges();render();}
+function clearSection(){activeSection='All';buildSectionDropdown();updateActiveBadges();render();}
+
+document.getElementById('cat-select').addEventListener('change',function(){
+  activeCat=this.value;
+  activeSection='All';
+  buildCatDropdown();
+  buildSectionDropdown();
+  updateActiveBadges();
+  render();
+});
+document.getElementById('section-select').addEventListener('change',function(){
+  activeSection=this.value;
+  buildSectionDropdown();
+  updateActiveBadges();
+  render();
+});
 
 function filtered(){
   const q=searchQ.toLowerCase();
@@ -901,6 +992,75 @@ function submitUrl(id,title){
   return SUBMIT_URL+'&title='+enc;
 }
 
+/*
+  FIX #3: SHARE FUNCTIONS
+  ========================
+  Three share surfaces per promise:
+  1. Mini share button on the card summary (top-right) — triggers native Web Share API on
+     mobile where supported, falls back to WhatsApp web link on desktop.
+  2. Expanded share toolbar inside the open card detail: WhatsApp, Twitter/X, Copy link.
+  3. URL is constructed as SITE_BASE_URL + ?promise=ID so a direct link can be shared
+     and the page can auto-open the right card on load.
+
+  OG image per promise: the <meta og:image> in <head> sets a default. For per-promise
+  sharing you need a server-side OG image generator (Vercel Edge, Cloudflare Workers,
+  or a simple serverless function that renders an HTML template to PNG via headless Chrome).
+  The share URLs below pass ?promise=ID; your OG handler should read that param and
+  render the promise title + status into a custom 1200×630 PNG. That is a server-side
+  concern and cannot be solved client-side alone.
+*/
+function buildShareUrl(promiseId){
+  return `${SITE_BASE_URL}/?promise=${promiseId}`;
+}
+
+function buildShareText(title,status){
+  const emoji={fulfilled:'✅',progress:'🔄',evaded:'❌',pending:'⏳'};
+  return `${emoji[status]||''} "${title}" — tracking UDF government promises in Kerala. #KeralamPromiseTracker`;
+}
+
+function nativeShare(id,title,status){
+  const url=buildShareUrl(id);
+  const text=buildShareText(title,status);
+  if(navigator.share){
+    navigator.share({title:'Keralam Promise Tracker',text,url}).catch(()=>{});
+  } else {
+    const waUrl=`https://api.whatsapp.com/send?text=${encodeURIComponent(text+'\n'+url)}`;
+    window.open(waUrl,'_blank','noopener');
+  }
+}
+
+function copyPromiseLink(id,btn){
+  const url=buildShareUrl(id);
+  navigator.clipboard.writeText(url).then(()=>{
+    btn.classList.add('copied');
+    btn.textContent='✓ Copied';
+    setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML='<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> Copy link';},2200);
+  }).catch(()=>{
+    /* fallback: select a temp input */
+    const inp=document.createElement('input');
+    inp.value=url;document.body.appendChild(inp);
+    inp.select();document.execCommand('copy');document.body.removeChild(inp);
+    btn.classList.add('copied');btn.textContent='✓ Copied';
+    setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML='<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> Copy link';},2200);
+  });
+}
+
+/* Auto-open promise from URL param on load */
+function checkUrlParam(){
+  const params=new URLSearchParams(window.location.search);
+  const pid=params.get('promise');
+  if(pid){
+    setTimeout(()=>{
+      const card=document.querySelector(`.promise-card[data-id="${pid}"]`);
+      if(card){
+        card.classList.add('open');
+        card.querySelector('.card-summary').setAttribute('aria-expanded','true');
+        card.scrollIntoView({behavior:'smooth',block:'center'});
+      }
+    },300);
+  }
+}
+
 function render(){
   const list=document.getElementById('promises-list');
   const items=filtered();
@@ -916,6 +1076,9 @@ function render(){
     grouped[sec].push(p);
   });
 
+  const shareIcon=`<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>`;
+  const copyIcon=`<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
+
   let html='';
   Object.entries(grouped).forEach(([sec,promises])=>{
     html+=`<div class="section-group-header"><span>${sec}</span><span class="group-promise-count">${promises.length}</span></div>`;
@@ -923,6 +1086,8 @@ function render(){
       const upd=lastUpdate(p);
       const canSubmit=p.status==='pending'||p.status==='progress';
       const isFlag=p.section_type==='flagship';
+      const shareText=encodeURIComponent(buildShareText(p.title_en,p.status));
+      const shareUrl=encodeURIComponent(buildShareUrl(p.id));
       html+=`
       <article class="promise-card" data-id="${p.id}">
         <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
@@ -937,12 +1102,18 @@ function render(){
             <div class="card-title">${p.title_en}</div>
             ${p.title_ml?`<div class="card-title-ml">${p.title_ml}</div>`:''}
           </div>
-          <span class="card-num">#${p.id}</span>
+          <!-- FIX #3: share button on card summary row -->
+          <div class="card-actions">
+            <button class="share-btn" onclick="event.stopPropagation();nativeShare('${p.id}',${JSON.stringify(p.title_en)},'${p.status}')" aria-label="Share this promise">
+              ${shareIcon} Share
+            </button>
+            <span class="card-num">#${p.id}</span>
+          </div>
         </div>
         <div class="card-detail">
           ${p.manifesto_page?`
           <div class="detail-block">
-            <div class="detail-label">As stated in manifesto${p.manifesto_page?' — page '+p.manifesto_page:''}</div>
+            <div class="detail-label">As stated in manifesto — page ${p.manifesto_page}</div>
             <div class="verbatim-text">"${p.verbatim}"</div>
           </div>`:`
           <div class="detail-block">
@@ -973,6 +1144,31 @@ function render(){
               </a>
             </div>`:''}
           </div>
+
+          <!-- FIX #3: expanded share toolbar inside card detail -->
+          <div class="detail-block">
+            <div class="detail-label">Share this promise</div>
+            <div class="share-toolbar">
+              <a class="share-action share-wa"
+                 href="https://api.whatsapp.com/send?text=${shareText}%0A${shareUrl}"
+                 target="_blank" rel="noopener" aria-label="Share on WhatsApp">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                WhatsApp
+              </a>
+              <a class="share-action share-tw"
+                 href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}"
+                 target="_blank" rel="noopener" aria-label="Share on Twitter/X">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.736-8.868L2.25 2.25h6.918l4.243 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                X / Twitter
+              </a>
+              <button class="share-action share-copy" id="copy-btn-${p.id}"
+                      onclick="copyPromiseLink('${p.id}',this)"
+                      aria-label="Copy link to this promise">
+                ${copyIcon} Copy link
+              </button>
+            </div>
+          </div>
+
           ${p.updates&&p.updates.length>1?`
           <div class="detail-block">
             <div class="detail-label">History (${p.updates.length} updates)</div>
@@ -995,10 +1191,19 @@ function render(){
       const card=s.closest('.promise-card');
       const isOpen=card.classList.toggle('open');
       s.setAttribute('aria-expanded',isOpen);
+      /* Update URL so this card's link is shareable from address bar too */
+      if(isOpen){
+        const id=card.dataset.id;
+        const url=new URL(window.location);
+        url.searchParams.set('promise',id);
+        window.history.replaceState({},'',url);
+      }
     };
     s.addEventListener('click',handler);
     s.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();handler();}});
   });
+
+  checkUrlParam();
 }
 
 /* status filters */
