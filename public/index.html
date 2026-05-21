@@ -291,7 +291,7 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
   padding:0 0 0 2px;
 }
 
-/* Status filter pills — same as before, kept visible */
+/* Status filter pills */
 .filter-pill{
   font-size:12px;padding:6px 13px;
   border:1px solid var(--border);
@@ -519,20 +519,14 @@ footer a:hover{text-decoration:underline}
 <header class="site-header" role="banner">
   <div class="header-inner">
 
-    <!-- LEFT: More geographically accurate Kerala map outline -->
+    <!-- Kerala map outline -->
    
     <div class="header-map-col">
       <svg class="kerala-map-svg" width="64" height="210" viewBox="0 0 120 400"
            xmlns="http://www.w3.org/2000/svg"
            aria-label="Outline map of Kerala" role="img"
            style="filter:drop-shadow(0 0 10px rgba(61,184,106,0.35))">
-        <!--
-          Revised path: Kerala's actual shape has a wider northern half
-          (Malabar coast juts east), narrows around Thrissur/Ernakulam,
-          widens slightly at Kottayam/Alapuzha backwaters, then tapers
-          to the southern tip at Thiruvananthapuram which points WSW.
-          Eastern border follows the Western Ghats ridge.
-        -->
+       
         <path class="kerala-body" d="
           M 68,10
           C 75,10 84,14 90,20
@@ -601,7 +595,7 @@ footer a:hover{text-decoration:underline}
       </div>
     </div>
 
-    <!-- RIGHT: Kerala cultural scene (original, preserved + corrected render) -->
+    <!-- RIGHT: Kerala cultural scene -->
     <div class="header-art-col">
       <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"
            aria-label="Kerala cultural scene — snake boat race, elephant, coconut palms" role="img">
