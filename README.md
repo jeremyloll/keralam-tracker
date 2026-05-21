@@ -6,18 +6,6 @@ No databases, no servers, no complex hosting fees. The entire infrastructure run
 
 ---
 
-## 🏗️ How the System Works
-
-This project is built to run entirely on file changes (GitOps). Here is what each file does:
-
-*   `promises.json` — **The Entire Database.** There is no MySQL, Firebase, or Supabase. This single file holds all the data. Edit this file, and the website reflects the changes instantly.
-*   `validate.js` — **The Gatekeeper.** A Node.js script that automatically checks any data updates to ensure no one breaks the website with typos, missing sources, or malformed dates.
-*   `.github/workflows/validate.yml` — **The Automation.** Tells GitHub Actions to run `validate.js` every single time a Pull Request (PR) is opened. If the data has errors, it blocks the merge automatically.
-*   `CONTRIBUTING.md` — **The Rulebook.** Defines how data is graded, what sources are acceptable, and how non-technical users can help.
-*   `.github/ISSUE_TEMPLATE/promise-update.md` — **The Update Form.** A structured form that appears when someone opens a GitHub Issue. This allows non-developers to submit manifesto updates without touching JSON code.
-
----
-
 ## 🤝 Contributing Data
 
 We rely on the community to keep the tracker accurate. 
