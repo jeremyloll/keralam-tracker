@@ -94,17 +94,16 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
   overflow:hidden;
 }
 
-/* Kerala map watermark */
-.header-map-bg{
+/* Kerala cultural art background - right side */
+.header-kerala-art{
   position:absolute;
-  right:-20px;top:50%;
-  transform:translateY(-50%);
-  opacity:0.06;
-  height:110%;
+  right:0;top:0;bottom:0;
+  width:260px;
+  overflow:hidden;
   pointer-events:none;
 }
 
-.header-inner{max-width:900px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start}
+.header-inner{max-width:900px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:center}
 .header-left{}
 .header-tag{
   font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
@@ -142,15 +141,20 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 }
 .lang-toggle:hover{background:rgba(255,255,255,0.16)}
 
-/* Kerala map SVG in header */
-.header-right{
+/* Kerala map - center column */
+.header-map-col{
   display:flex;align-items:center;justify-content:center;
-  padding-top:0.5rem;
+  padding:0.5rem 0;
+  position:relative;
+  z-index:2;
 }
-.kerala-map-svg{
-  width:90px;height:auto;
-  opacity:0.65;
-  filter:drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+
+/* Kerala art - right column */
+.header-art-col{
+  display:flex;align-items:center;justify-content:flex-end;
+  width:200px;
+  position:relative;
+  z-index:2;
 }
 
 /* ── TIME BLOCKS ── */
@@ -237,12 +241,13 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 .search-wrap{flex:1;min-width:180px;position:relative}
 .search-icon{
   position:absolute;left:11px;top:50%;transform:translateY(-50%);
-  color:var(--ink-3);font-size:15px;pointer-events:none;
+  color:var(--ink-3);pointer-events:none;
+  display:flex;align-items:center;
 }
 .search-box{
   width:100%;
   border:1px solid var(--border);
-  border-radius:8px;padding:8px 12px 8px 34px;
+  border-radius:8px;padding:8px 12px 8px 36px;
   font-family:var(--font-body);font-size:13.5px;
   background:var(--surface);color:var(--ink);
   outline:none;transition:border-color 0.12s;
@@ -261,12 +266,25 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 .filter-pill.f-prog.active{background:var(--gold-500);border-color:var(--gold-500)}
 .filter-pill.f-evad.active{background:var(--red-700);border-color:var(--red-700)}
 
-/* section tabs */
-.section-tabs{
-  display:flex;gap:3px;overflow-x:auto;padding:0.5rem 0 0.25rem;
-  scrollbar-width:none;flex-wrap:nowrap;
+/* category chips - WRAP to next line, don't scroll */
+.cat-row{
+  display:flex;gap:4px;padding:0.5rem 0 0.1rem;
+  flex-wrap:wrap;  /* KEY FIX: wrap instead of nowrap */
 }
-.section-tabs::-webkit-scrollbar{display:none}
+.cat-chip{
+  font-size:11.5px;padding:4px 11px;border-radius:5px;
+  border:1px solid var(--border);background:transparent;cursor:pointer;
+  font-family:var(--font-body);color:var(--ink-3);
+  white-space:nowrap;transition:all 0.1s;flex-shrink:0;
+}
+.cat-chip:hover{background:var(--surface);color:var(--ink-2)}
+.cat-chip.active{background:var(--green-50);color:var(--green-800);font-weight:500;border-color:var(--green-300,#7dcc9f)}
+
+/* section tabs - also wrap */
+.section-tabs{
+  display:flex;gap:3px;padding:0.4rem 0 0.1rem;
+  flex-wrap:wrap;  /* KEY FIX: wrap */
+}
 .section-chip{
   font-size:11.5px;padding:4px 10px;border-radius:5px;
   border:none;background:transparent;cursor:pointer;
@@ -276,21 +294,6 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 .section-chip:hover{background:var(--surface);color:var(--ink-2)}
 .section-chip.active{background:var(--green-50);color:var(--green-800);font-weight:500}
 .section-chip.cat-active{background:var(--green-100);color:var(--green-900);font-weight:500}
-
-/* category header row */
-.cat-row{
-  display:flex;gap:4px;overflow-x:auto;padding:0.4rem 0 0.1rem;
-  scrollbar-width:none;
-}
-.cat-row::-webkit-scrollbar{display:none}
-.cat-chip{
-  font-size:11.5px;padding:4px 11px;border-radius:5px;
-  border:1px solid var(--border);background:transparent;cursor:pointer;
-  font-family:var(--font-body);color:var(--ink-3);
-  white-space:nowrap;transition:all 0.1s;flex-shrink:0;
-}
-.cat-chip:hover{background:var(--surface);color:var(--ink-2)}
-.cat-chip.active{background:var(--green-50);color:var(--green-800);font-weight:500;border-color:var(--green-300,#7dcc9f)}
 
 /* ── PROMISE CARDS ── */
 .promises-section{max-width:900px;margin:0 auto;padding:1rem 1.5rem 4rem}
@@ -424,15 +427,6 @@ footer{
 footer a{color:var(--green-700);text-decoration:none}
 footer a:hover{text-decoration:underline}
 
-/* ── KERALA MAP INLINE ── */
-.kerala-map-container{position:relative}
-.map-dot{
-  position:absolute;width:7px;height:7px;
-  border-radius:50%;background:var(--green-400);
-  border:1.5px solid var(--white);
-  box-shadow:0 0 0 2px var(--green-400);
-}
-
 /* group toggle */
 .group-promise-count{
   font-family:var(--font-body);
@@ -441,9 +435,9 @@ footer a:hover{text-decoration:underline}
   border-radius:10px;padding:1px 8px;margin-left:auto;
 }
 
-@media(max-width:600px){
+@media(max-width:700px){
   .header-inner{grid-template-columns:1fr}
-  .header-right{display:none}
+  .header-map-col,.header-art-col{display:none}
   .stats-grid{grid-template-columns:repeat(3,1fr)}
   .stats-grid .stat-box:nth-child(1){grid-column:span 3}
   .time-blocks{grid-template-columns:repeat(2,1fr)}
@@ -468,12 +462,80 @@ footer a:hover{text-decoration:underline}
 
 <!-- HEADER -->
 <header class="site-header" role="banner">
-  <!-- Kerala map watermark -->
-  <svg class="header-map-bg" viewBox="0 0 200 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M120,20 L140,40 L155,60 L160,90 L155,120 L165,150 L170,180 L165,210 L170,250 L165,290 L155,330 L145,370 L130,410 L115,450 L100,490 L85,520 L75,540 L80,560 L90,570 L85,580 L75,575 L65,560 L60,540 L55,510 L60,480 L70,450 L80,420 L85,390 L80,360 L70,330 L65,300 L70,270 L75,240 L70,210 L65,180 L70,150 L80,120 L85,90 L80,60 L90,40 L110,25 Z" fill="white"/>
-  </svg>
-
   <div class="header-inner">
+
+    <!-- LEFT: Kerala map outline -->
+    <div class="header-map-col">
+      <!-- Accurate Kerala outline SVG -->
+      <svg width="72" height="220" viewBox="0 0 140 430" xmlns="http://www.w3.org/2000/svg" aria-label="Map of Kerala" role="img" style="filter:drop-shadow(0 0 12px rgba(61,184,106,0.4))">
+        <path d="
+          M 82,8
+          L 92,12 L 104,18 L 112,26 L 118,36 L 120,48
+          L 116,56 L 110,60 L 106,68 L 108,78 L 114,86
+          L 118,96 L 120,108 L 118,118 L 114,126
+          L 116,136 L 120,144 L 122,154 L 120,164
+          L 116,172 L 114,182 L 116,192 L 118,202
+          L 116,214 L 112,224 L 108,234 L 106,244
+          L 108,254 L 110,264 L 108,274 L 104,284
+          L 100,294 L 96,306 L 90,318 L 84,330
+          L 78,342 L 72,354 L 66,366 L 60,378
+          L 56,390 L 54,400 L 56,410 L 60,416
+          L 64,420 L 62,424 L 56,422 L 50,416
+          L 46,408 L 44,398 L 46,386 L 50,374
+          L 54,362 L 56,350 L 54,338 L 50,326
+          L 48,314 L 50,302 L 54,290 L 58,278
+          L 60,266 L 58,254 L 54,244 L 52,232
+          L 54,220 L 58,208 L 60,196 L 58,184
+          L 54,174 L 52,162 L 54,150 L 58,138
+          L 62,126 L 66,114 L 68,102 L 66,90
+          L 62,78 L 60,66 L 62,54 L 68,42
+          L 74,28 L 80,14 Z
+        "
+        fill="none"
+        stroke="rgba(61,184,106,0.85)"
+        stroke-width="2.5"
+        stroke-linejoin="round"
+        />
+        <!-- Filled version for depth -->
+        <path d="
+          M 82,8
+          L 92,12 L 104,18 L 112,26 L 118,36 L 120,48
+          L 116,56 L 110,60 L 106,68 L 108,78 L 114,86
+          L 118,96 L 120,108 L 118,118 L 114,126
+          L 116,136 L 120,144 L 122,154 L 120,164
+          L 116,172 L 114,182 L 116,192 L 118,202
+          L 116,214 L 112,224 L 108,234 L 106,244
+          L 108,254 L 110,264 L 108,274 L 104,284
+          L 100,294 L 96,306 L 90,318 L 84,330
+          L 78,342 L 72,354 L 66,366 L 60,378
+          L 56,390 L 54,400 L 56,410 L 60,416
+          L 64,420 L 62,424 L 56,422 L 50,416
+          L 46,408 L 44,398 L 46,386 L 50,374
+          L 54,362 L 56,350 L 54,338 L 50,326
+          L 48,314 L 50,302 L 54,290 L 58,278
+          L 60,266 L 58,254 L 54,244 L 52,232
+          L 54,220 L 58,208 L 60,196 L 58,184
+          L 54,174 L 52,162 L 54,150 L 58,138
+          L 62,126 L 66,114 L 68,102 L 66,90
+          L 62,78 L 60,66 L 62,54 L 68,42
+          L 74,28 L 80,14 Z
+        "
+        fill="rgba(42,153,86,0.12)"
+        />
+        <!-- Capital star (Thiruvananthapuram) -->
+        <text x="52" y="412" font-size="9" fill="rgba(255,255,255,0.7)" text-anchor="middle" font-family="sans-serif">★</text>
+        <!-- District dots -->
+        <circle cx="112" cy="50" r="2" fill="rgba(255,255,255,0.45)"/>
+        <circle cx="119" cy="110" r="2" fill="rgba(255,255,255,0.45)"/>
+        <circle cx="121" cy="158" r="2" fill="rgba(255,255,255,0.45)"/>
+        <circle cx="117" cy="214" r="2" fill="rgba(255,255,255,0.45)"/>
+        <circle cx="109" cy="264" r="2" fill="rgba(255,255,255,0.45)"/>
+        <circle cx="96" cy="316" r="2" fill="rgba(255,255,255,0.45)"/>
+        <circle cx="72" cy="368" r="2" fill="rgba(255,255,255,0.45)"/>
+      </svg>
+    </div>
+
+    <!-- CENTER: Title and info -->
     <div class="header-left">
       <div class="header-tag">Public accountability ledger · Kerala · 2026–2031</div>
       <h1 class="site-title">Keralam Promise<br>Tracker</h1>
@@ -494,80 +556,118 @@ footer a:hover{text-decoration:underline}
       </div>
     </div>
 
-    <!-- Kerala map SVG -->
-    <div class="header-right">
-      <svg class="kerala-map-svg" viewBox="0 0 160 500" xmlns="http://www.w3.org/2000/svg" aria-label="Map of Kerala" role="img">
+    <!-- RIGHT: Kerala cultural scene art -->
+    <div class="header-art-col">
+      <!-- Kerala cultural illustration: boat race + elephant + coconut palms + sunset -->
+      <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="Kerala cultural scene" role="img">
+        <!-- Amber/gold sky gradient -->
         <defs>
-          <linearGradient id="mapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#3db86a;stop-opacity:1"/>
-            <stop offset="100%" style="stop-color:#1a6638;stop-opacity:1"/>
+          <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:rgba(200,146,42,0.0)"/>
+            <stop offset="100%" style="stop-color:rgba(200,146,42,0.18)"/>
+          </linearGradient>
+          <linearGradient id="water" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:rgba(26,100,56,0.35)"/>
+            <stop offset="100%" style="stop-color:rgba(10,46,24,0.5)"/>
           </linearGradient>
         </defs>
-        <!-- Stylized Kerala shape -->
-        <path d="
-          M 100 15
-          L 115 25
-          L 130 40
-          L 138 60
-          L 140 85
-          L 145 110
-          L 148 140
-          L 145 165
-          L 150 190
-          L 152 220
-          L 148 255
-          L 145 285
-          L 140 315
-          L 132 345
-          L 120 378
-          L 108 410
-          L 95 445
-          L 83 472
-          L 72 488
-          L 68 495
-          L 70 500
-          L 78 498
-          L 85 490
-          L 90 478
-          L 85 460
-          L 75 440
-          L 72 418
-          L 78 398
-          L 88 378
-          L 98 355
-          L 108 328
-          L 112 298
-          L 108 268
-          L 100 238
-          L 96 208
-          L 98 178
-          L 102 148
-          L 108 118
-          L 110 88
-          L 105 62
-          L 98 40
-          L 95 22
-          Z
-        " fill="url(#mapGrad)" opacity="0.9"/>
-        <!-- Coastline shimmer -->
-        <path d="
-          M 100 15 L 95 22 L 98 40 L 105 62 L 110 88 L 108 118 L 102 148 L 98 178
-          L 96 208 L 100 238 L 108 268 L 112 298 L 108 328 L 98 355 L 88 378
-          L 78 398 L 72 418 L 75 440 L 85 460 L 90 478 L 85 490 L 78 498
-        " stroke="rgba(255,255,255,0.35)" stroke-width="1.5" fill="none"/>
-        <!-- District dots -->
-        <circle cx="105" cy="50" r="3" fill="rgba(255,255,255,0.7)"/>
-        <circle cx="112" cy="100" r="3" fill="rgba(255,255,255,0.7)"/>
-        <circle cx="118" cy="155" r="3" fill="rgba(255,255,255,0.7)"/>
-        <circle cx="120" cy="215" r="3" fill="rgba(255,255,255,0.7)"/>
-        <circle cx="115" cy="270" r="3" fill="rgba(255,255,255,0.7)"/>
-        <circle cx="108" cy="330" r="3" fill="rgba(255,255,255,0.7)"/>
-        <circle cx="96" cy="390" r="3" fill="rgba(255,255,255,0.7)"/>
-        <circle cx="83" cy="448" r="3" fill="rgba(255,255,255,0.7)"/>
-        <!-- Star for capital -->
-        <text x="93" y="478" font-size="10" fill="rgba(255,255,255,0.9)" text-anchor="middle">★</text>
+
+        <!-- Sky bg -->
+        <rect width="200" height="200" fill="url(#sky)" rx="6"/>
+
+        <!-- Sun setting -->
+        <circle cx="148" cy="78" r="22" fill="rgba(200,146,42,0.22)" />
+        <circle cx="148" cy="78" r="15" fill="rgba(217,168,74,0.32)" />
+        <circle cx="148" cy="78" r="9" fill="rgba(217,168,74,0.55)" />
+
+        <!-- Horizon line / water -->
+        <rect x="0" y="128" width="200" height="72" fill="url(#water)" rx="0"/>
+        <line x1="0" y1="128" x2="200" y2="128" stroke="rgba(61,184,106,0.3)" stroke-width="1"/>
+
+        <!-- Water ripples -->
+        <ellipse cx="60" cy="138" rx="28" ry="3" fill="none" stroke="rgba(61,184,106,0.2)" stroke-width="1"/>
+        <ellipse cx="130" cy="145" rx="20" ry="2" fill="none" stroke="rgba(61,184,106,0.2)" stroke-width="1"/>
+        <ellipse cx="90" cy="155" rx="35" ry="3" fill="none" stroke="rgba(61,184,106,0.15)" stroke-width="1"/>
+
+        <!-- Snake boat (Chundan Vallam) -->
+        <path d="M 18,132 Q 80,120 162,130 Q 168,132 162,136 Q 80,128 18,138 Z"
+          fill="rgba(10,46,24,0.75)" stroke="rgba(61,184,106,0.5)" stroke-width="0.8"/>
+        <!-- Boat prow (raised) -->
+        <path d="M 158,130 Q 170,122 174,128 Q 170,132 162,132 Z"
+          fill="rgba(10,46,24,0.75)" stroke="rgba(61,184,106,0.5)" stroke-width="0.8"/>
+        <!-- Rowers - simplified silhouettes -->
+        <g fill="rgba(10,46,24,0.8)" stroke="rgba(61,184,106,0.4)" stroke-width="0.5">
+          <ellipse cx="35" cy="128" rx="4" ry="5"/>
+          <ellipse cx="52" cy="126" rx="4" ry="5"/>
+          <ellipse cx="69" cy="125" rx="4" ry="5"/>
+          <ellipse cx="86" cy="124" rx="4" ry="5"/>
+          <ellipse cx="103" cy="124" rx="4" ry="5"/>
+          <ellipse cx="120" cy="125" rx="4" ry="5"/>
+          <ellipse cx="137" cy="126" rx="4" ry="5"/>
+          <!-- Oars -->
+          <line x1="35" y1="128" x2="28" y2="136" stroke="rgba(61,184,106,0.5)" stroke-width="1"/>
+          <line x1="52" y1="126" x2="45" y2="134" stroke="rgba(61,184,106,0.5)" stroke-width="1"/>
+          <line x1="69" y1="125" x2="62" y2="133" stroke="rgba(61,184,106,0.5)" stroke-width="1"/>
+          <line x1="86" y1="124" x2="79" y2="132" stroke="rgba(61,184,106,0.5)" stroke-width="1"/>
+          <line x1="103" y1="124" x2="96" y2="132" stroke="rgba(61,184,106,0.5)" stroke-width="1"/>
+          <line x1="120" y1="125" x2="113" y2="133" stroke="rgba(61,184,106,0.5)" stroke-width="1"/>
+          <line x1="137" y1="126" x2="130" y2="134" stroke="rgba(61,184,106,0.5)" stroke-width="1"/>
+        </g>
+
+        <!-- Coconut palm 1 - left -->
+        <line x1="22" y1="198" x2="30" y2="90" stroke="rgba(61,184,106,0.6)" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- Palm fronds -->
+        <path d="M 30,90 Q 10,75 2,62" fill="none" stroke="rgba(42,153,86,0.65)" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 30,90 Q 18,80 14,66" fill="none" stroke="rgba(42,153,86,0.65)" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 30,90 Q 38,78 46,68" fill="none" stroke="rgba(42,153,86,0.65)" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 30,90 Q 44,85 52,78" fill="none" stroke="rgba(42,153,86,0.65)" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 30,90 Q 28,76 26,60" fill="none" stroke="rgba(42,153,86,0.65)" stroke-width="2" stroke-linecap="round"/>
+        <!-- Coconuts -->
+        <circle cx="28" cy="94" r="3.5" fill="rgba(200,146,42,0.5)"/>
+        <circle cx="32" cy="92" r="3.5" fill="rgba(200,146,42,0.5)"/>
+
+        <!-- Coconut palm 2 - right -->
+        <line x1="185" y1="198" x2="176" y2="86" stroke="rgba(61,184,106,0.5)" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M 176,86 Q 196,72 202,58" fill="none" stroke="rgba(42,153,86,0.55)" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 176,86 Q 188,78 196,66" fill="none" stroke="rgba(42,153,86,0.55)" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 176,86 Q 162,76 154,64" fill="none" stroke="rgba(42,153,86,0.55)" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 176,86 Q 164,82 158,74" fill="none" stroke="rgba(42,153,86,0.55)" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="174" cy="90" r="3" fill="rgba(200,146,42,0.45)"/>
+        <circle cx="178" cy="88" r="3" fill="rgba(200,146,42,0.45)"/>
+
+        <!-- Temple gopuram / small structure on horizon -->
+        <rect x="88" y="110" width="8" height="18" fill="rgba(10,46,24,0.6)" stroke="rgba(61,184,106,0.3)" stroke-width="0.5"/>
+        <polygon points="84,110 96,110 92,102 88,102" fill="rgba(10,46,24,0.6)"/>
+        <polygon points="86,102 94,102 92,96 88,96" fill="rgba(10,46,24,0.5)"/>
+        <polygon points="88,96 92,96 90,91" fill="rgba(61,184,106,0.4)"/>
+
+        <!-- Elephant silhouette on right shore -->
+        <g transform="translate(158,96) scale(0.8)" fill="rgba(10,46,24,0.7)" stroke="rgba(61,184,106,0.3)" stroke-width="0.8">
+          <!-- body -->
+          <ellipse cx="14" cy="20" rx="12" ry="9"/>
+          <!-- head -->
+          <ellipse cx="22" cy="12" rx="7" ry="7"/>
+          <!-- ear -->
+          <ellipse cx="26" cy="11" rx="4" ry="5" fill="rgba(10,46,24,0.5)"/>
+          <!-- trunk -->
+          <path d="M 25,16 Q 30,22 28,28 Q 26,30 24,28" fill="rgba(10,46,24,0.7)" stroke="rgba(61,184,106,0.3)"/>
+          <!-- legs -->
+          <rect x="6" y="26" width="4" height="10" rx="1"/>
+          <rect x="12" y="26" width="4" height="10" rx="1"/>
+          <rect x="18" y="26" width="4" height="10" rx="1"/>
+          <!-- tusk -->
+          <path d="M 26,15 Q 32,14 33,12" fill="none" stroke="rgba(200,146,42,0.55)" stroke-width="1.2"/>
+        </g>
+
+        <!-- Subtle vignette -->
+        <radialGradient id="vig" cx="50%" cy="50%" r="70%">
+          <stop offset="0%" style="stop-color:transparent"/>
+          <stop offset="100%" style="stop-color:rgba(10,46,24,0.3)"/>
+        </radialGradient>
+        <rect width="200" height="200" fill="url(#vig)" rx="6"/>
       </svg>
     </div>
+
   </div>
 </header>
 
@@ -610,7 +710,13 @@ footer a:hover{text-decoration:underline}
   <div class="controls-inner">
     <div class="controls-row">
       <div class="search-wrap">
-        <span class="search-icon" aria-hidden="true">🔍</span>
+        <!-- SVG outline search icon (no emoji) -->
+        <span class="search-icon" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </span>
         <input class="search-box" type="search" id="q" placeholder="Search promises…" aria-label="Search promises">
       </div>
       <button class="filter-pill active" data-s="all">All</button>
@@ -620,10 +726,10 @@ footer a:hover{text-decoration:underline}
       <button class="filter-pill" data-s="pending">Pending</button>
     </div>
 
-    <!-- Category chips -->
+    <!-- Category chips — wraps to next lines -->
     <div class="cat-row" id="cat-row" role="tablist" aria-label="Filter by category"></div>
 
-    <!-- Section chips -->
+    <!-- Section chips — wraps to next lines -->
     <div class="section-tabs" id="section-tabs" role="tablist" aria-label="Filter by section"></div>
   </div>
 </div>
@@ -675,7 +781,6 @@ function updateCountdown(){
   document.getElementById('tb-pct').textContent=pct+'%';
   document.getElementById('tb-year').textContent='2031';
 
-  /* countdown string */
   const h=Math.floor((remainMs%(86400000))/3600000);
   const m=Math.floor((remainMs%(3600000))/60000);
   const s=Math.floor((remainMs%60000)/1000);
@@ -716,16 +821,26 @@ function updateStats(){
   document.getElementById('s-progress').textContent=pr;
   document.getElementById('s-evaded').textContent=ev;
   document.getElementById('s-pending').textContent=pe;
-  document.getElementById('pt-f').style.width=Math.round(f/t*100)+'%';
-  document.getElementById('pt-p').style.width=Math.round(pr/t*100)+'%';
-  document.getElementById('pt-e').style.width=Math.round(ev/t*100)+'%';
-  document.getElementById('pt-n').style.width=Math.round(pe/t*100)+'%';
+  if(t>0){
+    document.getElementById('pt-f').style.width=Math.round(f/t*100)+'%';
+    document.getElementById('pt-p').style.width=Math.round(pr/t*100)+'%';
+    document.getElementById('pt-e').style.width=Math.round(ev/t*100)+'%';
+    document.getElementById('pt-n').style.width=Math.round(pe/t*100)+'%';
+  }
 }
 
+/* 24 categories as provided */
+const ALL_CATEGORIES=[
+  'All','Social Welfare','Development','Healthcare','Education','Economy',
+  'Employment','Women & Gender','Housing','Agriculture','Environment',
+  'Fisheries','Governance','Law & Order','Culture','Sports','Technology',
+  'Infrastructure','Transportation','Energy','Tourism','Expatriate Affairs',
+  'Religion & Culture','Youth','Water'
+];
+
 function buildCats(){
-  const cats=['All',...new Set(allPromises.map(p=>p.category))].sort((a,b)=>a==='All'?-1:a.localeCompare(b));
   const row=document.getElementById('cat-row');
-  row.innerHTML=cats.map(c=>
+  row.innerHTML=ALL_CATEGORIES.map(c=>
     `<button class="cat-chip${c===activeCat?' active':''}" data-c="${c}" role="tab" aria-selected="${c===activeCat}">${c}</button>`
   ).join('');
   row.querySelectorAll('.cat-chip').forEach(b=>b.addEventListener('click',()=>{
@@ -735,7 +850,6 @@ function buildCats(){
   }));
 }
 
-/* all unique sections */
 const ALL_SECTIONS=[
   'All','Indira Guarantee','Dream Projects','Social Security and Equality',
   'Welfare Schemes','Healthcare','Education','Industry','Employment','Drugs',
@@ -752,7 +866,6 @@ const ALL_SECTIONS=[
 ];
 
 function buildSections(){
-  /* which sections are relevant to current cat filter */
   const relevantSections=activeCat==='All'
     ? ALL_SECTIONS
     : ['All',...new Set(allPromises.filter(p=>p.category===activeCat).map(p=>p.section))];
@@ -796,7 +909,6 @@ function render(){
     return;
   }
 
-  /* group by section */
   const grouped={};
   items.forEach(p=>{
     const sec=p.section||'Other';
@@ -806,7 +918,6 @@ function render(){
 
   let html='';
   Object.entries(grouped).forEach(([sec,promises])=>{
-    const cat=promises[0].category;
     html+=`<div class="section-group-header"><span>${sec}</span><span class="group-promise-count">${promises.length}</span></div>`;
     promises.forEach(p=>{
       const upd=lastUpdate(p);
