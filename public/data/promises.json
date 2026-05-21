@@ -2240,7 +2240,7 @@
   {
     "id": 142,
     "slug": "healthcare-advanced-technology-including-artificial-intelligence-will-be-used-to",
-    "title_en": "Advanced technology, including artificial intelligence, will be used to strengthen public health.",
+    "title_en": "Strengthening Public Health Infrastructure Through Advanced Technology and Artificial Intelligence",
     "verbatim": "Advanced technology, including artificial intelligence, will be used to strengthen public health.",
     "category": "Healthcare",
     "section": "Healthcare",
@@ -2248,9 +2248,20 @@
     "departments": [
       "Health"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-21",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Kerala Becomes India's First State to Form a Separate AI Ministry.",
+      "source_url": "https://www.deccanherald.com/india/kerala/kerala-creates-separate-ai-portfolio-to-boost-artificial-intelligence-sector-4011517",
+      "source_label": "Deccan Herald, 18 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 143,
@@ -3071,7 +3082,7 @@
   {
     "id": 197,
     "slug": "education-the-world-is-entering-a-new-era-of-artificial-intelligence-artificial",
-    "title_en": "The world is entering a new era of artificial intelligence. Artificial intelligence is the next chapter in the greate...",
+    "title_en": "Establishment of the Kerala Artificial Intelligence Research Institute (KAIR) to Lead the Next Technological Revolution",
     "verbatim": "The world is entering a new era of artificial intelligence. Artificial intelligence is the next chapter in the greatest technological revolution in human history. The Kerala AI Research Institute (KAIR) will be established to harness the potential of artificial intelligence and new technologies.",
     "category": "Education",
     "section": "Education",
@@ -3080,14 +3091,25 @@
       "Education",
       "Higher Education"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-21",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Kerala Becomes India's First State to Form a Separate AI Ministry.",
+      "source_url": "https://www.deccanherald.com/india/kerala/kerala-creates-separate-ai-portfolio-to-boost-artificial-intelligence-sector-4011517",
+      "source_label": "Deccan Herald, 21 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 198,
     "slug": "education-a-future-readiness-think-tank-will-be-established-to-anticipate-and-ut",
-    "title_en": "A Future Readiness Think Tank will be established to anticipate and utilize the potential of cutting-edge technology,...",
+    "title_en": "Establishment of a Future Readiness Think Tank for Artificial Intelligence, Quantum Computing, and Biotechnology",
     "verbatim": "A Future Readiness Think Tank will be established to anticipate and utilize the potential of cutting-edge technology, including artificial intelligence, quantum computing, and biotechnology.",
     "category": "Education",
     "section": "Education",
@@ -3096,9 +3118,20 @@
       "Education",
       "Higher Education"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-21",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Kerala Becomes India's First State to Form a Separate AI Ministry.",
+      "source_url": "https://www.deccanherald.com/india/kerala/kerala-creates-separate-ai-portfolio-to-boost-artificial-intelligence-sector-4011517",
+      "source_label": "Deccan Herald, 21 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 199,
@@ -3215,7 +3248,7 @@
   {
     "id": 206,
     "slug": "education-the-potential-of-artificial-intelligence-will-be-utilized-in-assessmen",
-    "title_en": "The potential of artificial intelligence will be utilized in assessment, question paper preparation, and exam invigil...",
+    "title_en": "Utilizing Artificial Intelligence in Assessment, Question Paper Preparation, and Exam Invigilation",
     "verbatim": "The potential of artificial intelligence will be utilized in assessment, question paper preparation, and exam invigilation.",
     "category": "Education",
     "section": "Education",
@@ -3224,9 +3257,20 @@
       "Education",
       "Higher Education"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-21",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Kerala Becomes India's First State to Form a Separate AI Ministry.",
+      "source_url": "https://www.deccanherald.com/india/kerala/kerala-creates-separate-ai-portfolio-to-boost-artificial-intelligence-sector-4011517",
+      "source_label": "Deccan Herald, 21 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 207,
@@ -4975,7 +5019,7 @@
   {
     "id": 316,
     "slug": "industry-the-kerala-institute-for-rare-earth-and-allied-research-will-be-launch",
-    "title_en": "The Kerala Institute for Rare Earth and Allied Research will be launched to conduct research and provide essential mi...",
+    "title_en": "Launch of the Kerala Institute for Rare Earth and Allied Research for AI Device Component Manufacturing",
     "verbatim": "The Kerala Institute for Rare Earth and Allied Research will be launched to conduct research and provide essential minerals to manufacture components for artificial intelligence devices.",
     "category": "Economy",
     "section": "Industry",
@@ -4984,9 +5028,20 @@
       "Industries",
       "Finance"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-21",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Kerala Becomes India's First State to Form a Separate AI Ministry.",
+      "source_url": "https://www.deccanherald.com/india/kerala/kerala-creates-separate-ai-portfolio-to-boost-artificial-intelligence-sector-4011517",
+      "source_label": "Deccan Herald, 21 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 317,
@@ -5839,7 +5894,7 @@
   {
     "id": 370,
     "slug": "employment-in-the-era-of-artificial-intelligence-workers-will-be-allowed-mandator",
-    "title_en": "In the era of artificial intelligence, workers will be allowed mandatory paid leave to learn and practice new skills ...",
+    "title_en": "Mandatory Paid Upskilling Leave for Workers to Ensure Job Security in the AI Era",
     "verbatim": "In the era of artificial intelligence, workers will be allowed mandatory paid leave to learn and practice new skills (upskilling) to ensure job security.",
     "category": "Employment",
     "section": "Employment",
@@ -5848,9 +5903,20 @@
       "Labour",
       "Employment"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-21",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Kerala Becomes India's First State to Form a Separate AI Ministry.",
+      "source_url": "https://www.deccanherald.com/india/kerala/kerala-creates-separate-ai-portfolio-to-boost-artificial-intelligence-sector-4011517",
+      "source_label": "Deccan Herald, 21 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 371,
