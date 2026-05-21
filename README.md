@@ -19,7 +19,7 @@ If you spot an update, a missing promise, or a status change, you don't need to 
 3. Open a **Pull Request**. 
 4. The automated CI/CD pipeline will validate your JSON structure. Once it passes green, a maintainer will review and merge it.
 
-> ⚠️ **Important Reminder:** All data points must trace back verbatim to the official UDF 2026 Manifesto PDF with exact page numbers. No unsourced claims will be accepted.
+> ⚠️ **Important Reminder:** All data points must trace back verbatim to the official UDF 2026 Manifesto. No unsourced claims will be accepted.
 
 ---
 
