@@ -864,7 +864,6 @@ function updateStats(){
   }
 }
 
-/* FIX #1: Build dropdown options instead of chip rows */
 const ALL_CATEGORIES=[
   'All','Social Welfare','Development','Healthcare','Education','Economy',
   'Employment','Women & Gender','Housing','Agriculture','Environment',
@@ -1051,7 +1050,7 @@ function render(){
             <div class="card-title">${p.title_en}</div>
             ${p.title_ml?`<div class="card-title-ml">${p.title_ml}</div>`:''}
           </div>
-          <!-- FIX #3: share button on card summary row -->
+          <!-- Share button on card summary row -->
           <div class="card-actions">
             <button class="share-btn" onclick="event.stopPropagation();nativeShare('${p.id}',${JSON.stringify(p.title_en)},'${p.status}')" aria-label="Share this promise">
               ${shareIcon} Share
@@ -1094,7 +1093,7 @@ function render(){
             </div>`:''}
           </div>
 
-          <!-- FIX #3: expanded share toolbar inside card detail -->
+          <!-- Expanded share toolbar inside card detail -->
           <div class="detail-block">
             <div class="detail-label">Share this promise</div>
             <div class="share-toolbar">
