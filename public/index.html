@@ -11,7 +11,6 @@
 <meta property="og:image" content="/og-default.png">
 <meta name="twitter:card" content="summary_large_image">
 
-<!-- FIX #4: SVG favicon — Kerala map silhouette in white on brand green -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a6638'/%3E%3Cpath d='M19 2 L21 3 L23 5 L24 8 L23 10 L22 12 L23 14 L24 17 L24 20 L23 23 L22 26 L21 28 L20 29 L19 30 L18 29 L17 27 L17 24 L18 21 L18 18 L17 16 L16 13 L16 10 L17 7 L18 4 Z' fill='white' opacity='0.92'/%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -144,10 +143,6 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
   z-index:2;
 }
 
-/* FIX #2: Replaced right-side art with a cleaner, map-rooted decorative element.
-   The original cultural scene (boat, elephant, palms) is preserved inside the card
-   but now rendered correctly at proper size. The auditor's "bare tree" description
-   doesn't match the original code — the scene is kept but refined. */
 .header-art-col{
   display:flex;align-items:center;justify-content:flex-end;
   width:200px;
@@ -228,11 +223,6 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 .pt-evad{background:var(--red-700)}
 .pt-pend{background:#ddd}
 
-/* ── FIX #1: MERGED FILTER CONTROLS ── */
-/* Replaced two chip-overflow rows with two inline dropdowns + pill status filters.
-   Cognitive load drops dramatically: one dropdown for Category, one for Scheme/Program.
-   Pills remain for status (All / Fulfilled / In Progress / Evaded / Pending) since
-   those are a primary, mutually-exclusive axis that benefits from always-visible tabs. */
 .controls-section{
   background:var(--white);
   border-bottom:1px solid var(--border);
@@ -376,7 +366,6 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 body.ml .card-title-ml{display:block}
 body.ml .card-title{display:none}
 
-/* FIX #3: Card actions row — share button alongside promise number */
 .card-actions{
   display:flex;align-items:center;gap:6px;flex-shrink:0;
 }
@@ -434,7 +423,6 @@ body.ml .card-title{display:none}
 }
 .submit-update-btn:hover{background:var(--blue-100)}
 
-/* FIX #3: Share toolbar inside expanded card detail */
 .share-toolbar{
   display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;align-items:center;
 }
@@ -494,7 +482,6 @@ footer a:hover{text-decoration:underline}
   border-radius:10px;padding:1px 8px;margin-left:auto;
 }
 
-/* FIX #2: Improved Kerala map SVG — more geographically accurate proportions */
 .kerala-map-svg path.kerala-body{
   fill:rgba(42,153,86,0.12);
   stroke:rgba(61,184,106,0.85);
@@ -533,15 +520,7 @@ footer a:hover{text-decoration:underline}
   <div class="header-inner">
 
     <!-- LEFT: More geographically accurate Kerala map outline -->
-    <!--
-      FIX #2 NOTE: The original right-side SVG is NOT a bare tree — it is a
-      fully-rendered Chundan Vallam scene with palms, elephant, and gopuram.
-      The auditor's "bare branches" description appears to have been based on
-      a broken render or different version. The scene is preserved here.
-      What IS fixed: the left-side Kerala outline below uses better-proportioned
-      anchor points, bringing the silhouette closer to the actual state shape
-      (tapered north, wide middle, narrow southern tip pointing WSW).
-    -->
+   
     <div class="header-map-col">
       <svg class="kerala-map-svg" width="64" height="210" viewBox="0 0 120 400"
            xmlns="http://www.w3.org/2000/svg"
@@ -732,19 +711,6 @@ footer a:hover{text-decoration:underline}
   </div>
 </section>
 
-<!--
-  FIX #1: MERGED FILTER CONTROLS
-  ================================
-  Before: 24 category chips + 46 section chips = 70 visible filter targets = cognitive overload.
-  After:  Two <select> dropdowns (Category, Scheme/Program) + 5 status pills.
-  
-  Why dropdowns over chips: chips are good for ≤6 options where all need to be visible at once.
-  Beyond that they become a scanning task. Dropdowns hide complexity until needed.
-  The status pills (All / Fulfilled / In Progress / Evaded / Pending) stay as pills because:
-    (a) there are only 5, (b) they're the primary axis users care about most.
-  
-  Active selection shows a dismissible badge tag so the user always knows what's filtered.
--->
 <div class="controls-section" role="search">
   <div class="controls-inner">
 
@@ -992,23 +958,6 @@ function submitUrl(id,title){
   return SUBMIT_URL+'&title='+enc;
 }
 
-/*
-  FIX #3: SHARE FUNCTIONS
-  ========================
-  Three share surfaces per promise:
-  1. Mini share button on the card summary (top-right) — triggers native Web Share API on
-     mobile where supported, falls back to WhatsApp web link on desktop.
-  2. Expanded share toolbar inside the open card detail: WhatsApp, Twitter/X, Copy link.
-  3. URL is constructed as SITE_BASE_URL + ?promise=ID so a direct link can be shared
-     and the page can auto-open the right card on load.
-
-  OG image per promise: the <meta og:image> in <head> sets a default. For per-promise
-  sharing you need a server-side OG image generator (Vercel Edge, Cloudflare Workers,
-  or a simple serverless function that renders an HTML template to PNG via headless Chrome).
-  The share URLs below pass ?promise=ID; your OG handler should read that param and
-  render the promise title + status into a custom 1200×630 PNG. That is a server-side
-  concern and cannot be solved client-side alone.
-*/
 function buildShareUrl(promiseId){
   return `${SITE_BASE_URL}/?promise=${promiseId}`;
 }
