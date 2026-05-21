@@ -473,7 +473,7 @@
   {
     "id": 29,
     "slug": "welfare-schemes-the-wages-of-scheme-workers-including-anganwadi-workers-asha-and-schoo",
-    "title_en": "The wages of scheme workers including Anganwadi workers, ASHA and school cooking workers will be revised in a timely ...",
+    "title_en": "Timely Wage Revisions, Health Insurance, and Pension Benefits for Anganwadi, ASHA, and School Cooking Workers",
     "verbatim": "The wages of scheme workers including Anganwadi workers, ASHA and school cooking workers will be revised in a timely manner. Their health insurance coverage will be ensured. Steps will be taken to provide welfare fund, ESI and pension benefits.",
     "category": "Social Welfare",
     "section": "Welfare Schemes",
@@ -482,9 +482,20 @@
       "Social Justice",
       "Labour"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-18",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Hiking of monthly honorariums of ASHA, Anganwadi workers and helpers as well as pre-primary teachers and cooks",
+      "source_url": "https://kerala.gov.in/articledetail/MTA0OTA3NDUwNC4yOA==/1",
+      "source_label": "Government of Keralam, 18 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 30,
