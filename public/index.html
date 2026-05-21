@@ -4,337 +4,580 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Keralam Promise Tracker — UDF Government 2026–2031</title>
-<meta name="description" content="A non-partisan public ledger tracking every promise made by the UDF government of Kerala to its people. Open source. Citizen maintained.">
+<meta name="description" content="A non-partisan public ledger tracking every promise made by the UDF government of Kerala to its people.">
 <meta property="og:title" content="Keralam Promise Tracker">
 <meta property="og:description" content="Tracking UDF government promises 2026–2031. Non-partisan. Open source.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#0f4c2a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam:wght@400;600&family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root {
-  --green-900: #0a2e18;
-  --green-800: #0f4c2a;
-  --green-700: #1a6638;
-  --green-600: #1e7a41;
-  --green-100: #e8f5ed;
-  --green-50:  #f3faf6;
-  --gold-700:  #9a6e1a;
-  --gold-500:  #c8922a;
-  --gold-100:  #fdf3e3;
-  --red-700:   #8b1f1f;
-  --red-100:   #fdf0f0;
-  --blue-600:  #1a4e7a;
-  --blue-100:  #e8f0fb;
-  --ink:       #1a1a1a;
-  --ink-2:     #444;
-  --ink-3:     #777;
-  --border:    #e2e2e2;
-  --surface:   #f8f7f4;
-  --white:     #ffffff;
+  --green-950:#061a0d;
+  --green-900:#0a2e18;
+  --green-800:#0f4c2a;
+  --green-700:#1a6638;
+  --green-600:#1e7a41;
+  --green-500:#2a9956;
+  --green-400:#3db86a;
+  --green-200:#a8deba;
+  --green-100:#d4f0de;
+  --green-50:#edfaf3;
+  --gold-800:#7a520f;
+  --gold-700:#9a6e1a;
+  --gold-500:#c8922a;
+  --gold-400:#d9a84a;
+  --gold-100:#fdf3e3;
+  --red-800:#6b1515;
+  --red-700:#8b1f1f;
+  --red-100:#fdf0f0;
+  --blue-700:#133d61;
+  --blue-600:#1a4e7a;
+  --blue-100:#e8f0fb;
+  --ink:#1a1a1a;
+  --ink-2:#3a3a3a;
+  --ink-3:#666;
+  --ink-4:#999;
+  --border:#e0ddd5;
+  --border-light:#eceae4;
+  --surface:#f5f3ee;
+  --surface-2:#faf9f6;
+  --white:#ffffff;
+  --font-display:'Fraunces',Georgia,serif;
+  --font-body:'DM Sans',sans-serif;
+  --font-ml:'Noto Serif Malayalam',serif;
 }
 
-html { scroll-behavior: smooth; }
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--surface);color:var(--ink);font-size:15px;line-height:1.65;min-height:100vh}
 
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--surface);
-  color: var(--ink);
-  font-size: 15px;
-  line-height: 1.6;
-  min-height: 100vh;
+/* ── LIVE TICKER ── */
+.ticker-bar{
+  background:var(--ink);
+  color:rgba(255,255,255,0.9);
+  font-size:11.5px;
+  letter-spacing:0.06em;
+  padding:7px 1.5rem;
+  display:flex;align-items:center;gap:1rem;
+  position:sticky;top:0;z-index:100;
 }
+.ticker-live{
+  background:#e63946;
+  color:white;
+  font-size:10px;font-weight:500;
+  letter-spacing:0.15em;
+  padding:2px 7px;
+  border-radius:3px;
+  flex-shrink:0;
+  animation:pulse-live 2s infinite;
+}
+@keyframes pulse-live{0%,100%{opacity:1}50%{opacity:0.65}}
+.ticker-text{flex:1;display:flex;gap:2rem;flex-wrap:wrap}
+.ticker-sep{color:rgba(255,255,255,0.25);margin:0 0.25rem}
+.ticker-countdown{
+  font-family:var(--font-display);
+  font-size:13px;
+  color:var(--green-400);
+  letter-spacing:0.02em;
+  flex-shrink:0;
+}
+#countdown-display{font-variant-numeric:tabular-nums}
 
 /* ── HEADER ── */
-.site-header {
-  background: var(--green-800);
-  color: white;
-  padding: 2rem 1.5rem 1.5rem;
-  position: relative;
-  overflow: hidden;
+.site-header{
+  background:var(--green-900);
+  color:white;
+  padding:2.5rem 1.5rem 2rem;
+  position:relative;
+  overflow:hidden;
 }
-.site-header::before {
-  content: '';
-  position: absolute;
-  top: -60px; right: -60px;
-  width: 280px; height: 280px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.07);
+
+/* Kerala map watermark */
+.header-map-bg{
+  position:absolute;
+  right:-20px;top:50%;
+  transform:translateY(-50%);
+  opacity:0.06;
+  height:110%;
+  pointer-events:none;
 }
-.site-header::after {
-  content: '';
-  position: absolute;
-  bottom: -40px; left: 40%;
-  width: 180px; height: 180px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.05);
+
+.header-inner{max-width:900px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start}
+.header-left{}
+.header-tag{
+  font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+  color:rgba(255,255,255,0.45);margin-bottom:0.6rem;
 }
-.header-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
-.header-tag {
-  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(255,255,255,0.5); margin-bottom: 0.5rem;
+.site-title{
+  font-family:var(--font-display);
+  font-size:clamp(28px,5vw,46px);
+  font-weight:600;line-height:1.1;
+  letter-spacing:-0.02em;
+  margin-bottom:0.2rem;
 }
-.site-title {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(26px, 5vw, 40px);
-  font-weight: 400; line-height: 1.15;
-  margin-bottom: 0.25rem;
+.site-title-ml{
+  font-family:var(--font-ml);
+  font-size:clamp(16px,2.2vw,22px);
+  color:rgba(255,255,255,0.5);
+  margin-bottom:1.2rem;
+  font-weight:400;
 }
-.site-title-ml {
-  font-family: 'Noto Serif Malayalam', serif;
-  font-size: clamp(15px, 2.5vw, 20px);
-  color: rgba(255,255,255,0.65);
-  margin-bottom: 1rem;
+.header-meta{
+  display:flex;gap:1.25rem;flex-wrap:wrap;
+  font-size:13px;color:rgba(255,255,255,0.55);
+  border-top:1px solid rgba(255,255,255,0.1);
+  padding-top:1rem;align-items:center;
 }
-.header-meta {
-  display: flex; gap: 1.5rem; flex-wrap: wrap;
-  font-size: 13px; color: rgba(255,255,255,0.6);
-  border-top: 1px solid rgba(255,255,255,0.12);
-  padding-top: 1rem; margin-top: 1rem;
+.header-meta strong{color:rgba(255,255,255,0.9)}
+.lang-toggle{
+  margin-left:auto;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.18);
+  color:rgba(255,255,255,0.8);font-size:12px;
+  padding:5px 14px;border-radius:20px;
+  cursor:pointer;font-family:var(--font-body);
+  transition:background 0.15s;
 }
-.header-meta strong { color: rgba(255,255,255,0.9); }
-.lang-toggle {
-  margin-left: auto;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: white; font-size: 12px;
-  padding: 4px 12px; border-radius: 20px;
-  cursor: pointer; font-family: inherit;
+.lang-toggle:hover{background:rgba(255,255,255,0.16)}
+
+/* Kerala map SVG in header */
+.header-right{
+  display:flex;align-items:center;justify-content:center;
+  padding-top:0.5rem;
 }
-.lang-toggle:hover { background: rgba(255,255,255,0.18); }
+.kerala-map-svg{
+  width:90px;height:auto;
+  opacity:0.65;
+  filter:drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+}
+
+/* ── TIME BLOCKS ── */
+.time-blocks{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:rgba(255,255,255,0.08);
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.1);
+  max-width:380px;
+}
+.time-block{
+  background:rgba(255,255,255,0.04);
+  padding:0.6rem 0.75rem;
+  text-align:center;
+}
+.time-block .val{
+  font-family:var(--font-display);
+  font-size:22px;font-weight:600;
+  color:var(--green-400);
+  line-height:1;
+  display:block;
+}
+.time-block .lbl{
+  font-size:9px;letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.35);
+  display:block;margin-top:2px;
+}
 
 /* ── STATS ── */
-.stats-section { background: var(--white); border-bottom: 1px solid var(--border); }
-.stats-inner { max-width: 860px; margin: 0 auto; padding: 1rem 1.5rem; }
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-  gap: 8px; margin-bottom: 0.75rem;
+.stats-section{background:var(--white);border-bottom:1px solid var(--border)}
+.stats-inner{max-width:900px;margin:0 auto;padding:1.25rem 1.5rem}
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;margin-bottom:0.9rem;
 }
-.stat-box {
-  text-align: center; padding: 0.6rem 0.5rem;
-  border-radius: 8px; border: 1px solid var(--border);
+.stat-box{
+  text-align:center;padding:0.75rem 0.5rem;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--surface-2);
+  position:relative;overflow:hidden;
 }
-.stat-n { font-size: 22px; font-weight: 600; line-height: 1; }
-.stat-l { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin-top: 3px; }
-.stat-box.s-all   .stat-n { color: var(--ink); }
-.stat-box.s-done  .stat-n { color: var(--green-700); }
-.stat-box.s-prog  .stat-n { color: var(--gold-500); }
-.stat-box.s-evad  .stat-n { color: var(--red-700); }
-.stat-box.s-pend  .stat-n { color: var(--ink-3); }
+.stat-box::before{
+  content:'';
+  position:absolute;bottom:0;left:0;right:0;
+  height:3px;
+}
+.stat-box.s-done::before{background:var(--green-500)}
+.stat-box.s-prog::before{background:var(--gold-500)}
+.stat-box.s-evad::before{background:var(--red-700)}
+.stat-box.s-pend::before{background:#ccc}
+.stat-n{font-family:var(--font-display);font-size:26px;font-weight:600;line-height:1}
+.stat-l{font-size:10px;text-transform:uppercase;letter-spacing:0.09em;color:var(--ink-3);margin-top:3px}
+.stat-box.s-all .stat-n{color:var(--ink)}
+.stat-box.s-done .stat-n{color:var(--green-700)}
+.stat-box.s-prog .stat-n{color:var(--gold-700)}
+.stat-box.s-evad .stat-n{color:var(--red-700)}
+.stat-box.s-pend .stat-n{color:var(--ink-4)}
 
-.progress-track {
-  height: 5px; border-radius: 3px;
-  background: var(--border); overflow: hidden;
-  display: flex;
+.progress-track{
+  height:6px;border-radius:4px;
+  background:var(--border);overflow:hidden;
+  display:flex;
 }
-.pt-seg { height: 100%; transition: width 0.8s ease; }
-.pt-done { background: var(--green-700); }
-.pt-prog { background: var(--gold-500); }
-.pt-evad { background: var(--red-700); }
-.pt-pend { background: #ccc; }
+.pt-seg{height:100%;transition:width 0.8s ease}
+.pt-done{background:var(--green-500)}
+.pt-prog{background:var(--gold-500)}
+.pt-evad{background:var(--red-700)}
+.pt-pend{background:#ddd}
 
 /* ── CONTROLS ── */
-.controls-section {
-  background: var(--white);
-  border-bottom: 1px solid var(--border);
-  position: sticky; top: 0; z-index: 10;
+.controls-section{
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+  position:sticky;top:36px;z-index:50;
 }
-.controls-inner { max-width: 860px; margin: 0 auto; padding: 0.65rem 1.5rem; }
-.controls-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-.search-box {
-  flex: 1; min-width: 180px;
-  border: 1px solid var(--border);
-  border-radius: 6px; padding: 7px 12px;
-  font-family: inherit; font-size: 13px;
-  background: var(--surface); color: var(--ink);
-  outline: none;
+.controls-inner{max-width:900px;margin:0 auto;padding:0.75rem 1.5rem}
+.controls-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.search-wrap{flex:1;min-width:180px;position:relative}
+.search-icon{
+  position:absolute;left:11px;top:50%;transform:translateY(-50%);
+  color:var(--ink-3);font-size:15px;pointer-events:none;
 }
-.search-box:focus { border-color: var(--green-600); }
+.search-box{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:8px;padding:8px 12px 8px 34px;
+  font-family:var(--font-body);font-size:13.5px;
+  background:var(--surface);color:var(--ink);
+  outline:none;transition:border-color 0.12s;
+}
+.search-box:focus{border-color:var(--green-500);background:var(--white)}
+.filter-pill{
+  font-size:12px;padding:6px 13px;
+  border:1px solid var(--border);
+  border-radius:20px;background:transparent;
+  cursor:pointer;font-family:var(--font-body);
+  color:var(--ink-2);transition:all 0.12s;white-space:nowrap;
+}
+.filter-pill:hover{border-color:#aaa;color:var(--ink)}
+.filter-pill.active{background:var(--ink);color:white;border-color:var(--ink)}
+.filter-pill.f-done.active{background:var(--green-700);border-color:var(--green-700)}
+.filter-pill.f-prog.active{background:var(--gold-500);border-color:var(--gold-500)}
+.filter-pill.f-evad.active{background:var(--red-700);border-color:var(--red-700)}
 
-.filter-pill {
-  font-size: 12px; padding: 6px 12px;
-  border: 1px solid var(--border);
-  border-radius: 20px; background: transparent;
-  cursor: pointer; font-family: inherit;
-  color: var(--ink-2); transition: all 0.12s;
-  white-space: nowrap;
+/* section tabs */
+.section-tabs{
+  display:flex;gap:3px;overflow-x:auto;padding:0.5rem 0 0.25rem;
+  scrollbar-width:none;flex-wrap:nowrap;
 }
-.filter-pill:hover { border-color: #aaa; color: var(--ink); }
-.filter-pill.active { background: var(--ink); color: white; border-color: var(--ink); }
-.filter-pill.f-done.active  { background: var(--green-700); border-color: var(--green-700); }
-.filter-pill.f-prog.active  { background: var(--gold-500);  border-color: var(--gold-500); }
-.filter-pill.f-evad.active  { background: var(--red-700);   border-color: var(--red-700); }
+.section-tabs::-webkit-scrollbar{display:none}
+.section-chip{
+  font-size:11.5px;padding:4px 10px;border-radius:5px;
+  border:none;background:transparent;cursor:pointer;
+  font-family:var(--font-body);color:var(--ink-3);
+  white-space:nowrap;transition:all 0.1s;flex-shrink:0;
+}
+.section-chip:hover{background:var(--surface);color:var(--ink-2)}
+.section-chip.active{background:var(--green-50);color:var(--green-800);font-weight:500}
+.section-chip.cat-active{background:var(--green-100);color:var(--green-900);font-weight:500}
 
-.cat-row {
-  display: flex; gap: 4px; overflow-x: auto; padding: 0.4rem 0 0;
-  scrollbar-width: none;
+/* category header row */
+.cat-row{
+  display:flex;gap:4px;overflow-x:auto;padding:0.4rem 0 0.1rem;
+  scrollbar-width:none;
 }
-.cat-row::-webkit-scrollbar { display: none; }
-.cat-chip {
-  font-size: 12px; padding: 4px 10px; border-radius: 4px;
-  border: none; background: transparent; cursor: pointer;
-  font-family: inherit; color: var(--ink-3);
-  white-space: nowrap; transition: all 0.1s;
+.cat-row::-webkit-scrollbar{display:none}
+.cat-chip{
+  font-size:11.5px;padding:4px 11px;border-radius:5px;
+  border:1px solid var(--border);background:transparent;cursor:pointer;
+  font-family:var(--font-body);color:var(--ink-3);
+  white-space:nowrap;transition:all 0.1s;flex-shrink:0;
 }
-.cat-chip:hover { background: var(--surface); color: var(--ink); }
-.cat-chip.active { background: var(--green-50); color: var(--green-800); font-weight: 500; }
+.cat-chip:hover{background:var(--surface);color:var(--ink-2)}
+.cat-chip.active{background:var(--green-50);color:var(--green-800);font-weight:500;border-color:var(--green-300,#7dcc9f)}
 
-/* ── PROMISES ── */
-.promises-section { max-width: 860px; margin: 0 auto; padding: 1rem 1.5rem 3rem; }
+/* ── PROMISE CARDS ── */
+.promises-section{max-width:900px;margin:0 auto;padding:1rem 1.5rem 4rem}
 
-.promise-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  transition: border-color 0.12s, box-shadow 0.12s;
+.section-group-header{
+  display:flex;align-items:center;gap:10px;
+  padding:1.5rem 0 0.5rem;
+  font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--ink-3);
+  font-weight:500;
 }
-.promise-card:hover { border-color: #bbb; }
-.promise-card.open { border-color: var(--green-600); box-shadow: 0 2px 12px rgba(30,122,65,0.08); }
+.section-group-header::after{
+  content:'';flex:1;height:1px;background:var(--border);
+}
 
-.card-summary {
-  padding: 0.9rem 1.1rem;
-  cursor: pointer;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 10px; align-items: start;
+.promise-card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:10px;
+  margin-bottom:6px;
+  overflow:hidden;
+  transition:border-color 0.12s,box-shadow 0.12s;
 }
-.status-pip {
-  width: 9px; height: 9px; border-radius: 50%;
-  margin-top: 5px; flex-shrink: 0;
-}
-.pip-fulfilled { background: var(--green-700); }
-.pip-progress  { background: var(--gold-500); }
-.pip-evaded    { background: var(--red-700); }
-.pip-pending   { background: #ccc; border: 1px solid #bbb; }
+.promise-card:hover{border-color:#bbb;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+.promise-card.open{border-color:var(--green-500);box-shadow:0 2px 16px rgba(30,122,65,0.1)}
 
-.card-main {}
-.card-badges { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 5px; }
-.badge {
-  font-size: 10px; padding: 2px 7px; border-radius: 3px;
-  font-weight: 500; letter-spacing: 0.03em;
+.card-summary{
+  padding:0.85rem 1.1rem;
+  cursor:pointer;
+  display:grid;
+  grid-template-columns:8px 1fr auto;
+  gap:10px;align-items:start;
 }
-.badge-cat  { background: var(--surface); color: var(--ink-3); border: 1px solid var(--border); }
-.badge-fulfilled { background: var(--green-100); color: var(--green-800); }
-.badge-progress  { background: var(--gold-100);  color: var(--gold-700); }
-.badge-evaded    { background: var(--red-100);   color: var(--red-700); }
-.badge-pending   { background: var(--surface);   color: var(--ink-3); border: 1px solid var(--border); }
+.status-pip{
+  width:8px;height:8px;border-radius:50%;
+  margin-top:5px;flex-shrink:0;
+}
+.pip-fulfilled{background:var(--green-500)}
+.pip-progress{background:var(--gold-500)}
+.pip-evaded{background:var(--red-700)}
+.pip-pending{background:#d0cec8;border:1px solid #bbb}
 
-.card-title { font-size: 14px; font-weight: 500; line-height: 1.4; color: var(--ink); }
-.card-title-ml { font-family: 'Noto Serif Malayalam', serif; font-size: 13px; color: var(--ink-2); margin-top: 2px; display: none; }
-body.ml .card-title-ml { display: block; }
-body.ml .card-title { display: none; }
+.card-badges{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:5px}
+.badge{font-size:10.5px;padding:2px 8px;border-radius:4px;font-weight:500;letter-spacing:0.02em}
+.badge-cat{background:var(--surface);color:var(--ink-3);border:1px solid var(--border)}
+.badge-flagship{background:#fff8e1;color:#7a5c00;border:1px solid #f5d77a}
+.badge-fulfilled{background:var(--green-50);color:var(--green-700)}
+.badge-progress{background:var(--gold-100);color:var(--gold-800)}
+.badge-evaded{background:var(--red-100);color:var(--red-700)}
+.badge-pending{background:var(--surface);color:var(--ink-4);border:1px solid var(--border)}
 
-.card-num { font-size: 11px; color: var(--ink-3); flex-shrink: 0; }
+.card-title{font-size:14px;font-weight:500;line-height:1.45;color:var(--ink)}
+.card-title-ml{font-family:var(--font-ml);font-size:13px;color:var(--ink-2);margin-top:3px;display:none}
+body.ml .card-title-ml{display:block}
+body.ml .card-title{display:none}
+.card-num{font-size:11px;color:var(--ink-4);flex-shrink:0;font-variant-numeric:tabular-nums}
 
-/* Expanded detail */
-.card-detail {
-  display: none;
-  border-top: 1px solid var(--border);
-  padding: 1rem 1.1rem;
-  background: #fafaf9;
+.card-detail{
+  display:none;
+  border-top:1px solid var(--border);
+  padding:1rem 1.1rem;
+  background:#faf9f6;
 }
-.promise-card.open .card-detail { display: block; }
+.promise-card.open .card-detail{display:block}
+.detail-block{margin-bottom:1rem}
+.detail-block:last-child{margin-bottom:0}
+.detail-label{font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-3);margin-bottom:5px}
+.verbatim-text{
+  font-size:13px;font-style:italic;
+  color:var(--ink-2);line-height:1.65;
+  padding-left:0.75rem;
+  border-left:2px solid var(--green-200);
+}
+.update-text{font-size:13px;color:var(--ink-2);line-height:1.6}
+.dept-chips{display:flex;gap:5px;flex-wrap:wrap}
+.dept-chip{
+  font-size:11px;padding:3px 9px;
+  border:1px solid var(--border);border-radius:4px;
+  color:var(--ink-3);background:var(--white);
+}
+.source-link{
+  font-size:12px;color:var(--blue-600);
+  text-decoration:none;display:inline-flex;align-items:center;gap:4px;
+}
+.source-link:hover{text-decoration:underline}
+.tier-badge{
+  font-size:10px;padding:1px 5px;border-radius:3px;margin-left:5px;
+  background:var(--blue-100);color:var(--blue-700);
+}
+.no-update{font-size:12px;color:var(--ink-3);font-style:italic}
+.submit-update-btn{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:12px;color:var(--blue-600);
+  background:none;border:1px solid var(--blue-100);
+  padding:4px 11px;border-radius:5px;cursor:pointer;
+  font-family:var(--font-body);margin-top:6px;
+  transition:background 0.12s;text-decoration:none;
+}
+.submit-update-btn:hover{background:var(--blue-100)}
 
-.detail-block { margin-bottom: 1rem; }
-.detail-block:last-child { margin-bottom: 0; }
-.detail-label {
-  font-size: 10px; text-transform: uppercase;
-  letter-spacing: 0.1em; color: var(--ink-3);
-  margin-bottom: 5px;
-}
-.verbatim-text {
-  font-size: 13px; font-style: italic;
-  color: var(--ink-2); line-height: 1.65;
-  padding-left: 0.75rem;
-  border-left: 2px solid var(--border);
-}
-.update-text { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
-.dept-chips { display: flex; gap: 5px; flex-wrap: wrap; }
-.dept-chip {
-  font-size: 11px; padding: 3px 9px;
-  border: 1px solid var(--border); border-radius: 4px;
-  color: var(--ink-3); background: var(--white);
-}
-.source-link {
-  font-size: 12px; color: var(--blue-600);
-  text-decoration: none; display: inline-flex;
-  align-items: center; gap: 4px;
-}
-.source-link:hover { text-decoration: underline; }
-.tier-badge {
-  font-size: 10px; padding: 1px 5px;
-  border-radius: 3px; margin-left: 6px;
-  background: var(--blue-100); color: var(--blue-600);
-}
-.no-update { font-size: 12px; color: var(--ink-3); font-style: italic; }
-.submit-inline {
-  background: none; border: none; color: var(--blue-600);
-  font-size: 12px; cursor: pointer; font-family: inherit;
-  padding: 0; text-decoration: underline;
-}
+.history-item{font-size:12px;color:var(--ink-3);margin-bottom:4px;line-height:1.5}
+.history-date{color:var(--ink-2);font-weight:500}
 
 /* ── EMPTY ── */
-.empty { text-align: center; padding: 3rem 1rem; color: var(--ink-3); font-size: 14px; }
+.empty{text-align:center;padding:3rem 1rem;color:var(--ink-3);font-size:14px}
 
 /* ── CONTRIBUTE BAR ── */
-.contribute {
-  background: var(--white); border-top: 1px solid var(--border);
-  padding: 1.25rem 1.5rem;
+.contribute{
+  background:var(--green-900);
+  padding:1.5rem 1.5rem;
 }
-.contribute-inner { max-width: 860px; margin: 0 auto; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-.contribute p { font-size: 13px; color: var(--ink-2); flex: 1; line-height: 1.5; }
-.contribute a {
-  font-size: 13px; padding: 7px 16px;
-  border: 1px solid var(--ink); border-radius: 6px;
-  color: var(--ink); text-decoration: none; white-space: nowrap;
+.contribute-inner{
+  max-width:900px;margin:0 auto;
+  display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;
 }
-.contribute a:hover { background: var(--ink); color: white; }
+.contribute p{font-size:13px;color:rgba(255,255,255,0.65);flex:1;line-height:1.55}
+.contribute a{
+  font-size:13px;padding:8px 18px;
+  border:1px solid rgba(255,255,255,0.25);
+  border-radius:7px;color:white;text-decoration:none;
+  white-space:nowrap;transition:background 0.12s;
+}
+.contribute a:hover{background:rgba(255,255,255,0.1)}
 
 /* ── FOOTER ── */
-footer {
-  text-align: center; padding: 1.5rem;
-  font-size: 11px; color: var(--ink-3);
-  border-top: 1px solid var(--border);
-  line-height: 2;
+footer{
+  text-align:center;padding:1.5rem;
+  font-size:11.5px;color:var(--ink-3);
+  border-top:1px solid var(--border);line-height:2;
 }
-footer a { color: var(--green-700); text-decoration: none; }
-footer a:hover { text-decoration: underline; }
+footer a{color:var(--green-700);text-decoration:none}
+footer a:hover{text-decoration:underline}
 
-@media (max-width: 540px) {
-  .site-header { padding: 1.5rem 1rem 1.25rem; }
-  .stats-inner, .controls-inner, .promises-section { padding-left: 1rem; padding-right: 1rem; }
-  .contribute { padding: 1rem; }
+/* ── KERALA MAP INLINE ── */
+.kerala-map-container{position:relative}
+.map-dot{
+  position:absolute;width:7px;height:7px;
+  border-radius:50%;background:var(--green-400);
+  border:1.5px solid var(--white);
+  box-shadow:0 0 0 2px var(--green-400);
+}
+
+/* group toggle */
+.group-promise-count{
+  font-family:var(--font-body);
+  font-size:11px;color:var(--ink-4);
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:1px 8px;margin-left:auto;
+}
+
+@media(max-width:600px){
+  .header-inner{grid-template-columns:1fr}
+  .header-right{display:none}
+  .stats-grid{grid-template-columns:repeat(3,1fr)}
+  .stats-grid .stat-box:nth-child(1){grid-column:span 3}
+  .time-blocks{grid-template-columns:repeat(2,1fr)}
+  .site-header,.stats-inner,.controls-inner,.promises-section{padding-left:1rem;padding-right:1rem}
+  .contribute{padding:1rem}
 }
 </style>
 </head>
 <body>
 
+<!-- LIVE TICKER -->
+<div class="ticker-bar" role="banner">
+  <span class="ticker-live">● LIVE</span>
+  <div class="ticker-text">
+    <span>UDF Government · Kerala 2026–2031</span>
+    <span><span class="ticker-sep">·</span> CM: <strong>VD Satheesan</strong></span>
+    <span><span class="ticker-sep">·</span> Oath: 18 May 2026</span>
+    <span><span class="ticker-sep">·</span> Term ends: 18 May 2031</span>
+  </div>
+  <div class="ticker-countdown" id="countdown-display">loading…</div>
+</div>
+
+<!-- HEADER -->
 <header class="site-header" role="banner">
+  <!-- Kerala map watermark -->
+  <svg class="header-map-bg" viewBox="0 0 200 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M120,20 L140,40 L155,60 L160,90 L155,120 L165,150 L170,180 L165,210 L170,250 L165,290 L155,330 L145,370 L130,410 L115,450 L100,490 L85,520 L75,540 L80,560 L90,570 L85,580 L75,575 L65,560 L60,540 L55,510 L60,480 L70,450 L80,420 L85,390 L80,360 L70,330 L65,300 L70,270 L75,240 L70,210 L65,180 L70,150 L80,120 L85,90 L80,60 L90,40 L110,25 Z" fill="white"/>
+  </svg>
+
   <div class="header-inner">
-    <div class="header-tag">Public accountability ledger · Kerala · 2026–2031</div>
-    <h1 class="site-title">Keralam Promise Tracker</h1>
-    <div class="site-title-ml">കേരളം വാഗ്ദാന ട്രാക്കർ</div>
-    <div class="header-meta">
-      <span>CM: <strong id="cm-name">VD Satheesan</strong></span>
-      <span><strong id="days-in">—</strong> days in office</span>
-      <span><strong id="days-left">—</strong> days remaining</span>
-      <span>Term ends: <strong>May 2031</strong></span>
-      <button class="lang-toggle" onclick="toggleLang()" id="lang-btn">മലയാളം</button>
+    <div class="header-left">
+      <div class="header-tag">Public accountability ledger · Kerala · 2026–2031</div>
+      <h1 class="site-title">Keralam Promise<br>Tracker</h1>
+      <div class="site-title-ml">കേരളം വാഗ്ദാന ട്രാക്കർ</div>
+
+      <div class="time-blocks" id="time-blocks">
+        <div class="time-block"><span class="val" id="tb-days">0</span><span class="lbl">Days in</span></div>
+        <div class="time-block"><span class="val" id="tb-rem">1825</span><span class="lbl">Remaining</span></div>
+        <div class="time-block"><span class="val" id="tb-pct">0%</span><span class="lbl">Term done</span></div>
+        <div class="time-block"><span class="val" id="tb-year">2031</span><span class="lbl">Ends</span></div>
+      </div>
+
+      <div class="header-meta">
+        <span>CM: <strong>VD Satheesan</strong></span>
+        <span>Oath: <strong>18 May 2026</strong></span>
+        <span>Term: <strong>18 May 2031</strong></span>
+        <button class="lang-toggle" onclick="toggleLang()" id="lang-btn">മലയാളം</button>
+      </div>
+    </div>
+
+    <!-- Kerala map SVG -->
+    <div class="header-right">
+      <svg class="kerala-map-svg" viewBox="0 0 160 500" xmlns="http://www.w3.org/2000/svg" aria-label="Map of Kerala" role="img">
+        <defs>
+          <linearGradient id="mapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#3db86a;stop-opacity:1"/>
+            <stop offset="100%" style="stop-color:#1a6638;stop-opacity:1"/>
+          </linearGradient>
+        </defs>
+        <!-- Stylized Kerala shape -->
+        <path d="
+          M 100 15
+          L 115 25
+          L 130 40
+          L 138 60
+          L 140 85
+          L 145 110
+          L 148 140
+          L 145 165
+          L 150 190
+          L 152 220
+          L 148 255
+          L 145 285
+          L 140 315
+          L 132 345
+          L 120 378
+          L 108 410
+          L 95 445
+          L 83 472
+          L 72 488
+          L 68 495
+          L 70 500
+          L 78 498
+          L 85 490
+          L 90 478
+          L 85 460
+          L 75 440
+          L 72 418
+          L 78 398
+          L 88 378
+          L 98 355
+          L 108 328
+          L 112 298
+          L 108 268
+          L 100 238
+          L 96 208
+          L 98 178
+          L 102 148
+          L 108 118
+          L 110 88
+          L 105 62
+          L 98 40
+          L 95 22
+          Z
+        " fill="url(#mapGrad)" opacity="0.9"/>
+        <!-- Coastline shimmer -->
+        <path d="
+          M 100 15 L 95 22 L 98 40 L 105 62 L 110 88 L 108 118 L 102 148 L 98 178
+          L 96 208 L 100 238 L 108 268 L 112 298 L 108 328 L 98 355 L 88 378
+          L 78 398 L 72 418 L 75 440 L 85 460 L 90 478 L 85 490 L 78 498
+        " stroke="rgba(255,255,255,0.35)" stroke-width="1.5" fill="none"/>
+        <!-- District dots -->
+        <circle cx="105" cy="50" r="3" fill="rgba(255,255,255,0.7)"/>
+        <circle cx="112" cy="100" r="3" fill="rgba(255,255,255,0.7)"/>
+        <circle cx="118" cy="155" r="3" fill="rgba(255,255,255,0.7)"/>
+        <circle cx="120" cy="215" r="3" fill="rgba(255,255,255,0.7)"/>
+        <circle cx="115" cy="270" r="3" fill="rgba(255,255,255,0.7)"/>
+        <circle cx="108" cy="330" r="3" fill="rgba(255,255,255,0.7)"/>
+        <circle cx="96" cy="390" r="3" fill="rgba(255,255,255,0.7)"/>
+        <circle cx="83" cy="448" r="3" fill="rgba(255,255,255,0.7)"/>
+        <!-- Star for capital -->
+        <text x="93" y="478" font-size="10" fill="rgba(255,255,255,0.9)" text-anchor="middle">★</text>
+      </svg>
     </div>
   </div>
 </header>
 
+<!-- STATS -->
 <section class="stats-section" aria-label="Summary statistics">
   <div class="stats-inner">
     <div class="stats-grid">
       <div class="stat-box s-all">
         <div class="stat-n" id="s-total">—</div>
-        <div class="stat-l">Total</div>
+        <div class="stat-l">Total promises</div>
       </div>
       <div class="stat-box s-done">
         <div class="stat-n" id="s-fulfilled">—</div>
@@ -342,7 +585,7 @@ footer a:hover { text-decoration: underline; }
       </div>
       <div class="stat-box s-prog">
         <div class="stat-n" id="s-progress">—</div>
-        <div class="stat-l">◑ In Progress</div>
+        <div class="stat-l">◑ In progress</div>
       </div>
       <div class="stat-box s-evad">
         <div class="stat-n" id="s-evaded">—</div>
@@ -362,22 +605,33 @@ footer a:hover { text-decoration: underline; }
   </div>
 </section>
 
+<!-- CONTROLS -->
 <div class="controls-section" role="search">
   <div class="controls-inner">
     <div class="controls-row">
-      <input class="search-box" type="search" id="q" placeholder="Search promises…" aria-label="Search promises">
+      <div class="search-wrap">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input class="search-box" type="search" id="q" placeholder="Search promises…" aria-label="Search promises">
+      </div>
       <button class="filter-pill active" data-s="all">All</button>
       <button class="filter-pill f-done" data-s="fulfilled">Fulfilled</button>
       <button class="filter-pill f-prog" data-s="progress">In Progress</button>
       <button class="filter-pill f-evad" data-s="evaded">Evaded</button>
       <button class="filter-pill" data-s="pending">Pending</button>
     </div>
+
+    <!-- Category chips -->
     <div class="cat-row" id="cat-row" role="tablist" aria-label="Filter by category"></div>
+
+    <!-- Section chips -->
+    <div class="section-tabs" id="section-tabs" role="tablist" aria-label="Filter by section"></div>
   </div>
 </div>
 
+<!-- PROMISES -->
 <main class="promises-section" id="promises-list" aria-live="polite" aria-label="Promises list"></main>
 
+<!-- CONTRIBUTE -->
 <div class="contribute">
   <div class="contribute-inner">
     <p>This is a non-partisan public record maintained by citizens. If you know a promise has been fulfilled, started, or evaded — help us update it.</p>
@@ -388,191 +642,275 @@ footer a:hover { text-decoration: underline; }
 <footer>
   Not a government or political website. An independent public ledger maintained by citizens of Kerala.<br>
   <a href="methodology.html">Methodology</a> ·
-  <a href="https://github.com/jeremyloll/keralam-tracker/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">How to contribute</a>
+  <a href="https://github.com/jeremyloll/keralam-tracker/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">How to contribute</a> ·
+  <a href="https://github.com/jeremyloll/keralam-tracker" target="_blank" rel="noopener">GitHub</a>
 </footer>
 
 <script>
-const STATUS_LABEL = {
-  fulfilled: '✓ Fulfilled',
-  progress:  '◑ In Progress',
-  evaded:    '✗ Evaded',
-  pending:   '○ Pending'
-};
+const STATUS_LABEL={fulfilled:'✓ Fulfilled',progress:'◑ In Progress',evaded:'✗ Evaded',pending:'○ Pending'};
+const SUBMIT_URL='https://github.com/jeremyloll/keralam-tracker/issues/new?template=promise-update.md';
 
-let allPromises = [];
-let activeStatus = 'all';
-let activeCat = 'All';
-let searchQ = '';
-let mlMode = false;
+let allPromises=[];
+let activeStatus='all';
+let activeCat='All';
+let activeSection='All';
+let searchQ='';
+let mlMode=false;
 
-async function loadData() {
-  try {
-    const res = await fetch('/data/promises.json');
-    allPromises = await res.json();
+/* ── COUNTDOWN ── */
+function updateCountdown(){
+  const oath=new Date('2026-05-18T00:00:00');
+  const end=new Date('2031-05-18T00:00:00');
+  const now=new Date();
+  const totalMs=end-oath;
+  const elapsedMs=Math.max(0,now-oath);
+  const remainMs=Math.max(0,end-now);
+
+  const daysIn=Math.floor(elapsedMs/86400000);
+  const daysRem=Math.floor(remainMs/86400000);
+  const pct=Math.min(100,Math.round(elapsedMs/totalMs*100));
+
+  document.getElementById('tb-days').textContent=daysIn.toLocaleString('en-IN');
+  document.getElementById('tb-rem').textContent=daysRem.toLocaleString('en-IN');
+  document.getElementById('tb-pct').textContent=pct+'%';
+  document.getElementById('tb-year').textContent='2031';
+
+  /* countdown string */
+  const h=Math.floor((remainMs%(86400000))/3600000);
+  const m=Math.floor((remainMs%(3600000))/60000);
+  const s=Math.floor((remainMs%60000)/1000);
+  document.getElementById('countdown-display').textContent=
+    daysRem.toLocaleString('en-IN')+' days '+
+    String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')+' remaining';
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+/* ── LOAD DATA ── */
+async function loadData(){
+  try{
+    const res=await fetch('/data/promises.json');
+    allPromises=await res.json();
     boot();
-  } catch (e) {
-    document.getElementById('promises-list').innerHTML =
-      '<p style="text-align:center;padding:2rem;color:#777;">Could not load promises.json. Make sure the file is in the data/ folder.</p>';
+  }catch(e){
+    document.getElementById('promises-list').innerHTML=
+      '<p style="text-align:center;padding:2rem;color:#777;">Could not load promises.json. Make sure it\'s in the data/ folder.</p>';
   }
 }
 
-function boot() {
+function boot(){
   updateStats();
   buildCats();
+  buildSections();
   render();
-  initTerm();
 }
 
-function initTerm() {
-  const oath = new Date('2026-05-20');
-  const end  = new Date('2031-05-20');
-  const now  = new Date();
-  document.getElementById('days-in').textContent   = Math.max(0, Math.floor((now - oath) / 86400000)).toLocaleString('en-IN');
-  document.getElementById('days-left').textContent = Math.max(0, Math.floor((end  - now)  / 86400000)).toLocaleString('en-IN');
+function updateStats(){
+  const t=allPromises.length;
+  const f=allPromises.filter(p=>p.status==='fulfilled').length;
+  const pr=allPromises.filter(p=>p.status==='progress').length;
+  const ev=allPromises.filter(p=>p.status==='evaded').length;
+  const pe=allPromises.filter(p=>p.status==='pending').length;
+  document.getElementById('s-total').textContent=t;
+  document.getElementById('s-fulfilled').textContent=f;
+  document.getElementById('s-progress').textContent=pr;
+  document.getElementById('s-evaded').textContent=ev;
+  document.getElementById('s-pending').textContent=pe;
+  document.getElementById('pt-f').style.width=Math.round(f/t*100)+'%';
+  document.getElementById('pt-p').style.width=Math.round(pr/t*100)+'%';
+  document.getElementById('pt-e').style.width=Math.round(ev/t*100)+'%';
+  document.getElementById('pt-n').style.width=Math.round(pe/t*100)+'%';
 }
 
-function updateStats() {
-  const t  = allPromises.length;
-  const f  = allPromises.filter(p => p.status === 'fulfilled').length;
-  const pr = allPromises.filter(p => p.status === 'progress').length;
-  const ev = allPromises.filter(p => p.status === 'evaded').length;
-  const pe = allPromises.filter(p => p.status === 'pending').length;
-  document.getElementById('s-total').textContent     = t;
-  document.getElementById('s-fulfilled').textContent = f;
-  document.getElementById('s-progress').textContent  = pr;
-  document.getElementById('s-evaded').textContent    = ev;
-  document.getElementById('s-pending').textContent   = pe;
-  document.getElementById('pt-f').style.width = Math.round(f/t*100)  + '%';
-  document.getElementById('pt-p').style.width = Math.round(pr/t*100) + '%';
-  document.getElementById('pt-e').style.width = Math.round(ev/t*100) + '%';
-  document.getElementById('pt-n').style.width = Math.round(pe/t*100) + '%';
-}
-
-function buildCats() {
-  const cats = ['All', ...new Set(allPromises.map(p => p.category))];
-  const row = document.getElementById('cat-row');
-  row.innerHTML = cats.map(c =>
-    `<button class="cat-chip${c === activeCat ? ' active' : ''}" data-c="${c}" role="tab" aria-selected="${c === activeCat}">${c}</button>`
+function buildCats(){
+  const cats=['All',...new Set(allPromises.map(p=>p.category))].sort((a,b)=>a==='All'?-1:a.localeCompare(b));
+  const row=document.getElementById('cat-row');
+  row.innerHTML=cats.map(c=>
+    `<button class="cat-chip${c===activeCat?' active':''}" data-c="${c}" role="tab" aria-selected="${c===activeCat}">${c}</button>`
   ).join('');
-  row.querySelectorAll('.cat-chip').forEach(b => b.addEventListener('click', () => {
-    activeCat = b.dataset.c;
-    buildCats(); render();
+  row.querySelectorAll('.cat-chip').forEach(b=>b.addEventListener('click',()=>{
+    activeCat=b.dataset.c;
+    activeSection='All';
+    buildCats();buildSections();render();
   }));
 }
 
-function filtered() {
-  const q = searchQ.toLowerCase();
-  return allPromises.filter(p => {
-    if (activeStatus !== 'all' && p.status !== activeStatus) return false;
-    if (activeCat !== 'All' && p.category !== activeCat) return false;
-    if (q && !p.title_en.toLowerCase().includes(q) &&
-             !(p.title_ml || '').includes(q) &&
-             !p.verbatim.toLowerCase().includes(q)) return false;
+/* all unique sections */
+const ALL_SECTIONS=[
+  'All','Indira Guarantee','Dream Projects','Social Security and Equality',
+  'Welfare Schemes','Healthcare','Education','Industry','Employment','Drugs',
+  "Women's Empowerment and Security",'Housing','Agriculture','Hill Farmer Welfare',
+  'Wild Animal Attack','Fishing','SC/ST Welfare','Differently Abled Welfare',
+  'Administration','Tourism','Traditional Industry','Large Projects',
+  'Infrastructure Development','Transportation','KSRTC','Electricity','Startups',
+  'Information Technology','Environment','Art, Culture, Cinema','Sports',
+  'Administration of Justice and Law & Order','Police','Cooperation',
+  'Youth Welfare','Sabarimala and Devaswom','Expatriate Welfare',
+  'Government Employees and Pensioners','Price Hike','Economic Development',
+  'Garbage Disposal and Stray Dog Problem','Drinking Water','Reservation',
+  'Religious Harmony','Liquor Policy','Local Self-Government and Panchayati Raj'
+];
+
+function buildSections(){
+  /* which sections are relevant to current cat filter */
+  const relevantSections=activeCat==='All'
+    ? ALL_SECTIONS
+    : ['All',...new Set(allPromises.filter(p=>p.category===activeCat).map(p=>p.section))];
+
+  const tabs=document.getElementById('section-tabs');
+  tabs.innerHTML=relevantSections.map(s=>
+    `<button class="section-chip${s===activeSection?' active':''}" data-s="${s}">${s}</button>`
+  ).join('');
+  tabs.querySelectorAll('.section-chip').forEach(b=>b.addEventListener('click',()=>{
+    activeSection=b.dataset.s;
+    buildSections();render();
+  }));
+}
+
+function filtered(){
+  const q=searchQ.toLowerCase();
+  return allPromises.filter(p=>{
+    if(activeStatus!=='all'&&p.status!==activeStatus)return false;
+    if(activeCat!=='All'&&p.category!==activeCat)return false;
+    if(activeSection!=='All'&&p.section!==activeSection)return false;
+    if(q&&!p.title_en.toLowerCase().includes(q)&&!(p.title_ml||'').includes(q)&&!p.verbatim.toLowerCase().includes(q))return false;
     return true;
   });
 }
 
-function lastUpdate(p) {
-  if (!p.updates || !p.updates.length) return null;
-  return p.updates[p.updates.length - 1];
+function lastUpdate(p){
+  if(!p.updates||!p.updates.length)return null;
+  return p.updates[p.updates.length-1];
 }
 
-function render() {
-  const list = document.getElementById('promises-list');
-  const items = filtered();
-  if (!items.length) {
-    list.innerHTML = '<div class="empty">No promises match this filter.</div>';
+function submitUrl(id,title){
+  const enc=encodeURIComponent('Update: Promise #'+id+' — '+title.slice(0,50));
+  return SUBMIT_URL+'&title='+enc;
+}
+
+function render(){
+  const list=document.getElementById('promises-list');
+  const items=filtered();
+  if(!items.length){
+    list.innerHTML='<div class="empty">No promises match this filter.</div>';
     return;
   }
-  list.innerHTML = items.map(p => {
-    const upd = lastUpdate(p);
-    return `
-    <article class="promise-card" data-id="${p.id}">
-      <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
-        <div class="status-pip pip-${p.status}" aria-hidden="true"></div>
-        <div class="card-main">
-          <div class="card-badges">
-            <span class="badge badge-cat">${p.category}</span>
-            <span class="badge badge-${p.status}">${STATUS_LABEL[p.status]}</span>
-            ${p.timeline_promised ? `<span class="badge badge-cat">${p.timeline_promised}</span>` : ''}
-          </div>
-          <div class="card-title">${p.title_en}</div>
-          <div class="card-title-ml">${p.title_ml || p.title_en}</div>
-        </div>
-        <span class="card-num">#${p.id}</span>
-      </div>
-      <div class="card-detail">
-        <div class="detail-block">
-          <div class="detail-label">As stated in manifesto — page ${p.manifesto_page}</div>
-          <div class="verbatim-text">"${p.verbatim}"</div>
-        </div>
-        ${p.departments && p.departments.length ? `
-        <div class="detail-block">
-          <div class="detail-label">Responsible departments</div>
-          <div class="dept-chips">${p.departments.map(d => `<span class="dept-chip">${d}</span>`).join('')}</div>
-        </div>` : ''}
-        <div class="detail-block">
-          <div class="detail-label">Latest update</div>
-          ${upd ? `
-            <div class="update-text">${upd.note_en}</div>
-            ${upd.source_url ? `
-            <div style="margin-top:6px">
-              <a class="source-link" href="${upd.source_url}" target="_blank" rel="noopener">
-                ↗ ${upd.source_label}
-              </a>
-              <span class="tier-badge">Tier ${upd.source_tier}</span>
-            </div>` : ''}
-          ` : `
-            <span class="no-update">No updates logged yet. </span>
-            <button class="submit-inline" onclick="window.open('https://github.com/YOUR-USERNAME/keralam-tracker/issues/new?template=promise-update.md&title=Update: [Promise %23${p.id}]','_blank')">Submit one →</button>
-          `}
-        </div>
-        ${p.updates && p.updates.length > 1 ? `
-        <div class="detail-block">
-          <div class="detail-label">History (${p.updates.length} updates)</div>
-          ${p.updates.map(u => `
-            <div style="font-size:12px;color:var(--ink-3);margin-bottom:4px">
-              <strong style="color:var(--ink-2)">${u.date}</strong> — ${u.prev_status} → ${u.new_status}: ${u.note_en}
-              ${u.source_url ? `<a class="source-link" href="${u.source_url}" style="margin-left:6px" target="_blank" rel="noopener">source ↗</a>` : ''}
-            </div>
-          `).join('')}
-        </div>` : ''}
-      </div>
-    </article>`;
-  }).join('');
 
-  list.querySelectorAll('.card-summary').forEach(s => {
-    const handler = () => {
-      const card = s.closest('.promise-card');
-      const isOpen = card.classList.toggle('open');
-      s.setAttribute('aria-expanded', isOpen);
+  /* group by section */
+  const grouped={};
+  items.forEach(p=>{
+    const sec=p.section||'Other';
+    if(!grouped[sec])grouped[sec]=[];
+    grouped[sec].push(p);
+  });
+
+  let html='';
+  Object.entries(grouped).forEach(([sec,promises])=>{
+    const cat=promises[0].category;
+    html+=`<div class="section-group-header"><span>${sec}</span><span class="group-promise-count">${promises.length}</span></div>`;
+    promises.forEach(p=>{
+      const upd=lastUpdate(p);
+      const canSubmit=p.status==='pending'||p.status==='progress';
+      const isFlag=p.section_type==='flagship';
+      html+=`
+      <article class="promise-card" data-id="${p.id}">
+        <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
+          <div class="status-pip pip-${p.status}" aria-hidden="true"></div>
+          <div class="card-main">
+            <div class="card-badges">
+              <span class="badge badge-cat">${p.category}</span>
+              <span class="badge badge-${p.status}">${STATUS_LABEL[p.status]}</span>
+              ${isFlag?'<span class="badge badge-flagship">⭐ Flagship</span>':''}
+              ${p.timeline_promised?`<span class="badge badge-cat">${p.timeline_promised}</span>`:''}
+            </div>
+            <div class="card-title">${p.title_en}</div>
+            ${p.title_ml?`<div class="card-title-ml">${p.title_ml}</div>`:''}
+          </div>
+          <span class="card-num">#${p.id}</span>
+        </div>
+        <div class="card-detail">
+          ${p.manifesto_page?`
+          <div class="detail-block">
+            <div class="detail-label">As stated in manifesto${p.manifesto_page?' — page '+p.manifesto_page:''}</div>
+            <div class="verbatim-text">"${p.verbatim}"</div>
+          </div>`:`
+          <div class="detail-block">
+            <div class="detail-label">As stated in manifesto</div>
+            <div class="verbatim-text">"${p.verbatim}"</div>
+          </div>`}
+          ${p.departments&&p.departments.length?`
+          <div class="detail-block">
+            <div class="detail-label">Responsible departments</div>
+            <div class="dept-chips">${p.departments.map(d=>`<span class="dept-chip">${d}</span>`).join('')}</div>
+          </div>`:''}
+          <div class="detail-block">
+            <div class="detail-label">Latest update</div>
+            ${upd?`
+              <div class="update-text">${upd.note_en}</div>
+              ${upd.source_url?`
+              <div style="margin-top:6px">
+                <a class="source-link" href="${upd.source_url}" target="_blank" rel="noopener">
+                  ↗ ${upd.source_label}
+                </a>
+                <span class="tier-badge">Tier ${upd.source_tier}</span>
+              </div>`:''}
+            `:`<span class="no-update">No updates logged yet.</span>`}
+            ${canSubmit?`
+            <div style="margin-top:8px">
+              <a class="submit-update-btn" href="${submitUrl(p.id,p.title_en)}" target="_blank" rel="noopener">
+                ↗ Submit an update
+              </a>
+            </div>`:''}
+          </div>
+          ${p.updates&&p.updates.length>1?`
+          <div class="detail-block">
+            <div class="detail-label">History (${p.updates.length} updates)</div>
+            ${p.updates.map(u=>`
+              <div class="history-item">
+                <span class="history-date">${u.date}</span> — ${u.prev_status} → ${u.new_status}: ${u.note_en}
+                ${u.source_url?`<a class="source-link" href="${u.source_url}" style="margin-left:6px" target="_blank" rel="noopener">source ↗</a>`:''}
+              </div>
+            `).join('')}
+          </div>`:''}
+        </div>
+      </article>`;
+    });
+  });
+
+  list.innerHTML=html;
+
+  list.querySelectorAll('.card-summary').forEach(s=>{
+    const handler=()=>{
+      const card=s.closest('.promise-card');
+      const isOpen=card.classList.toggle('open');
+      s.setAttribute('aria-expanded',isOpen);
     };
-    s.addEventListener('click', handler);
-    s.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); }});
+    s.addEventListener('click',handler);
+    s.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();handler();}});
   });
 }
 
-// Status filters
-document.querySelectorAll('.filter-pill').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+/* status filters */
+document.querySelectorAll('.filter-pill').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-pill').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
-    activeStatus = btn.dataset.s;
+    activeStatus=btn.dataset.s;
     render();
   });
 });
 
-// Search
-document.getElementById('q').addEventListener('input', e => {
-  searchQ = e.target.value;
+/* search */
+document.getElementById('q').addEventListener('input',e=>{
+  searchQ=e.target.value;
   render();
 });
 
-// Language toggle
-function toggleLang() {
-  mlMode = !mlMode;
-  document.body.classList.toggle('ml', mlMode);
-  document.getElementById('lang-btn').textContent = mlMode ? 'English' : 'മലയാളം';
+/* language toggle */
+function toggleLang(){
+  mlMode=!mlMode;
+  document.body.classList.toggle('ml',mlMode);
+  document.getElementById('lang-btn').textContent=mlMode?'English':'മലയാളം';
 }
 
 loadData();
