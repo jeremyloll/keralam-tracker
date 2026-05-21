@@ -11,7 +11,7 @@
 <meta property="og:image" content="/og-default.png">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a6638'/%3E%3Cpath d='M19 2 L21 3 L23 5 L24 8 L23 10 L22 12 L23 14 L24 17 L24 20 L23 23 L22 26 L21 28 L20 29 L19 30 L18 29 L17 27 L17 24 L18 21 L18 18 L17 16 L16 13 L16 10 L17 7 L18 4 Z' fill='white' opacity='0.92'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="/assets/keralam_map.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
@@ -866,7 +866,6 @@ function copyPromiseLink(id,btn){
     btn.textContent='✓ Copied';
     setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML='<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> Copy link';},2200);
   }).catch(()=>{
-    /* fallback: select a temp input */
     const inp=document.createElement('input');
     inp.value=url;document.body.appendChild(inp);
     inp.select();document.execCommand('copy');document.body.removeChild(inp);
@@ -932,7 +931,6 @@ function render(){
             <div class="card-title">${p.title_en}</div>
             ${p.title_ml?`<div class="card-title-ml">${p.title_ml}</div>`:''}
           </div>
-          <!-- Share button on card summary row -->
           <div class="card-actions">
             <button class="share-btn" onclick="event.stopPropagation();nativeShare('${p.id}',${JSON.stringify(p.title_en)},'${p.status}')" aria-label="Share this promise">
               ${shareIcon} Share
@@ -974,8 +972,6 @@ function render(){
               </a>
             </div>`:''}
           </div>
-
-          <!-- Expanded share toolbar inside card detail -->
           <div class="detail-block">
             <div class="detail-label">Share this promise</div>
             <div class="share-toolbar">
@@ -998,7 +994,6 @@ function render(){
               </button>
             </div>
           </div>
-
           ${p.updates&&p.updates.length>1?`
           <div class="detail-block">
             <div class="detail-label">History (${p.updates.length} updates)</div>
@@ -1021,7 +1016,6 @@ function render(){
       const card=s.closest('.promise-card');
       const isOpen=card.classList.toggle('open');
       s.setAttribute('aria-expanded',isOpen);
-      /* Update URL so this card's link is shareable from address bar too */
       if(isOpen){
         const id=card.dataset.id;
         const url=new URL(window.location);
