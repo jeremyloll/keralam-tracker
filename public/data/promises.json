@@ -14881,7 +14881,7 @@
   {
     "id": 951,
     "slug": "information-technology-an-artificial-intelligence-ai-department-will-be-formed-to-utilize-",
-    "title_en": "An Artificial Intelligence (AI) Department will be formed to utilize the potential of artificial intelligence in vari...",
+    "title_en": "Formation of a Dedicated Artificial Intelligence (AI) Department for Comprehensive State Development",
     "verbatim": "An Artificial Intelligence (AI) Department will be formed to utilize the potential of artificial intelligence in various sectors of the state and to enable the comprehensive development of the state through innovative technology.",
     "category": "Technology",
     "section": "Information Technology",
@@ -14890,9 +14890,20 @@
       "IT",
       "Electronics"
     ],
-    "status": "pending",
+    "status": "fulfilled",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-21",
+      "prev_status": "pending",
+      "new_status": "fulfilled",
+      "note_en": "Kerala Becomes India's First State to Form a Separate AI Ministry.",
+      "source_url": "https://www.deccanherald.com/india/kerala/kerala-creates-separate-ai-portfolio-to-boost-artificial-intelligence-sector-4011517",
+      "source_label": "Deccan Herald, 21 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 952,
