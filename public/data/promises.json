@@ -2248,7 +2248,7 @@
     "departments": [
       "Health"
     ],
-    "status": "progress",
+    "status": "pending",
     "timeline_promised": null,
     "updates": []
   },
@@ -3080,7 +3080,7 @@
       "Education",
       "Higher Education"
     ],
-    "status": "progress",
+    "status": "pending",
     "timeline_promised": null,
     "updates": []
   },
@@ -3096,7 +3096,7 @@
       "Education",
       "Higher Education"
     ],
-    "status": "progress",
+    "status": "pending",
     "timeline_promised": null,
     "updates": []
   },
@@ -3224,7 +3224,7 @@
       "Education",
       "Higher Education"
     ],
-    "status": "progress",
+    "status": "pending",
     "timeline_promised": null,
     "updates": []
   },
@@ -4984,7 +4984,7 @@
       "Industries",
       "Finance"
     ],
-    "status": "progress",
+    "status": "pending",
     "timeline_promised": null,
     "updates": []
   },
@@ -5848,7 +5848,7 @@
       "Labour",
       "Employment"
     ],
-    "status": "progress",
+    "status": "pending",
     "timeline_promised": null,
     "updates": []
   },
