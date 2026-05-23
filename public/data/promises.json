@@ -20192,7 +20192,7 @@
   {
     "id": 1294,
     "slug": "liquor-policy-in-a-situation-where-the-spread-of-intoxicants-such-as-alcohol-and-dru",
-    "title_en": "In a situation where the spread of intoxicants such as alcohol and drugs has become a very serious threat in Kerala, ...",
+    "title_en": "Formulation and Implementation of Effective Policies and Action Plans to Eradicate the Substance Abuse Menace in Kerala",
     "verbatim": "In a situation where the spread of intoxicants such as alcohol and drugs has become a very serious threat in Kerala, strong and effective policies and action plans will be formulated and implemented with the aim of freeing Kerala from this deadly menace.",
     "category": "Social Welfare",
     "section": "Liquor Policy",
@@ -20201,9 +20201,20 @@
       "Excise",
       "Home"
     ],
-    "status": "pending",
+    "status": "fulfilled",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-23",
+      "prev_status": "pending",
+      "new_status": "fulfilled",
+      "note_en": "Kerala HM announces 'Operation Toofan' anti-narcotics campaign.",
+      "source_url": "https://www.ptinews.com/story/national/kerala-hm-announces-operation-toofan-anti-narcotics-campaign/3695390",
+      "source_label": "PTI, 23 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 1295,
