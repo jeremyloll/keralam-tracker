@@ -17829,9 +17829,20 @@
     "departments": [
       "Home"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+       {
+      "date": "2026-05-23",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Home Minister Ramesh Chennithala has announced a sweeping set of reforms targeting Kerala's police stations to transform them into citizen-friendly public service centers. The initiatives focus on behavioral shifts in policing, structural administrative reviews, and infrastructure cleanup.",
+      "source_url": "https://www.thehindu.com/news/national/kerala/major-changes-announced-in-policing-kerala-operation-toofan-to-be-launched-on-june-1/article71014033.ece",
+      "source_label": "The Hindu, 23 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 1142,
