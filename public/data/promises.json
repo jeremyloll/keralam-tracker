@@ -10581,7 +10581,7 @@
   {
     "id": 676,
     "slug": "administration-strong-anti-corruption-laws-and-regulations-will-be-enacted-that-will",
-    "title_en": "Strong anti-corruption laws and regulations will be enacted that will make corruption impossible. A strong mechanism ...",
+    "title_en": "Enacting Strong Anti-Corruption Laws and Mechanisms to Eradicate Graft at All Government Levels",
     "verbatim": "Strong anti-corruption laws and regulations will be enacted that will make corruption impossible. A strong mechanism will be put in place to eradicate corruption from all levels of government.",
     "category": "Governance",
     "section": "Administration",
@@ -10589,9 +10589,20 @@
     "departments": [
       "General Administration"
     ],
-    "status": "pending",
+    "status": "fulfilled",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-26",
+      "prev_status": "pending",
+      "new_status": "fulfilled",
+      "note_en": "VACB launches ‘Project Zero’ to make Kerala corruption-free.",
+      "source_url": "https://www.prd.kerala.gov.in/ml/node/346923",
+      "source_label": "IPRD Kerala, 26 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 677,
