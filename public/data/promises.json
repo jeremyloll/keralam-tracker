@@ -5391,7 +5391,7 @@
   {
     "id": 342,
     "slug": "employment-new-laws-will-be-enacted-to-make-the-psc-system-more-flawless-and-to-m",
-    "title_en": "New laws will be enacted to make the PSC system more flawless and to make vacancy reporting more efficient. Recruitme...",
+    "title_en": "Enacting New Laws for a Flawless PSC System, Efficient Vacancy Reporting, and Timely Recruitment",
     "verbatim": "New laws will be enacted to make the PSC system more flawless and to make vacancy reporting more efficient. Recruitment will be completed before the PSC lists expire.",
     "category": "Employment",
     "section": "Employment",
@@ -5400,9 +5400,20 @@
       "Labour",
       "Employment"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-25",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "The Kerala Public Service Commission (PSC) has extended the validity of rank lists set to expire between May 25 and August 31, 2026, till November 30",
+      "source_url": "https://www.onmanorama.com/news/kerala/2026/05/25/kerala-psc-extends-validity-of-rank-lists-till-november-30.html",
+      "source_label": "OnManorama, 25 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 343,
@@ -6344,7 +6355,7 @@
       "Women & Child Development",
       "Home"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
     "updates": [
       {
