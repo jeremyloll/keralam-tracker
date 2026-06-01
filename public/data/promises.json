@@ -54,9 +54,20 @@
       "Social Justice",
       "Finance"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": "100 days",
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Governor announces welfare pensions to be increased to ₹3,000 per month",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 4,
@@ -70,9 +81,20 @@
       "Health",
       "Finance"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": "100 days",
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Free health insurance coverage of ₹25 lakh for every family under the Oommen Chandy Health Insurance Scheme",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 5,
@@ -3114,7 +3136,7 @@
   {
     "id": 199,
     "slug": "education-jawaharlal-nehru-science-awareness-centers-will-be-established-to-deve",
-    "title_en": "Jawaharlal Nehru Science Awareness Centers will be established to develop science awareness among students.",
+    "title_en": "Jawaharlal Nehru Science Awareness Centers will be established to develop science awareness among students",
     "verbatim": "Jawaharlal Nehru Science Awareness Centers will be established to develop science awareness among students.",
     "category": "Education",
     "section": "Education",
@@ -3123,9 +3145,20 @@
       "Education",
       "Higher Education"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Jawaharlal Nehru Scientific centres to be established to inculcate scientific temper in students",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 200,
@@ -4187,7 +4220,7 @@
   {
     "id": 264,
     "slug": "education-steps-will-be-taken-to-upgrade-public-schools-in-the-state-to-internat",
-    "title_en": "Steps will be taken to upgrade public schools in the state to international standards. The academic standards of exis...",
+    "title_en": "Upgrading Public Schools to International Standards and Elevating Academic Quality in Schools & Colleges",
     "verbatim": "Steps will be taken to upgrade public schools in the state to international standards. The academic standards of existing schools and colleges will be improved.",
     "category": "Education",
     "section": "Education",
@@ -4196,9 +4229,20 @@
       "Education",
       "Higher Education"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Government schools and colleges will be upgraded with modern technologies",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 265,
@@ -18240,7 +18284,7 @@
   {
     "id": 1155,
     "slug": "cooperation-a-plan-will-be-implemented-to-bring-changes-to-the-investment-guarante",
-    "title_en": "A plan will be implemented to bring changes to the investment guarantee scheme so that deposits in cooperative societ...",
+    "title_en": "Restoring Public Trust, Enhancing Investment Protections, and Ensuring Timely Return of Deposits in Cooperative Societies",
     "verbatim": "A plan will be implemented to bring changes to the investment guarantee scheme so that deposits in cooperative societies can be returned in a timely manner, to ensure investment protection, and to restore the currently damaged public trust.",
     "category": "Economy",
     "section": "Cooperation",
@@ -18248,9 +18292,20 @@
     "departments": [
       "Cooperation"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Policy address promises steps to restore public trust in cooperative institutions and to ensure financial discipline in their functioning",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 1156,
@@ -18270,7 +18325,7 @@
   {
     "id": 1157,
     "slug": "cooperation-a-precise-monitoring-system-will-be-introduced-including-loan-disburse",
-    "title_en": "A precise monitoring system will be introduced, including loan disbursement, to ensure financial discipline in the ac...",
+    "title_en": "Introducing a Precise Monitoring System and Loan Disbursement Tracking to Ensure Financial Discipline in Distressed Cooperative Societies",
     "verbatim": "A precise monitoring system will be introduced, including loan disbursement, to ensure financial discipline in the activities of cooperative societies facing crisis.",
     "category": "Economy",
     "section": "Cooperation",
@@ -18278,9 +18333,20 @@
     "departments": [
       "Cooperation"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Policy address promises steps to restore public trust in cooperative institutions and to ensure financial discipline in their functioning",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 1158,
