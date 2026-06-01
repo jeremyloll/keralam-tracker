@@ -6335,8 +6335,8 @@
   {
     "id": 401,
     "slug": "womens-empowerment-and-security-public-restroom-facilities-will-be-provided-in-all-major-t",
-    "title_en": "Public restroom facilities will be provided in all major towns in Kerala.",
-    "verbatim": "Public restroom facilities will be provided in all major towns in Kerala.",
+    "title_en": "Public restroom facilities will be provided in all major towns in Keralam",
+    "verbatim": "Public restroom facilities will be provided in all major towns in Keralam",
     "category": "Women & Gender",
     "section": "Women's Empowerment and Security",
     "section_type": "promise",
@@ -6346,7 +6346,18 @@
     ],
     "status": "pending",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Public restroom facilities for women will be established across all major towns in Keralam",
+      "source_url": "https://www.onmanorama.com/news/kerala/2026/05/29/3-day-menstrual-leave-to-equal-pay-kerala-govt-s-big-promises-for-women.html",
+      "source_label": "OnManorama, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 402,
