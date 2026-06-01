@@ -6131,9 +6131,20 @@
       "Excise",
       "Health"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "The government will launch a Statewide anti-drug mission in the new academic year involving the collaboration of the Home, Excise, Health and Education Departments.",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 388,
@@ -6282,7 +6293,7 @@
   {
     "id": 397,
     "slug": "drugs-school-college-based-preventive-measures-will-be-strengthened-zero-tol",
-    "title_en": "School-college-based preventive measures will be strengthened. \"Zero tolerance\" will be ensured in the implementation...",
+    "title_en": "Strengthening Institutional Preventive Measures and Ensuring \"Zero Tolerance\" in Law Enforcement",
     "verbatim": "School-college-based preventive measures will be strengthened. \"Zero tolerance\" will be ensured in the implementation of laws.",
     "category": "Social Welfare",
     "section": "Drugs",
@@ -6291,9 +6302,20 @@
       "Excise",
       "Health"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "The government will launch a Statewide anti-drug mission in the new academic year involving the collaboration of the Home, Excise, Health and Education Departments.",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 398,
@@ -6416,7 +6438,7 @@
   {
     "id": 404,
     "slug": "womens-empowerment-and-security-steps-will-be-taken-to-provide-menstrual-cups-and-pads-to-",
-    "title_en": "Steps will be taken to provide menstrual cups and pads to women. Eco-friendly sanitary pad venting machines and pad i...",
+    "title_en": "Providing Menstrual Cups and Pads, and Installing Eco-Friendly Sanitary Pad Vending Machines and Incinerators in Public Places",
     "verbatim": "Steps will be taken to provide menstrual cups and pads to women. Eco-friendly sanitary pad venting machines and pad incinerators will be installed in public places.",
     "category": "Women & Gender",
     "section": "Women's Empowerment and Security",
@@ -6425,9 +6447,20 @@
       "Women & Child Development",
       "Home"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "The government also plans to improve access to essential items such as sanitary napkins and footwear for women.",
+      "source_url": "https://www.onmanorama.com/news/kerala/2026/05/29/3-day-menstrual-leave-to-equal-pay-kerala-govt-s-big-promises-for-women.html",
+      "source_label": "OnManorama, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 405,
@@ -8622,7 +8655,7 @@
   {
     "id": 547,
     "slug": "wild-animal-attack-along-with-strictly-controlling-the-harm-caused-to-animals-by-entering",
-    "title_en": "Along with strictly controlling the harm caused to animals by entering the forest, first priority will be given to pr...",
+    "title_en": "Prioritizing Mitigation of Human-Wildlife Conflict and Forest Border Security",
     "verbatim": "Along with strictly controlling the harm caused to animals by entering the forest, first priority will be given to preventing wild animals from entering human settlements. This will be the sole responsibility of the Forest Department.",
     "category": "Environment",
     "section": "Wild Animal Attack",
@@ -8631,9 +8664,20 @@
       "Forest",
       "Agriculture"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "The Forest Department will adopt a three-tier strategy involving containment, mitigation and compensation to address human-wildlife conflicts",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 548,
@@ -8702,7 +8746,7 @@
   {
     "id": 552,
     "slug": "wild-animal-attack-steps-will-be-taken-to-bring-about-changes-by-holding-discussions-with",
-    "title_en": "Steps will be taken to bring about changes by holding discussions with farmers and tribal organizations to formulate ...",
+    "title_en": "Formulating Timely Amendments to the Wildlife (Protection) Act, 1972 Through Farmer and Tribal Consultations",
     "verbatim": "Steps will be taken to bring about changes by holding discussions with farmers and tribal organizations to formulate ideas regarding timely changes in the Wildlife (Protection) Act, 1972.",
     "category": "Environment",
     "section": "Wild Animal Attack",
@@ -8711,9 +8755,20 @@
       "Forest",
       "Agriculture"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "The government will undertake the demarcation of boundaries between agricultural and forest lands to protect the property rights of farmers, whose land ownership has been affected by old reserve forest notifications.",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 553,
@@ -8766,7 +8821,7 @@
   {
     "id": 556,
     "slug": "wild-animal-attack-to-prevent-wild-animals-from-coming-out-elaborate-protection-measures",
-    "title_en": "To prevent wild animals from coming out, elaborate protection measures will be adopted in forest border areas. For th...",
+    "title_en": "Installing Tailored Fencing Systems and Elaborate Protection Measures in Forest Border Areas",
     "verbatim": "To prevent wild animals from coming out, elaborate protection measures will be adopted in forest border areas. For this, appropriate fencing systems will be installed for each area and their protection will be ensured.",
     "category": "Environment",
     "section": "Wild Animal Attack",
@@ -8775,9 +8830,20 @@
       "Forest",
       "Agriculture"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "The Forest Department will adopt a three-tier strategy involving containment, mitigation and compensation to address human-wildlife conflicts",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 557,
@@ -14349,7 +14415,7 @@
   {
     "id": 915,
     "slug": "electricity-the-state-will-achieve-self-sufficiency-in-electricity-generation-by-i",
-    "title_en": "The state will achieve self-sufficiency in electricity generation by increasing electricity generation through solar ...",
+    "title_en": "Achieving Electricity Self-Sufficiency Through Solar and Wind Energy Generation",
     "verbatim": "The state will achieve self-sufficiency in electricity generation by increasing electricity generation through solar energy and wind energy.",
     "category": "Energy",
     "section": "Electricity",
@@ -14358,9 +14424,20 @@
       "Electricity",
       "Energy"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Steps will be taken to tap solar and wind energy as part of the efforts to make Kerala self-reliant in electricity generation.",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 916,
