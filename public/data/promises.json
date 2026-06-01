@@ -4295,7 +4295,7 @@
   {
     "id": 268,
     "slug": "education-a-permanent-solution-will-be-found-to-the-plus-one-seat-crisis-regiona",
-    "title_en": "A permanent solution will be found to the Plus One seat crisis. Regional inequality will be ended by implementing Plu...",
+    "title_en": "Ending Regional Disparities and Implementing a Permanent Solution to the Plus One Seat Crisis Through Batch Redistribution",
     "verbatim": "A permanent solution will be found to the Plus One seat crisis. Regional inequality will be ended by implementing Plus One seat redistribution that meets academic standards. Permanent additional Plus One batches will be allowed in the districts where they are needed.",
     "category": "Education",
     "section": "Education",
@@ -4304,9 +4304,20 @@
       "Education",
       "Higher Education"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "The government has issued orders for continuing temporary Plus-I batches and also permitted marginal seat increase",
+      "source_url": "https://www.newindianexpress.com/states/kerala/2026/May/26/plus-i-seats-increased-in-kerala-temporary-batches-to-stay",
+      "source_label": "The New Indian Express, 26 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 269,
@@ -16277,14 +16288,14 @@
     "departments": [
       "Cultural Affairs"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
     "updates": []
   },
   {
     "id": 1023,
     "slug": "art-culture-cinema-digital-art-museums-will-be-established-in-the-state-to-attract-the-yo",
-    "title_en": "Digital art museums will be established in the state to attract the younger generation and visitors to Kerala arts.",
+    "title_en": "Digital art museums will be established in the state to attract the younger generation and visitors to Kerala arts",
     "verbatim": "Digital art museums will be established in the state to attract the younger generation and visitors to Kerala arts.",
     "category": "Culture",
     "section": "Art, Culture, Cinema",
@@ -16292,9 +16303,20 @@
     "departments": [
       "Cultural Affairs"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Governor announces Digital art museums will be established",
+      "source_url": "https://www.hindustantimes.com/india-news/policy-address-governor-underscores-udf-govt-s-focus-on-welfare-measures-101780047959489-amp.html",
+      "source_label": "Hindustan Times, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 1024,
@@ -16374,7 +16396,7 @@
   {
     "id": 1029,
     "slug": "art-culture-cinema-steps-will-be-taken-to-hold-the-international-film-festival-of-kerala",
-    "title_en": "Steps will be taken to hold the International Film Festival of Kerala (IFFK) in more cities.",
+    "title_en": "Steps will be taken to hold the International Film Festival of Kerala (IFFK) in more cities",
     "verbatim": "Steps will be taken to hold the International Film Festival of Kerala (IFFK) in more cities.",
     "category": "Culture",
     "section": "Art, Culture, Cinema",
@@ -16382,29 +16404,51 @@
     "departments": [
       "Cultural Affairs"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Governor announces International Film Festival of Kerala (IFFK) will be extended to more cities",
+      "source_url": "https://www.hindustantimes.com/india-news/policy-address-governor-underscores-udf-govt-s-focus-on-welfare-measures-101780047959489-amp.html",
+      "source_label": "Hindustan Times, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 1030,
     "slug": "art-culture-cinema-a-living-museum-will-be-established-in-kerala-to-reflect-the-tradition",
-    "title_en": "A Living Museum will be established in Kerala to reflect the traditional life, history, art and culture of Kerala.",
-    "verbatim": "A Living Museum will be established in Kerala to reflect the traditional life, history, art and culture of Kerala.",
+    "title_en": "A Living Museum will be established in Kerala to reflect the traditional life, history, art and culture of Keralam",
+    "verbatim": "A Living Museum will be established in Kerala to reflect the traditional life, history, art and culture of Keralam.",
     "category": "Culture",
     "section": "Art, Culture, Cinema",
     "section_type": "promise",
     "departments": [
       "Cultural Affairs"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Governor announces a living museum of Kerala will be established to reflect traditional life, history, art and culture.",
+      "source_url": "https://www.hindustantimes.com/india-news/policy-address-governor-underscores-udf-govt-s-focus-on-welfare-measures-101780047959489-amp.html",
+      "source_label": "Hindustan Times, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 1031,
     "slug": "art-culture-cinema-steps-will-be-taken-to-digitally-archive-history-and-art-forms",
-    "title_en": "Steps will be taken to digitally archive history and art forms.",
+    "title_en": "Steps will be taken to digitally archive history and art forms",
     "verbatim": "Steps will be taken to digitally archive history and art forms.",
     "category": "Culture",
     "section": "Art, Culture, Cinema",
@@ -16414,7 +16458,18 @@
     ],
     "status": "pending",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Governor announces digital archiving of Kerala's history and cultural forms will be undertaken",
+      "source_url": "https://www.hindustantimes.com/india-news/policy-address-governor-underscores-udf-govt-s-focus-on-welfare-measures-101780047959489-amp.html",
+      "source_label": "Hindustan Times, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 1032,
@@ -16599,7 +16654,7 @@
   {
     "id": 1044,
     "slug": "art-culture-cinema-film-cities-will-be-established-in-thiruvananthapuram-kochi-and-kozhik",
-    "title_en": "Film cities will be established in Thiruvananthapuram, Kochi and Kozhikode to facilitate film production and related ...",
+    "title_en": "Establishing Film Cities in Thiruvananthapuram, Kochi, and Kozhikode to Accelerate Cinema Production",
     "verbatim": "Film cities will be established in Thiruvananthapuram, Kochi and Kozhikode to facilitate film production and related work.",
     "category": "Culture",
     "section": "Art, Culture, Cinema",
@@ -16607,9 +16662,20 @@
     "departments": [
       "Cultural Affairs"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Governor announced Media City and creative industries hub will be developed to bring together film production, animation, visual effects, gaming, digital media and content-creation industries in a single, professionally equipped campus",
+      "source_url": "https://www.hindustantimes.com/india-news/policy-address-governor-underscores-udf-govt-s-focus-on-welfare-measures-101780047959489-amp.html",
+      "source_label": "Hindustan Times, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 1045,
