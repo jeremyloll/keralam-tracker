@@ -3023,7 +3023,7 @@
   {
     "id": 194,
     "slug": "education-world-class-learning-facilities-will-be-provided-within-the-state-to-r",
-    "title_en": "World-class learning facilities will be provided within the state to reduce the out-migration of students from Kerala.",
+    "title_en": "World-class learning facilities will be provided within the state to reduce the out-migration of students from Kerala",
     "verbatim": "World-class learning facilities will be provided within the state to reduce the out-migration of students from Kerala.",
     "category": "Education",
     "section": "Education",
@@ -3032,9 +3032,20 @@
       "Education",
       "Higher Education"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Special focus to develop globally competitive higher education institutions in the state to reduce academic migrations and retain talented students in Kerala",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 195,
@@ -3375,7 +3386,7 @@
   {
     "id": 216,
     "slug": "education-an-academic-syndicate-will-be-formed-this-board-will-be-vested-with-th",
-    "title_en": "An Academic Syndicate will be formed - this board will be vested with the power to appoint teachers, form a Board of ...",
+    "title_en": "Forming an Academic Syndicate with Autonomous Powers for Faculty Appointment, Curriculum Design, and Research Governance",
     "verbatim": "An Academic Syndicate will be formed - this board will be vested with the power to appoint teachers, form a Board of Studies, register research, and grant PhDs.",
     "category": "Education",
     "section": "Education",
@@ -3384,9 +3395,20 @@
       "Education",
       "Higher Education"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Academic Syndicate to be established as an apex body for coordinating administrative and governance issues in the higher education sector",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 217,
@@ -3951,7 +3973,7 @@
   {
     "id": 252,
     "slug": "education-steps-will-be-taken-to-recognize-all-ugc-approved-degrees-in-kerala",
-    "title_en": "Steps will be taken to recognize all UGC-approved degrees in Kerala.",
+    "title_en": "Steps will be taken to recognize all UGC-approved degrees in Kerala",
     "verbatim": "Steps will be taken to recognize all UGC-approved degrees in Kerala.",
     "category": "Education",
     "section": "Education",
@@ -3962,7 +3984,18 @@
     ],
     "status": "pending",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Steps will be taken to ensure UGC approved degrees are recognised in Kerala in a uniform manner",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 253,
@@ -4095,7 +4128,7 @@
   {
     "id": 261,
     "slug": "education-a-state-wide-apprenticeship-exchange-platform-will-be-created-to-conne",
-    "title_en": "A state-wide apprenticeship exchange platform will be created to connect students and companies. The Kerala Academy f...",
+    "title_en": "Creating a State-Wide Apprenticeship Exchange Platform and Reorganizing the Kerala Academy for Skill Excellence (KASE)",
     "verbatim": "A state-wide apprenticeship exchange platform will be created to connect students and companies. The Kerala Academy for Skill Excellence (KASE) will be reorganized.",
     "category": "Education",
     "section": "Education",
@@ -4104,9 +4137,20 @@
       "Education",
       "Higher Education"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "A statewide apprenticeship exchange platform connecting students and industry will be developed",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 262,
@@ -6261,7 +6305,7 @@
   {
     "id": 395,
     "slug": "drugs-posts-in-the-excise-department-will-be-filled-in-a-timely-manner-steps",
-    "title_en": "Posts in the Excise Department will be filled in a timely manner. Steps will be taken to make the work of the Excise ...",
+    "title_en": "Timely Recruitment in the Excise Department and Enhancing Operational Efficiency to Combat Drug Trafficking",
     "verbatim": "Posts in the Excise Department will be filled in a timely manner. Steps will be taken to make the work of the Excise Police Departments more efficient in preventing the spread of drugs.",
     "category": "Social Welfare",
     "section": "Drugs",
@@ -6270,9 +6314,20 @@
       "Excise",
       "Health"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Excise Department will be modernised with enhanced enforcement capacity",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 396,
@@ -9592,7 +9647,7 @@
   {
     "id": 606,
     "slug": "fishing-to-study-the-impacts-of-the-blue-economy-a-special-committee-comprisin",
-    "title_en": "To study the impacts of the blue economy, a special committee comprising fishermen and experts with expertise in trad...",
+    "title_en": "Forming a Committee of Fishermen and Experts to Study Blue Economy Impacts and Formulate Necessary Measures",
     "verbatim": "To study the impacts of the blue economy, a special committee comprising fishermen and experts with expertise in traditional knowledge will be formed to formulate the necessary measures and adopt the report.",
     "category": "Fisheries",
     "section": "Fishing",
@@ -9600,9 +9655,20 @@
     "departments": [
       "Fisheries"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Government proposes to establish a Blue Economy Cell.",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 607,
@@ -15333,7 +15399,7 @@
   {
     "id": 971,
     "slug": "environment-climate-resilient-design-standards-that-are-resistant-to-floodslandsli",
-    "title_en": "Climate-resilient design standards that are resistant to floods/landslides/coastal erosion will be implemented. They ...",
+    "title_en": "Implementing Climate-Resilient Design Standards Against Floods, Landslides, and Coastal Erosion",
     "verbatim": "Climate-resilient design standards that are resistant to floods/landslides/coastal erosion will be implemented. They will be made part of the district-level development plan.",
     "category": "Environment",
     "section": "Environment",
@@ -15344,7 +15410,18 @@
     ],
     "status": "pending",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Focus on climate-resilient development in coastal areas",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 972,
@@ -19333,7 +19410,7 @@
   {
     "id": 1231,
     "slug": "price-hike-kerala-has-been-ranked-first-in-the-country-in-the-inflation-index-for",
-    "title_en": "Kerala has been ranked first in the country in the inflation index for several months. Steps will be taken to reduce ...",
+    "title_en": "Formulating Special Schemes and Taking Steps to Contain and Reduce High Inflation in Kerala",
     "verbatim": "Kerala has been ranked first in the country in the inflation index for several months. Steps will be taken to reduce inflation. Special schemes will be formulated for this.",
     "category": "Economy",
     "section": "Price Hike",
@@ -19342,14 +19419,25 @@
       "Civil Supplies",
       "Finance"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "Government will adopt effective steps to rising cost of living",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 1232,
     "slug": "price-hike-strict-action-to-prevent-black-marketing-and-hoarding-in-the-state",
-    "title_en": "Strict action to prevent black marketing and hoarding in the state.",
+    "title_en": "Strict action to prevent black marketing and hoarding in the state",
     "verbatim": "Strict action to prevent black marketing and hoarding in the state.",
     "category": "Economy",
     "section": "Price Hike",
@@ -19358,9 +19446,20 @@
       "Civil Supplies",
       "Finance"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
-    "updates": []
+    "updates": [
+      {
+      "date": "2026-05-29",
+      "prev_status": "pending",
+      "new_status": "progress",
+      "note_en": "The price monitoring mechanism will be strengthened to check hoarding, black marketing and artificial escalation in the price of essential commodities.",
+      "source_url": "https://www.thehindu.com/news/national/kerala/kerala-assembly-governor-policy-address-vd-satheeshan-rajendra-vishwanath-arlekar-live-updates/article71035858.ece",
+      "source_label": "The Hindu, 29 May 2026",
+      "source_tier": 1,
+      "contributed_by": "github:maintainer"
+     }
+    ]
   },
   {
     "id": 1233,
