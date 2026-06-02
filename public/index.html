@@ -3,30 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Keralam Promise Tracker — UDF Government 2026–2031</title>
-<meta name="description" content="A non-partisan public ledger tracking every promise made by the UDF government of Kerala to its people.">
+<title>Keralam Promise Tracker — Public Accountability Ledger</title>
+<meta name="description" content="A non-partisan public ledger tracking every promise made by Kerala's governments to its people.">
 <meta property="og:title" content="Keralam Promise Tracker">
-<meta property="og:description" content="Tracking UDF government promises 2026–2031. Non-partisan. Open source.">
+<meta property="og:description" content="Tracking government promises across Kerala and India. Non-partisan. Open source.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="/og-default.png">
 <meta name="twitter:card" content="summary_large_image">
-
 <link rel="icon" type="image/png" href="/assets/keralam_map2.png">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-:root {
-  --green-950:#061a0d;
+:root{
+  --green-950:#040f09;
   --green-900:#0a2e18;
   --green-800:#0f4c2a;
   --green-700:#1a6638;
   --green-600:#1e7a41;
   --green-500:#2a9956;
   --green-400:#3db86a;
+  --green-300:#6acf8a;
   --green-200:#a8deba;
   --green-100:#d4f0de;
   --green-50:#edfaf3;
@@ -34,13 +31,22 @@
   --gold-700:#9a6e1a;
   --gold-500:#c8922a;
   --gold-400:#d9a84a;
+  --gold-200:#f0d090;
   --gold-100:#fdf3e3;
+  --gold-50:#fffbf2;
   --red-800:#6b1515;
   --red-700:#8b1f1f;
+  --red-500:#c0392b;
   --red-100:#fdf0f0;
+  --blue-800:#0d2f4f;
   --blue-700:#133d61;
   --blue-600:#1a4e7a;
+  --blue-500:#2368a2;
+  --blue-200:#9fc4e8;
   --blue-100:#e8f0fb;
+  --blue-50:#f0f5ff;
+  --saffron:#ff9933;
+  --navy:#000080;
   --ink:#1a1a1a;
   --ink-2:#3a3a3a;
   --ink-3:#666;
@@ -53,6 +59,12 @@
   --font-display:'Fraunces',Georgia,serif;
   --font-body:'DM Sans',sans-serif;
   --font-ml:'Noto Serif Malayalam',serif;
+  --radius-sm:6px;
+  --radius-md:10px;
+  --radius-lg:14px;
+  --radius-xl:20px;
+  --max-w:1200px;
+  --side-pad:clamp(1rem,4vw,3rem);
 }
 
 html{scroll-behavior:smooth}
@@ -62,400 +74,282 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 .ticker-bar{
   background:var(--ink);
   color:rgba(255,255,255,0.9);
-  font-size:11.5px;
-  letter-spacing:0.06em;
-  padding:7px 1.5rem;
+  font-size:11.5px;letter-spacing:0.06em;
+  padding:7px var(--side-pad);
   display:flex;align-items:center;gap:1rem;
-  position:sticky;top:0;z-index:100;
+  position:sticky;top:0;z-index:200;
+  border-bottom:1px solid rgba(255,255,255,0.06);
 }
 .ticker-live{
-  background:#e63946;
-  color:white;
-  font-size:10px;font-weight:500;
-  letter-spacing:0.15em;
-  padding:2px 7px;
-  border-radius:3px;
-  flex-shrink:0;
+  background:#e63946;color:white;
+  font-size:10px;font-weight:600;letter-spacing:0.15em;
+  padding:2px 8px;border-radius:3px;flex-shrink:0;
   animation:pulse-live 2s infinite;
 }
-@keyframes pulse-live{0%,100%{opacity:1}50%{opacity:0.65}}
-.ticker-text{flex:1;display:flex;gap:2rem;flex-wrap:wrap}
-.ticker-sep{color:rgba(255,255,255,0.25);margin:0 0.25rem}
+@keyframes pulse-live{0%,100%{opacity:1}50%{opacity:0.6}}
+.ticker-text{flex:1;display:flex;gap:1.5rem;flex-wrap:wrap;overflow:hidden}
+.ticker-sep{color:rgba(255,255,255,0.2);margin:0 0.1rem}
+.ticker-right{display:flex;align-items:center;gap:1rem;flex-shrink:0}
 .ticker-countdown{
-  font-family:var(--font-display);
-  font-size:13px;
-  color:var(--green-400);
-  letter-spacing:0.02em;
-  flex-shrink:0;
+  font-family:var(--font-display);font-size:12.5px;
+  color:var(--green-400);letter-spacing:0.02em;
+  font-variant-numeric:tabular-nums;
 }
-#countdown-display{font-variant-numeric:tabular-nums}
+.ticker-lang{
+  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);
+  color:rgba(255,255,255,0.75);font-size:11px;
+  padding:3px 11px;border-radius:20px;cursor:pointer;
+  font-family:var(--font-body);transition:background 0.15s;
+}
+.ticker-lang:hover{background:rgba(255,255,255,0.16)}
 
-/* ── HEADER ── */
-.site-header{
+/* ── MASTHEAD ── */
+.masthead{
   background:var(--green-900);
-  color:white;
-  padding:2.5rem 1.5rem 2rem;
-  position:relative;
-  overflow:hidden;
-}
-.header-inner{max-width:900px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:center}
-.header-left{}
-.header-tag{
-  font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
-  color:rgba(255,255,255,0.45);margin-bottom:0.6rem;
-}
-.site-title{
-  font-family:var(--font-display);
-  font-size:clamp(28px,5vw,46px);
-  font-weight:600;line-height:1.1;
-  letter-spacing:-0.02em;
-  margin-bottom:0.2rem;
-}
-.site-title-ml{
-  font-family:var(--font-ml);
-  font-size:clamp(16px,2.2vw,22px);
-  color:rgba(255,255,255,0.5);
-  margin-bottom:1.2rem;
-  font-weight:400;
-}
-.header-meta{
-  display:flex;gap:1.25rem;flex-wrap:wrap;
-  font-size:13px;color:rgba(255,255,255,0.55);
-  border-top:1px solid rgba(255,255,255,0.1);
-  padding-top:1rem;align-items:center;
-}
-.header-meta strong{color:rgba(255,255,255,0.9)}
-.lang-toggle{
-  margin-left:auto;
-  background:rgba(255,255,255,0.08);
-  border:1px solid rgba(255,255,255,0.18);
-  color:rgba(255,255,255,0.8);font-size:12px;
-  padding:5px 14px;border-radius:20px;
-  cursor:pointer;font-family:var(--font-body);
-  transition:background 0.15s;
-}
-.lang-toggle:hover{background:rgba(255,255,255,0.16)}
-
-.header-map-col{
-  display:flex;align-items:center;justify-content:center;
-  padding:0.5rem 0;
-  position:relative;
-  z-index:2;
-  transform: translateY(-60px);
-}
-
-.header-art-col{
-  display:flex;align-items:center;justify-content:flex-end;
-  width:200px;
-  position:relative;
-  z-index:2;
-}
-
-/* ── TIME BLOCKS ── */
-.time-blocks{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:1px;
-  background:rgba(255,255,255,0.08);
-  border-radius:10px;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,0.1);
-  max-width:380px;
-}
-.time-block{
-  background:rgba(255,255,255,0.04);
-  padding:0.6rem 0.75rem;
-  text-align:center;
-}
-.time-block .val{
-  font-family:var(--font-display);
-  font-size:22px;font-weight:600;
-  color:var(--green-400);
-  line-height:1;
-  display:block;
-}
-.time-block .lbl{
-  font-size:9px;letter-spacing:0.1em;
-  text-transform:uppercase;
-  color:rgba(255,255,255,0.35);
-  display:block;margin-top:2px;
-}
-
-/* ── STATS ── */
-.stats-section{background:var(--white);border-bottom:1px solid var(--border)}
-.stats-inner{max-width:900px;margin:0 auto;padding:1.25rem 1.5rem}
-.stats-grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:10px;margin-bottom:0.9rem;
-}
-.stat-box{
-  text-align:center;padding:0.75rem 0.5rem;
-  border-radius:10px;
-  border:1px solid var(--border);
-  background:var(--surface-2);
+  padding:3.5rem var(--side-pad) 3rem;
   position:relative;overflow:hidden;
 }
-.stat-box::before{
-  content:'';
-  position:absolute;bottom:0;left:0;right:0;
-  height:3px;
+.masthead::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(61,184,106,0.12),transparent);
+  pointer-events:none;
 }
-.stat-box.s-done::before{background:var(--green-500)}
-.stat-box.s-prog::before{background:var(--gold-500)}
-.stat-box.s-evad::before{background:var(--red-700)}
-.stat-box.s-pend::before{background:#ccc}
-.stat-n{font-family:var(--font-display);font-size:26px;font-weight:600;line-height:1}
-.stat-l{font-size:10px;text-transform:uppercase;letter-spacing:0.09em;color:var(--ink-3);margin-top:3px}
-.stat-box.s-all .stat-n{color:var(--ink)}
-.stat-box.s-done .stat-n{color:var(--green-700)}
-.stat-box.s-prog .stat-n{color:var(--gold-700)}
-.stat-box.s-evad .stat-n{color:var(--red-700)}
-.stat-box.s-pend .stat-n{color:var(--ink-4)}
+.masthead-inner{
+  max-width:var(--max-w);margin:0 auto;
+  display:grid;grid-template-columns:auto 1fr auto;
+  gap:2.5rem;align-items:center;position:relative;z-index:1;
+}
+.masthead-map{
+  display:flex;align-items:center;justify-content:center;
+}
+.masthead-map img{mix-blend-mode:screen;filter:drop-shadow(0 0 12px rgba(61,184,106,0.4));width:80px;object-fit:contain}
+.masthead-center{}
+.masthead-supertitle{
+  font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+  color:rgba(255,255,255,0.4);margin-bottom:0.5rem;
+}
+.masthead-title{
+  font-family:var(--font-display);
+  font-size:clamp(30px,5vw,52px);font-weight:500;line-height:1.08;
+  letter-spacing:-0.02em;color:white;margin-bottom:0.2rem;
+}
+.masthead-title-ml{
+  font-family:var(--font-ml);
+  font-size:clamp(15px,2vw,20px);
+  color:rgba(255,255,255,0.38);
+  margin-bottom:1.5rem;font-weight:400;
+}
+.masthead-desc{
+  font-size:14px;color:rgba(255,255,255,0.55);
+  max-width:520px;line-height:1.7;
+  border-left:2px solid rgba(61,184,106,0.4);
+  padding-left:1rem;
+}
+.masthead-art{
+  display:flex;align-items:center;justify-content:flex-end;width:190px;
+}
+.masthead-art img{mix-blend-mode:screen;width:190px;object-fit:contain}
 
-.progress-track{
-  height:6px;border-radius:4px;
-  background:var(--border);overflow:hidden;
-  display:flex;
+/* ── SECTION LABEL ── */
+.section-intro{
+  max-width:var(--max-w);margin:0 auto;
+  padding:2.5rem var(--side-pad) 0;
 }
-.pt-seg{height:100%;transition:width 0.8s ease}
-.pt-done{background:var(--green-500)}
-.pt-prog{background:var(--gold-500)}
-.pt-evad{background:var(--red-700)}
-.pt-pend{background:#ddd}
+.section-label{
+  display:flex;align-items:center;gap:12px;margin-bottom:0.4rem;
+}
+.section-label-text{
+  font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:500;
+}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.section-heading{
+  font-family:var(--font-display);
+  font-size:clamp(22px,3vw,32px);font-weight:500;
+  color:var(--ink);letter-spacing:-0.01em;margin-bottom:0.5rem;
+}
+.section-sub{font-size:14px;color:var(--ink-3);max-width:540px}
 
-.controls-section{
-  background:var(--white);
-  border-bottom:1px solid var(--border);
-  position:sticky;top:36px;z-index:50;
-}
-.controls-inner{max-width:900px;margin:0 auto;padding:0.75rem 1.5rem}
-.controls-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-
-.search-wrap{flex:1;min-width:160px;position:relative}
-.search-icon{
-  position:absolute;left:11px;top:50%;transform:translateY(-50%);
-  color:var(--ink-3);pointer-events:none;
-  display:flex;align-items:center;
-}
-.search-box{
-  width:100%;
-  border:1px solid var(--border);
-  border-radius:8px;padding:8px 12px 8px 36px;
-  font-family:var(--font-body);font-size:13.5px;
-  background:var(--surface);color:var(--ink);
-  outline:none;transition:border-color 0.12s;
-}
-.search-box:focus{border-color:var(--green-500);background:var(--white)}
-
-/* Dropdown selects */
-.filter-select-wrap{
-  position:relative;display:flex;align-items:center;
-}
-.filter-select-label{
-  font-size:11px;letter-spacing:0.06em;text-transform:uppercase;
-  color:var(--ink-3);margin-right:5px;white-space:nowrap;
-}
-.filter-select{
-  appearance:none;
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:7px 28px 7px 11px;
-  font-family:var(--font-body);font-size:13px;
-  background:var(--surface);color:var(--ink);
-  cursor:pointer;outline:none;
-  transition:border-color 0.12s,background 0.12s;
-  max-width:180px;
-}
-.filter-select:focus,.filter-select:hover{border-color:var(--green-500);background:var(--white)}
-.filter-select.has-value{
-  border-color:var(--green-700);
-  background:var(--green-50);
-  color:var(--green-800);
-  font-weight:500;
-}
-.select-arrow{
-  position:absolute;right:8px;top:50%;transform:translateY(-50%);
-  pointer-events:none;color:var(--ink-3);
-}
-/* Active filter badge shown when a dropdown has non-default selection */
-.filter-active-badge{
-  display:inline-flex;align-items:center;gap:4px;
-  background:var(--green-50);color:var(--green-800);
-  border:1px solid var(--green-200);
-  border-radius:20px;font-size:12px;font-weight:500;
-  padding:3px 10px;
-}
-.filter-active-badge button{
-  background:none;border:none;cursor:pointer;
-  color:var(--green-700);font-size:14px;line-height:1;
-  padding:0 0 0 2px;
+/* ── GOVERNMENTS CAROUSEL SECTION ── */
+.govts-section{
+  padding:0 var(--side-pad) 1rem;
+  background:var(--surface);
 }
 
-/* Status filter pills */
-.filter-pill{
-  font-size:12px;padding:6px 13px;
-  border:1px solid var(--border);
-  border-radius:20px;background:transparent;
-  cursor:pointer;font-family:var(--font-body);
-  color:var(--ink-2);transition:all 0.12s;white-space:nowrap;
+/* Front group (Kerala/NDA) divider */
+.front-group{max-width:var(--max-w);margin:0 auto;padding:2rem 0 0}
+.front-group-label{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:500;margin-bottom:1rem;
 }
-.filter-pill:hover{border-color:#aaa;color:var(--ink)}
-.filter-pill.active{background:var(--ink);color:white;border-color:var(--ink)}
-.filter-pill.f-done.active{background:var(--green-700);border-color:var(--green-700)}
-.filter-pill.f-prog.active{background:var(--gold-500);border-color:var(--gold-500)}
-.filter-pill.f-evad.active{background:var(--red-700);border-color:var(--red-700)}
-
-/* Second row: dropdowns + active filter tags */
-.filter-row-2{
-  display:flex;gap:8px;flex-wrap:wrap;align-items:center;
-  padding-top:0.5rem;
+.front-group-label::before{
+  content:'';width:12px;height:1px;background:var(--border);
 }
 
-/* ── PROMISE CARDS ── */
-.promises-section{max-width:900px;margin:0 auto;padding:1rem 1.5rem 4rem}
-
-.section-group-header{
-  display:flex;align-items:center;gap:10px;
-  padding:1.5rem 0 0.5rem;
-  font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
-  color:var(--ink-3);
-  font-weight:500;
-}
-.section-group-header::after{
-  content:'';flex:1;height:1px;background:var(--border);
-}
-
-.promise-card{
-  background:var(--white);
-  border:1px solid var(--border);
-  border-radius:10px;
-  margin-bottom:6px;
-  overflow:hidden;
-  transition:border-color 0.12s,box-shadow 0.12s;
-}
-.promise-card:hover{border-color:#bbb;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
-.promise-card.open{border-color:var(--green-500);box-shadow:0 2px 16px rgba(30,122,65,0.1)}
-
-.card-summary{
-  padding:0.85rem 1.1rem;
-  cursor:pointer;
+/* Carousel scroll container */
+.carousel-track{
   display:grid;
-  grid-template-columns:8px 1fr auto;
-  gap:10px;align-items:start;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:14px;
+  padding:0 0 2.5rem;
 }
-.status-pip{
-  width:8px;height:8px;border-radius:50%;
-  margin-top:5px;flex-shrink:0;
-}
-.pip-fulfilled{background:var(--green-500)}
-.pip-progress{background:var(--gold-500)}
-.pip-evaded{background:var(--red-700)}
-.pip-pending{background:#d0cec8;border:1px solid #bbb}
 
-.card-badges{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:5px}
-.badge{font-size:10.5px;padding:2px 8px;border-radius:4px;font-weight:500;letter-spacing:0.02em}
-.badge-cat{background:var(--surface);color:var(--ink-3);border:1px solid var(--border)}
-.badge-flagship{background:#fff8e1;color:#7a5c00;border:1px solid #f5d77a}
-.badge-fulfilled{background:var(--green-50);color:var(--green-700)}
-.badge-progress{background:var(--gold-100);color:var(--gold-800)}
-.badge-evaded{background:var(--red-100);color:var(--red-700)}
-.badge-pending{background:var(--surface);color:var(--ink-4);border:1px solid var(--border)}
-
-.card-title{font-size:14px;font-weight:500;line-height:1.45;color:var(--ink)}
-.card-title-ml{font-family:var(--font-ml);font-size:13px;color:var(--ink-2);margin-top:3px;display:none}
-body.ml .card-title-ml{display:block}
-body.ml .card-title{display:none}
-
-.card-actions{
-  display:flex;align-items:center;gap:6px;flex-shrink:0;
-}
-.card-num{font-size:11px;color:var(--ink-4);font-variant-numeric:tabular-nums}
-.share-btn{
-  background:none;border:1px solid var(--border);
-  border-radius:6px;padding:3px 8px;
-  cursor:pointer;color:var(--ink-3);
-  font-size:11px;display:flex;align-items:center;gap:4px;
-  transition:all 0.12s;font-family:var(--font-body);
-}
-.share-btn:hover{border-color:var(--green-500);color:var(--green-700);background:var(--green-50)}
-.share-btn svg{width:12px;height:12px;flex-shrink:0}
-
-.card-detail{
-  display:none;
-  border-top:1px solid var(--border);
-  padding:1rem 1.1rem;
-  background:#faf9f6;
-}
-.promise-card.open .card-detail{display:block}
-.detail-block{margin-bottom:1rem}
-.detail-block:last-child{margin-bottom:0}
-.detail-label{font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-3);margin-bottom:5px}
-.verbatim-text{
-  font-size:13px;font-style:italic;
-  color:var(--ink-2);line-height:1.65;
-  padding-left:0.75rem;
-  border-left:2px solid var(--green-200);
-}
-.update-text{font-size:13px;color:var(--ink-2);line-height:1.6}
-.dept-chips{display:flex;gap:5px;flex-wrap:wrap}
-.dept-chip{
-  font-size:11px;padding:3px 9px;
-  border:1px solid var(--border);border-radius:4px;
-  color:var(--ink-3);background:var(--white);
-}
-.source-link{
-  font-size:12px;color:var(--blue-600);
-  text-decoration:none;display:inline-flex;align-items:center;gap:4px;
-}
-.source-link:hover{text-decoration:underline}
-.tier-badge{
-  font-size:10px;padding:1px 5px;border-radius:3px;margin-left:5px;
-  background:var(--blue-100);color:var(--blue-700);
-}
-.no-update{font-size:12px;color:var(--ink-3);font-style:italic}
-.submit-update-btn{
-  display:inline-flex;align-items:center;gap:5px;
-  font-size:12px;color:var(--blue-600);
-  background:none;border:1px solid var(--blue-100);
-  padding:4px 11px;border-radius:5px;cursor:pointer;
-  font-family:var(--font-body);margin-top:6px;
-  transition:background 0.12s;text-decoration:none;
-}
-.submit-update-btn:hover{background:var(--blue-100)}
-
-.share-toolbar{
-  display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;align-items:center;
-}
-.share-action{
-  display:inline-flex;align-items:center;gap:5px;
-  font-size:12px;padding:5px 11px;
-  border-radius:6px;cursor:pointer;
-  font-family:var(--font-body);text-decoration:none;
+/* ── GOVT CARD ── */
+.govt-card{
+  background:var(--white);
   border:1px solid var(--border);
-  transition:all 0.12s;
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  cursor:pointer;
+  transition:border-color 0.18s,box-shadow 0.18s,transform 0.18s;
+  display:flex;flex-direction:column;
+  text-decoration:none;
+  position:relative;
 }
-.share-wa{background:#e7fde7;color:#1a6638;border-color:#b3deb3}
-.share-wa:hover{background:#d4f0de}
-.share-tw{background:#e8f4ff;color:#1a4e7a;border-color:#b3ccec}
-.share-tw:hover{background:#d4e8ff}
-.share-copy{background:var(--surface);color:var(--ink-2);}
-.share-copy:hover{background:var(--border-light)}
-.share-copy.copied{background:var(--green-50);color:var(--green-700);border-color:var(--green-200)}
+.govt-card:hover{
+  border-color:var(--card-accent,var(--green-500));
+  box-shadow:0 4px 24px rgba(0,0,0,0.08);
+  transform:translateY(-2px);
+}
 
-.history-item{font-size:12px;color:var(--ink-3);margin-bottom:4px;line-height:1.5}
-.history-date{color:var(--ink-2);font-weight:500}
+/* Color accents per coalition */
+.govt-card.udf{--card-accent:var(--green-500);--card-top:var(--green-900)}
+.govt-card.ldf{--card-accent:#c0392b;--card-top:#6b1515}
+.govt-card.nda{--card-accent:var(--saffron);--card-top:#7a3000}
 
-/* ── EMPTY ── */
-.empty{text-align:center;padding:3rem 1rem;color:var(--ink-3);font-size:14px}
+.card-top-bar{
+  height:4px;
+  background:linear-gradient(90deg,var(--card-top),var(--card-accent));
+}
+
+.card-body{
+  display:flex;align-items:flex-start;gap:1rem;
+  padding:1.2rem 1.2rem 1rem;
+}
+.card-portrait{
+  width:70px;height:70px;border-radius:50%;
+  object-fit:cover;object-position:top;
+  flex-shrink:0;
+  border:2px solid var(--border);
+  background:var(--surface);
+}
+.card-portrait-placeholder{
+  width:70px;height:70px;border-radius:50%;
+  background:var(--surface);
+  border:2px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  font-size:24px;
+  color:var(--ink-4);
+}
+.card-info{flex:1;min-width:0}
+.card-coalition{
+  font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  font-weight:600;
+  color:var(--card-accent,var(--ink-3));
+  margin-bottom:3px;
+}
+.card-leader-name{
+  font-family:var(--font-display);
+  font-size:18px;font-weight:500;line-height:1.1;
+  color:var(--ink);margin-bottom:4px;
+}
+.card-role{font-size:12px;color:var(--ink-3);margin-bottom:8px}
+.card-term{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;color:var(--ink-2);
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:20px;padding:3px 10px;
+}
+.card-term .dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--card-accent,var(--ink-4));
+  flex-shrink:0;
+}
+
+.card-stats{
+  border-top:1px solid var(--border-light);
+  padding:0.85rem 1.2rem;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:6px;
+  background:var(--surface-2);
+}
+.cs-item{text-align:center}
+.cs-n{
+  font-family:var(--font-display);
+  font-size:17px;font-weight:500;
+  line-height:1;display:block;margin-bottom:2px;
+}
+.cs-l{
+  font-size:9px;text-transform:uppercase;letter-spacing:0.07em;
+  color:var(--ink-4);
+}
+.cs-item.done .cs-n{color:var(--green-700)}
+.cs-item.prog .cs-n{color:var(--gold-700)}
+.cs-item.evad .cs-n{color:var(--red-700)}
+.cs-item.pend .cs-n{color:var(--ink-4)}
+
+.card-prog-bar{
+  height:3px;background:var(--border);
+  display:flex;overflow:hidden;
+  border-radius:0 0 var(--radius-lg) var(--radius-lg);
+}
+.cpb-seg{height:100%}
+.cpb-done{background:var(--green-500)}
+.cpb-prog{background:var(--gold-500)}
+.cpb-evad{background:var(--red-700)}
+.cpb-pend{background:#ddd}
+
+/* "ACTIVE" badge on running governments */
+.card-active-badge{
+  position:absolute;top:12px;right:12px;
+  background:var(--green-50);color:var(--green-700);
+  border:1px solid var(--green-200);
+  font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;
+  padding:2px 8px;border-radius:20px;font-weight:600;
+  animation:pulse-live 2s infinite;
+}
+
+/* Central govt badge */
+.card-central-badge{
+  position:absolute;top:12px;right:12px;
+  font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase;
+  padding:2px 8px;border-radius:20px;font-weight:600;
+  background:var(--blue-50);color:var(--blue-700);
+  border:1px solid var(--blue-100);
+}
+
+/* ── PAGE DIVIDER ── */
+.divider{
+  max-width:var(--max-w);margin:0 auto var(--side-pad);
+  padding:0 var(--side-pad);
+  border:none;border-top:1px solid var(--border);
+}
+
+/* ── ABOUT STRIP ── */
+.about-strip{
+  background:var(--green-900);
+  padding:2rem var(--side-pad);
+  margin-top:1rem;
+}
+.about-strip-inner{
+  max-width:var(--max-w);margin:0 auto;
+  display:flex;align-items:flex-start;gap:2.5rem;flex-wrap:wrap;
+}
+.about-col{flex:1;min-width:220px}
+.about-col-head{
+  font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+  color:rgba(255,255,255,0.35);margin-bottom:0.6rem;
+}
+.about-col p{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.7}
+.about-col a{color:var(--green-400);text-decoration:none}
+.about-col a:hover{text-decoration:underline}
 
 /* ── CONTRIBUTE BAR ── */
-.contribute{
-  background:var(--green-900);
-  padding:1.5rem 1.5rem;
-}
+.contribute{background:var(--green-800);padding:1.25rem var(--side-pad)}
 .contribute-inner{
-  max-width:900px;margin:0 auto;
+  max-width:var(--max-w);margin:0 auto;
   display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;
 }
 .contribute p{font-size:13px;color:rgba(255,255,255,0.65);flex:1;line-height:1.55}
@@ -471,188 +365,285 @@ body.ml .card-title{display:none}
 footer{
   text-align:center;padding:1.5rem;
   font-size:11.5px;color:var(--ink-3);
-  border-top:1px solid var(--border);line-height:2;
+  border-top:1px solid var(--border);line-height:2.2;
+  background:var(--white);
 }
 footer a{color:var(--green-700);text-decoration:none}
 footer a:hover{text-decoration:underline}
 
-.group-promise-count{
-  font-family:var(--font-body);
-  font-size:11px;color:var(--ink-4);
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:10px;padding:1px 8px;margin-left:auto;
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .masthead-inner{grid-template-columns:1fr}
+  .masthead-map,.masthead-art{display:none}
+  .carousel-track{grid-template-columns:1fr}
 }
-
-@media(max-width:700px){
-  .header-inner{grid-template-columns:1fr}
-  .header-map-col,.header-art-col{display:none}
-  .stats-grid{grid-template-columns:repeat(3,1fr)}
-  .stats-grid .stat-box:nth-child(1){grid-column:span 3}
-  .time-blocks{grid-template-columns:repeat(2,1fr)}
-  .site-header,.stats-inner,.controls-inner,.promises-section{padding-left:1rem;padding-right:1rem}
-  .contribute{padding:1rem}
-  .filter-select{max-width:140px}
+@media(max-width:640px){
+  .ticker-text span:nth-child(n+3){display:none}
+  .ticker-countdown{display:none}
 }
 </style>
 </head>
 <body>
 
 <!-- LIVE TICKER -->
-<div class="ticker-bar" role="banner">
-  <span class="ticker-live">● LIVE</span>
+<div class="ticker-bar" role="banner" aria-label="Live status bar">
+  <span class="ticker-live" aria-label="Live">● LIVE</span>
   <div class="ticker-text">
-    <span>UDF Government · Kerala 2026–2031</span>
+    <span>Keralam Promise Tracker</span>
+    <span><span class="ticker-sep">·</span> Active: <strong>UDF 2026–2031</strong></span>
     <span><span class="ticker-sep">·</span> CM: <strong>VD Satheesan</strong></span>
-    <span><span class="ticker-sep">·</span> Oath: 18 May 2026</span>
-    <span><span class="ticker-sep">·</span> Term ends: 18 May 2031</span>
+    <span><span class="ticker-sep">·</span> Tracking <strong>5</strong> governments</span>
   </div>
-  <div class="ticker-countdown" id="countdown-display">loading…</div>
+  <div class="ticker-right">
+    <div class="ticker-countdown" id="countdown-display" aria-live="off"></div>
+    <button class="ticker-lang" onclick="toggleLang()" id="lang-btn">മലയാളം</button>
+  </div>
 </div>
 
-<!-- HEADER -->
-<header class="site-header" role="banner">
-  <div class="header-inner">
-
-    <!-- Kerala map image -->
-    <div class="header-map-col">
-      <img
-        src="/assets/keralam_map.png"
-        alt="Outline map of Kerala"
-        width="90"
-        height="296"
-        style="mix-blend-mode:screen; filter:drop-shadow(0 0 10px rgba(61,184,106,0.35)); object-fit:contain;"
-      >
+<!-- MASTHEAD -->
+<header class="masthead" role="banner">
+  <div class="masthead-inner">
+    <div class="masthead-map">
+      <img src="/assets/keralam_map.png" alt="Outline map of Kerala" width="80" height="264">
     </div>
-
-    <!-- CENTER: Title -->
-    <div class="header-left">
-      <div class="header-tag">Public accountability ledger · Kerala · 2026–2031</div>
-      <h1 class="site-title">Keralam Promise<br>Tracker</h1>
-      <div class="site-title-ml">കേരളം വാഗ്ദാന ട്രാക്കർ</div>
-
-      <div class="time-blocks" id="time-blocks">
-        <div class="time-block"><span class="val" id="tb-days">0</span><span class="lbl">Days in</span></div>
-        <div class="time-block"><span class="val" id="tb-rem">1825</span><span class="lbl">Remaining</span></div>
-        <div class="time-block"><span class="val" id="tb-pct">0%</span><span class="lbl">Term done</span></div>
-        <div class="time-block"><span class="val" id="tb-year">2031</span><span class="lbl">Ends</span></div>
-      </div>
-
-      <div class="header-meta">
-        <span>CM: <strong>VD Satheesan</strong></span>
-        <span>Oath: <strong>18 May 2026</strong></span>
-        <span>Term: <strong>18 May 2031</strong></span>
-        <button class="lang-toggle" onclick="toggleLang()" id="lang-btn">മലയാളം</button>
-      </div>
+    <div class="masthead-center">
+      <div class="masthead-supertitle">Public accountability ledger · Kerala & India</div>
+      <h1 class="masthead-title">Keralam Promise<br>Tracker</h1>
+      <div class="masthead-title-ml">കേരളം വാഗ്ദാന ട്രാക്കർ</div>
+      <p class="masthead-desc">A non-partisan public record tracking every promise made to citizens — across governments, terms, and fronts. Did they deliver?</p>
     </div>
-
-    <!-- RIGHT: Kerala cultural scene image -->
-    <div class="header-art-col">
-      <img
-        src="/assets/keralam_culture.png"
-        alt="Kerala cultural scene — snake boat race, Kathakali, coconut palms, temple"
-        width="200"
-        height="200"
-        style="mix-blend-mode:screen; object-fit:contain;"
-      >
+    <div class="masthead-art">
+      <img src="/assets/keralam_culture.png" alt="Kerala cultural scene" width="190" height="190">
     </div>
-
   </div>
 </header>
 
-<!-- STATS -->
-<section class="stats-section" aria-label="Summary statistics">
-  <div class="stats-inner">
-    <div class="stats-grid">
-      <div class="stat-box s-all">
-        <div class="stat-n" id="s-total">—</div>
-        <div class="stat-l">Total promises</div>
-      </div>
-      <div class="stat-box s-done">
-        <div class="stat-n" id="s-fulfilled">—</div>
-        <div class="stat-l">✓ Fulfilled</div>
-      </div>
-      <div class="stat-box s-prog">
-        <div class="stat-n" id="s-progress">—</div>
-        <div class="stat-l">◑ In progress</div>
-      </div>
-      <div class="stat-box s-evad">
-        <div class="stat-n" id="s-evaded">—</div>
-        <div class="stat-l">✗ Evaded</div>
-      </div>
-      <div class="stat-box s-pend">
-        <div class="stat-n" id="s-pending">—</div>
-        <div class="stat-l">○ Pending</div>
-      </div>
+<!-- KERALA STATE GOVERNMENTS -->
+<section class="govts-section" aria-label="Kerala State Governments">
+  <div class="section-intro">
+    <div class="section-label">
+      <span class="section-label-text">State Governments</span>
     </div>
-    <div class="progress-track" role="progressbar" aria-label="Promise completion">
-      <div class="pt-seg pt-done" id="pt-f" style="width:0%"></div>
-      <div class="pt-seg pt-prog" id="pt-p" style="width:0%"></div>
-      <div class="pt-seg pt-evad" id="pt-e" style="width:0%"></div>
-      <div class="pt-seg pt-pend" id="pt-n" style="width:100%"></div>
+    <h2 class="section-heading">Kerala Legislative Assembly</h2>
+    <p class="section-sub">Track promises made by each front across every term since 2016.</p>
+  </div>
+
+  <!-- UDF -->
+  <div class="front-group">
+    <div class="front-group-label">United Democratic Front (UDF) · Congress-led</div>
+    <div class="carousel-track">
+
+      <a class="govt-card udf" href="/government/udf-2026/" aria-label="UDF Government 2026–2031">
+        <div class="card-top-bar"></div>
+        <span class="card-active-badge">In Power</span>
+        <div class="card-body">
+          <img class="card-portrait" src="/assets/vd-satheesan.jpg" alt="VD Satheesan" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="card-portrait-placeholder" style="display:none">👤</div>
+          <div class="card-info">
+            <div class="card-coalition">UDF — United Democratic Front</div>
+            <div class="card-leader-name">VD Satheesan</div>
+            <div class="card-role">Chief Minister · Kerala</div>
+            <span class="card-term">
+              <span class="dot"></span>
+              20 May 2026 — 20 May 2031
+            </span>
+          </div>
+        </div>
+        <div class="card-stats" id="ks-udf26">
+          <div class="cs-item"><span class="cs-n" id="udf26-total">—</span><span class="cs-l">Total</span></div>
+          <div class="cs-item done"><span class="cs-n" id="udf26-done">—</span><span class="cs-l">Fulfilled</span></div>
+          <div class="cs-item prog"><span class="cs-n" id="udf26-prog">—</span><span class="cs-l">In Progress</span></div>
+          <div class="cs-item pend"><span class="cs-n" id="udf26-pend">—</span><span class="cs-l">Pending</span></div>
+        </div>
+        <div class="card-prog-bar">
+          <div class="cpb-seg cpb-done" id="udf26-bar-d" style="width:0%"></div>
+          <div class="cpb-seg cpb-prog" id="udf26-bar-p" style="width:0%"></div>
+          <div class="cpb-seg cpb-pend" style="width:100%" id="udf26-bar-n"></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- LDF -->
+  <div class="front-group">
+    <div class="front-group-label">Left Democratic Front (LDF) · CPM-led</div>
+    <div class="carousel-track">
+
+      <a class="govt-card ldf" href="/government/ldf-2021/" aria-label="LDF Government 2021–2026">
+        <div class="card-top-bar"></div>
+        <div class="card-body">
+          <img class="card-portrait" src="/assets/pinarayi-vijayan.jpg" alt="Pinarayi Vijayan" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="card-portrait-placeholder" style="display:none">👤</div>
+          <div class="card-info">
+            <div class="card-coalition">LDF — Left Democratic Front</div>
+            <div class="card-leader-name">Pinarayi Vijayan</div>
+            <div class="card-role">Chief Minister · Kerala</div>
+            <span class="card-term">
+              <span class="dot"></span>
+              20 May 2021 — 20 May 2026
+            </span>
+          </div>
+        </div>
+        <div class="card-stats">
+          <div class="cs-item"><span class="cs-n">—</span><span class="cs-l">Total</span></div>
+          <div class="cs-item done"><span class="cs-n">—</span><span class="cs-l">Fulfilled</span></div>
+          <div class="cs-item prog"><span class="cs-n">—</span><span class="cs-l">Partial</span></div>
+          <div class="cs-item pend"><span class="cs-n">—</span><span class="cs-l">Pending</span></div>
+        </div>
+        <div class="card-prog-bar">
+          <div class="cpb-seg cpb-pend" style="width:100%"></div>
+        </div>
+      </a>
+
+      <a class="govt-card ldf" href="/government/ldf-2016/" aria-label="LDF Government 2016–2021">
+        <div class="card-top-bar"></div>
+        <div class="card-body">
+          <img class="card-portrait" src="/assets/pinarayi-vijayan.jpg" alt="Pinarayi Vijayan" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="card-portrait-placeholder" style="display:none">👤</div>
+          <div class="card-info">
+            <div class="card-coalition">LDF — Left Democratic Front</div>
+            <div class="card-leader-name">Pinarayi Vijayan</div>
+            <div class="card-role">Chief Minister · Kerala</div>
+            <span class="card-term">
+              <span class="dot"></span>
+              25 May 2016 — 20 May 2021
+            </span>
+          </div>
+        </div>
+        <div class="card-stats">
+          <div class="cs-item"><span class="cs-n">—</span><span class="cs-l">Total</span></div>
+          <div class="cs-item done"><span class="cs-n">—</span><span class="cs-l">Fulfilled</span></div>
+          <div class="cs-item prog"><span class="cs-n">—</span><span class="cs-l">Partial</span></div>
+          <div class="cs-item pend"><span class="cs-n">—</span><span class="cs-l">Pending</span></div>
+        </div>
+        <div class="card-prog-bar">
+          <div class="cpb-seg cpb-pend" style="width:100%"></div>
+        </div>
+      </a>
+
     </div>
   </div>
 </section>
 
-<div class="controls-section" role="search">
-  <div class="controls-inner">
-
-    <!-- Row 1: search + status pills -->
-    <div class="controls-row">
-      <div class="search-wrap">
-        <span class="search-icon" aria-hidden="true">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"/>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
-        </span>
-        <input class="search-box" type="search" id="q" placeholder="Search promises…" aria-label="Search promises">
-      </div>
-      <button class="filter-pill active" data-s="all">All</button>
-      <button class="filter-pill f-done" data-s="fulfilled">Fulfilled</button>
-      <button class="filter-pill f-prog" data-s="progress">In Progress</button>
-      <button class="filter-pill f-evad" data-s="evaded">Evaded</button>
-      <button class="filter-pill" data-s="pending">Pending</button>
+<!-- CENTRAL GOVERNMENT -->
+<section class="govts-section" aria-label="Central Government">
+  <div class="section-intro" style="padding-top:0">
+    <div class="section-label">
+      <span class="section-label-text">Central Government</span>
     </div>
+    <h2 class="section-heading">Government of India</h2>
+    <p class="section-sub">Tracking NDA manifesto promises made to the citizens of India across three Lok Sabha terms.</p>
+  </div>
 
-    <!-- Row 2: Category + Section dropdowns + active filter badges -->
-    <div class="filter-row-2" id="filter-row-2">
-      <!-- Category dropdown -->
-      <div class="filter-select-wrap">
-        <label class="filter-select-label" for="cat-select">Category</label>
-        <select class="filter-select" id="cat-select" aria-label="Filter by category">
-          <option value="All">All categories</option>
-        </select>
-        <span class="select-arrow" aria-hidden="true">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
-        </span>
-      </div>
+  <div class="front-group">
+    <div class="front-group-label">National Democratic Alliance (NDA) · BJP-led</div>
+    <div class="carousel-track">
 
-      <!-- Section/Program dropdown -->
-      <div class="filter-select-wrap">
-        <label class="filter-select-label" for="section-select">Program</label>
-        <select class="filter-select" id="section-select" aria-label="Filter by scheme or program">
-          <option value="All">All programs</option>
-        </select>
-        <span class="select-arrow" aria-hidden="true">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
-        </span>
-      </div>
+      <a class="govt-card nda" href="/government/nda-2024/" aria-label="NDA Government 2024–running">
+        <div class="card-top-bar"></div>
+        <span class="card-central-badge">Central · In Power</span>
+        <div class="card-body">
+          <img class="card-portrait" src="/assets/narendra-modi.jpg" alt="Narendra Modi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="card-portrait-placeholder" style="display:none">👤</div>
+          <div class="card-info">
+            <div class="card-coalition">NDA — National Democratic Alliance</div>
+            <div class="card-leader-name">Narendra Modi</div>
+            <div class="card-role">Prime Minister · India</div>
+            <span class="card-term">
+              <span class="dot"></span>
+              9 Jun 2024 — Present
+            </span>
+          </div>
+        </div>
+        <div class="card-stats">
+          <div class="cs-item"><span class="cs-n">—</span><span class="cs-l">Total</span></div>
+          <div class="cs-item done"><span class="cs-n">—</span><span class="cs-l">Fulfilled</span></div>
+          <div class="cs-item prog"><span class="cs-n">—</span><span class="cs-l">In Progress</span></div>
+          <div class="cs-item pend"><span class="cs-n">—</span><span class="cs-l">Pending</span></div>
+        </div>
+        <div class="card-prog-bar">
+          <div class="cpb-seg cpb-pend" style="width:100%"></div>
+        </div>
+      </a>
 
-      <!-- Active filter badges rendered by JS -->
-      <div id="active-filter-badges" style="display:flex;gap:5px;flex-wrap:wrap;align-items:center"></div>
+      <a class="govt-card nda" href="/government/nda-2019/" aria-label="NDA Government 2019–2024">
+        <div class="card-top-bar"></div>
+        <span class="card-central-badge">Central</span>
+        <div class="card-body">
+          <img class="card-portrait" src="/assets/narendra-modi.jpg" alt="Narendra Modi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="card-portrait-placeholder" style="display:none">👤</div>
+          <div class="card-info">
+            <div class="card-coalition">NDA — National Democratic Alliance</div>
+            <div class="card-leader-name">Narendra Modi</div>
+            <div class="card-role">Prime Minister · India</div>
+            <span class="card-term">
+              <span class="dot"></span>
+              30 May 2019 — 9 Jun 2024
+            </span>
+          </div>
+        </div>
+        <div class="card-stats">
+          <div class="cs-item"><span class="cs-n">—</span><span class="cs-l">Total</span></div>
+          <div class="cs-item done"><span class="cs-n">—</span><span class="cs-l">Fulfilled</span></div>
+          <div class="cs-item prog"><span class="cs-n">—</span><span class="cs-l">Partial</span></div>
+          <div class="cs-item pend"><span class="cs-n">—</span><span class="cs-l">Pending</span></div>
+        </div>
+        <div class="card-prog-bar">
+          <div class="cpb-seg cpb-pend" style="width:100%"></div>
+        </div>
+      </a>
+
+      <a class="govt-card nda" href="/government/nda-2014/" aria-label="NDA Government 2014–2019">
+        <div class="card-top-bar"></div>
+        <span class="card-central-badge">Central</span>
+        <div class="card-body">
+          <img class="card-portrait" src="/assets/narendra-modi.jpg" alt="Narendra Modi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="card-portrait-placeholder" style="display:none">👤</div>
+          <div class="card-info">
+            <div class="card-coalition">NDA — National Democratic Alliance</div>
+            <div class="card-leader-name">Narendra Modi</div>
+            <div class="card-role">Prime Minister · India</div>
+            <span class="card-term">
+              <span class="dot"></span>
+              26 May 2014 — 30 May 2019
+            </span>
+          </div>
+        </div>
+        <div class="card-stats">
+          <div class="cs-item"><span class="cs-n">—</span><span class="cs-l">Total</span></div>
+          <div class="cs-item done"><span class="cs-n">—</span><span class="cs-l">Fulfilled</span></div>
+          <div class="cs-item prog"><span class="cs-n">—</span><span class="cs-l">Partial</span></div>
+          <div class="cs-item pend"><span class="cs-n">—</span><span class="cs-l">Pending</span></div>
+        </div>
+        <div class="card-prog-bar">
+          <div class="cpb-seg cpb-pend" style="width:100%"></div>
+        </div>
+      </a>
+
     </div>
+  </div>
+</section>
 
+<!-- ABOUT STRIP -->
+<div class="about-strip">
+  <div class="about-strip-inner">
+    <div class="about-col">
+      <div class="about-col-head">What is this?</div>
+      <p>A citizen-maintained, non-partisan public ledger. Every promise in a government's manifesto is tracked against available public records. No party affiliation. No funding from political entities.</p>
+    </div>
+    <div class="about-col">
+      <div class="about-col-head">How we classify</div>
+      <p><strong style="color:rgba(255,255,255,0.8)">Fulfilled</strong> — implemented. <strong style="color:rgba(255,255,255,0.8)">In Progress / Partial</strong> — work begun. <strong style="color:rgba(255,255,255,0.8)">Evaded</strong> — denied or reversed. <strong style="color:rgba(255,255,255,0.8)">Pending</strong> — no action. See <a href="/methodology.html">methodology →</a></p>
+    </div>
+    <div class="about-col">
+      <div class="about-col-head">Contribute</div>
+      <p>Know of an update? Submit via <a href="https://github.com/jeremyloll/keralam-tracker/issues/new?template=promise-update.md" target="_blank" rel="noopener">GitHub issues →</a> or reach out. All sources must be verifiable.</p>
+    </div>
   </div>
 </div>
 
-<!-- PROMISES -->
-<main class="promises-section" id="promises-list" aria-live="polite" aria-label="Promises list"></main>
-
-<!-- CONTRIBUTE -->
+<!-- CONTRIBUTE BAR -->
 <div class="contribute">
   <div class="contribute-inner">
     <p>This is a non-partisan public record maintained by citizens. If you know a promise has been fulfilled, started, or evaded — help us update it.</p>
@@ -662,398 +653,59 @@ footer a:hover{text-decoration:underline}
 
 <footer>
   Not a government or political website. An independent public ledger maintained by citizens of Kerala.<br>
-  <a href="methodology.html">Methodology</a> ·
+  <a href="/methodology.html">Methodology</a> ·
   <a href="https://github.com/jeremyloll/keralam-tracker/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">How to contribute</a> ·
   <a href="https://github.com/jeremyloll/keralam-tracker" target="_blank" rel="noopener">GitHub</a>
 </footer>
 
 <script>
-const STATUS_LABEL={fulfilled:'✓ Fulfilled',progress:'◑ In Progress',evaded:'✗ Evaded',pending:'○ Pending'};
-const SUBMIT_URL='https://github.com/jeremyloll/keralam-tracker/issues/new?template=promise-update.md';
-/* Update this to the live deployed URL when you go live */
-const SITE_BASE_URL = 'https://keralam-govt-tracker.pages.dev/';
-
-let allPromises=[];
-let activeStatus='all';
-let activeCat='All';
-let activeSection='All';
-let searchQ='';
-let mlMode=false;
-
-/* ── COUNTDOWN ── */
+/* Countdown for live UDF term */
 function updateCountdown(){
-  const oath=new Date('2026-05-18T00:00:00');
-  const end=new Date('2031-05-18T00:00:00');
+  const oath=new Date('2026-05-20T00:00:00');
+  const end=new Date('2031-05-20T00:00:00');
   const now=new Date();
-  const totalMs=end-oath;
-  const elapsedMs=Math.max(0,now-oath);
   const remainMs=Math.max(0,end-now);
-
-  const daysIn=Math.floor(elapsedMs/86400000);
   const daysRem=Math.floor(remainMs/86400000);
-  const pct=Math.min(100,Math.round(elapsedMs/totalMs*100));
-
-  document.getElementById('tb-days').textContent=daysIn.toLocaleString('en-IN');
-  document.getElementById('tb-rem').textContent=daysRem.toLocaleString('en-IN');
-  document.getElementById('tb-pct').textContent=pct+'%';
-  document.getElementById('tb-year').textContent='2031';
-
-  const h=Math.floor((remainMs%(86400000))/3600000);
-  const m=Math.floor((remainMs%(3600000))/60000);
+  const h=Math.floor((remainMs%86400000)/3600000);
+  const m=Math.floor((remainMs%3600000)/60000);
   const s=Math.floor((remainMs%60000)/1000);
   document.getElementById('countdown-display').textContent=
     daysRem.toLocaleString('en-IN')+' days '+
-    String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')+' remaining';
+    String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
 }
 updateCountdown();
 setInterval(updateCountdown,1000);
 
-/* ── LOAD DATA ── */
-async function loadData(){
+/* Load live promise stats for the active UDF 2026 card */
+async function loadUDFStats(){
   try{
     const res=await fetch('/data/promises.json');
-    allPromises=await res.json();
-    boot();
-  }catch(e){
-    document.getElementById('promises-list').innerHTML=
-      '<p style="text-align:center;padding:2rem;color:#777;">Could not load promises.json. Make sure it\'s in the data/ folder.</p>';
-  }
+    const promises=await res.json();
+    const t=promises.length;
+    const f=promises.filter(p=>p.status==='fulfilled').length;
+    const pr=promises.filter(p=>p.status==='progress').length;
+    const ev=promises.filter(p=>p.status==='evaded').length;
+    const pe=promises.filter(p=>p.status==='pending').length;
+    document.getElementById('udf26-total').textContent=t;
+    document.getElementById('udf26-done').textContent=f;
+    document.getElementById('udf26-prog').textContent=pr;
+    document.getElementById('udf26-pend').textContent=pe+ev;
+    if(t>0){
+      document.getElementById('udf26-bar-d').style.width=Math.round(f/t*100)+'%';
+      document.getElementById('udf26-bar-p').style.width=Math.round(pr/t*100)+'%';
+      document.getElementById('udf26-bar-n').style.width=Math.round((pe+ev)/t*100)+'%';
+    }
+  }catch(e){}
 }
+loadUDFStats();
 
-function boot(){
-  updateStats();
-  buildCatDropdown();
-  buildSectionDropdown();
-  render();
-}
-
-function updateStats(){
-  const t=allPromises.length;
-  const f=allPromises.filter(p=>p.status==='fulfilled').length;
-  const pr=allPromises.filter(p=>p.status==='progress').length;
-  const ev=allPromises.filter(p=>p.status==='evaded').length;
-  const pe=allPromises.filter(p=>p.status==='pending').length;
-  document.getElementById('s-total').textContent=t;
-  document.getElementById('s-fulfilled').textContent=f;
-  document.getElementById('s-progress').textContent=pr;
-  document.getElementById('s-evaded').textContent=ev;
-  document.getElementById('s-pending').textContent=pe;
-  if(t>0){
-    document.getElementById('pt-f').style.width=Math.round(f/t*100)+'%';
-    document.getElementById('pt-p').style.width=Math.round(pr/t*100)+'%';
-    document.getElementById('pt-e').style.width=Math.round(ev/t*100)+'%';
-    document.getElementById('pt-n').style.width=Math.round(pe/t*100)+'%';
-  }
-}
-
-const ALL_CATEGORIES=[
-  'All','Social Welfare','Development','Healthcare','Education','Economy',
-  'Employment','Women & Gender','Housing','Agriculture','Environment',
-  'Fisheries','Governance','Law & Order','Culture','Sports','Technology',
-  'Infrastructure','Transportation','Energy','Tourism','Expatriate Affairs',
-  'Religion & Culture','Youth','Water'
-];
-
-const ALL_SECTIONS=[
-  'All','Indira Guarantee','Dream Projects','Social Security and Equality',
-  'Welfare Schemes','Healthcare','Education','Industry','Employment','Drugs',
-  "Women's Empowerment and Security",'Housing','Agriculture','Hill Farmer Welfare',
-  'Wild Animal Attack','Fishing','SC/ST Welfare','Differently Abled Welfare',
-  'Administration','Tourism','Traditional Industry','Large Projects',
-  'Infrastructure Development','Transportation','KSRTC','Electricity','Startups',
-  'Information Technology','Environment','Art, Culture, Cinema','Sports',
-  'Administration of Justice and Law & Order','Police','Cooperation',
-  'Youth Welfare','Sabarimala and Devaswom','Expatriate Welfare',
-  'Government Employees and Pensioners','Price Hike','Economic Development',
-  'Garbage Disposal and Stray Dog Problem','Drinking Water','Reservation',
-  'Religious Harmony','Liquor Policy','Local Self-Government and Panchayati Raj'
-];
-
-function buildCatDropdown(){
-  const sel=document.getElementById('cat-select');
-  sel.innerHTML=ALL_CATEGORIES.map(c=>
-    `<option value="${c}"${c===activeCat?' selected':''}>${c==='All'?'All categories':c}</option>`
-  ).join('');
-  sel.classList.toggle('has-value',activeCat!=='All');
-}
-
-function buildSectionDropdown(){
-  const relevantSections=activeCat==='All'
-    ? ALL_SECTIONS
-    : ['All',...new Set(allPromises.filter(p=>p.category===activeCat).map(p=>p.section))];
-
-  const sel=document.getElementById('section-select');
-  sel.innerHTML=relevantSections.map(s=>
-    `<option value="${s}"${s===activeSection?' selected':''}>${s==='All'?'All programs':s}</option>`
-  ).join('');
-  sel.classList.toggle('has-value',activeSection!=='All');
-}
-
-function updateActiveBadges(){
-  const wrap=document.getElementById('active-filter-badges');
-  let html='';
-  if(activeCat!=='All'){
-    html+=`<span class="filter-active-badge">${activeCat}<button onclick="clearCat()" aria-label="Remove category filter">×</button></span>`;
-  }
-  if(activeSection!=='All'){
-    html+=`<span class="filter-active-badge">${activeSection}<button onclick="clearSection()" aria-label="Remove program filter">×</button></span>`;
-  }
-  wrap.innerHTML=html;
-}
-function clearCat(){activeCat='All';activeSection='All';buildCatDropdown();buildSectionDropdown();updateActiveBadges();render();}
-function clearSection(){activeSection='All';buildSectionDropdown();updateActiveBadges();render();}
-
-document.getElementById('cat-select').addEventListener('change',function(){
-  activeCat=this.value;
-  activeSection='All';
-  buildCatDropdown();
-  buildSectionDropdown();
-  updateActiveBadges();
-  render();
-});
-document.getElementById('section-select').addEventListener('change',function(){
-  activeSection=this.value;
-  buildSectionDropdown();
-  updateActiveBadges();
-  render();
-});
-
-function filtered(){
-  const q=searchQ.toLowerCase();
-  return allPromises.filter(p=>{
-    if(activeStatus!=='all'&&p.status!==activeStatus)return false;
-    if(activeCat!=='All'&&p.category!==activeCat)return false;
-    if(activeSection!=='All'&&p.section!==activeSection)return false;
-    if(q&&!p.title_en.toLowerCase().includes(q)&&!(p.title_ml||'').includes(q)&&!p.verbatim.toLowerCase().includes(q))return false;
-    return true;
-  });
-}
-
-function lastUpdate(p){
-  if(!p.updates||!p.updates.length)return null;
-  return p.updates[p.updates.length-1];
-}
-
-function submitUrl(id,title){
-  const enc=encodeURIComponent('Update: Promise #'+id+' — '+title.slice(0,50));
-  return SUBMIT_URL+'&title='+enc;
-}
-
-function buildShareUrl(promiseId){
-  return `${SITE_BASE_URL}/?promise=${promiseId}`;
-}
-
-function buildShareText(title,status){
-  const emoji={fulfilled:'✅',progress:'🔄',evaded:'❌',pending:'⏳'};
-  return `${emoji[status]||''} "${title}" — tracking UDF government promises in Kerala. #KeralamPromiseTracker`;
-}
-
-function nativeShare(id,title,status){
-  const url=buildShareUrl(id);
-  const text=buildShareText(title,status);
-  if(navigator.share){
-    navigator.share({title:'Keralam Promise Tracker',text,url}).catch(()=>{});
-  } else {
-    const waUrl=`https://api.whatsapp.com/send?text=${encodeURIComponent(text+'\n'+url)}`;
-    window.open(waUrl,'_blank','noopener');
-  }
-}
-
-function copyPromiseLink(id,btn){
-  const url=buildShareUrl(id);
-  navigator.clipboard.writeText(url).then(()=>{
-    btn.classList.add('copied');
-    btn.textContent='✓ Copied';
-    setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML='<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> Copy link';},2200);
-  }).catch(()=>{
-    const inp=document.createElement('input');
-    inp.value=url;document.body.appendChild(inp);
-    inp.select();document.execCommand('copy');document.body.removeChild(inp);
-    btn.classList.add('copied');btn.textContent='✓ Copied';
-    setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML='<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> Copy link';},2200);
-  });
-}
-
-/* Auto-open promise from URL param on load */
-function checkUrlParam(){
-  const params=new URLSearchParams(window.location.search);
-  const pid=params.get('promise');
-  if(pid){
-    setTimeout(()=>{
-      const card=document.querySelector(`.promise-card[data-id="${pid}"]`);
-      if(card){
-        card.classList.add('open');
-        card.querySelector('.card-summary').setAttribute('aria-expanded','true');
-        card.scrollIntoView({behavior:'smooth',block:'center'});
-      }
-    },300);
-  }
-}
-
-function render(){
-  const list=document.getElementById('promises-list');
-  const items=filtered();
-  if(!items.length){
-    list.innerHTML='<div class="empty">No promises match this filter.</div>';
-    return;
-  }
-
-  const grouped={};
-  items.forEach(p=>{
-    const sec=p.section||'Other';
-    if(!grouped[sec])grouped[sec]=[];
-    grouped[sec].push(p);
-  });
-
-  const shareIcon=`<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>`;
-  const copyIcon=`<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
-
-  let html='';
-  Object.entries(grouped).forEach(([sec,promises])=>{
-    html+=`<div class="section-group-header"><span>${sec}</span><span class="group-promise-count">${promises.length}</span></div>`;
-    promises.forEach(p=>{
-      const upd=lastUpdate(p);
-      const canSubmit=p.status==='pending'||p.status==='progress';
-      const isFlag=p.section_type==='flagship';
-      const shareText=encodeURIComponent(buildShareText(p.title_en,p.status));
-      const shareUrl=encodeURIComponent(buildShareUrl(p.id));
-      html+=`
-      <article class="promise-card" data-id="${p.id}">
-        <div class="card-summary" role="button" tabindex="0" aria-expanded="false">
-          <div class="status-pip pip-${p.status}" aria-hidden="true"></div>
-          <div class="card-main">
-            <div class="card-badges">
-              <span class="badge badge-cat">${p.category}</span>
-              <span class="badge badge-${p.status}">${STATUS_LABEL[p.status]}</span>
-              ${isFlag?'<span class="badge badge-flagship">⭐ Flagship</span>':''}
-              ${p.timeline_promised?`<span class="badge badge-cat">${p.timeline_promised}</span>`:''}
-            </div>
-            <div class="card-title">${p.title_en}</div>
-            ${p.title_ml?`<div class="card-title-ml">${p.title_ml}</div>`:''}
-          </div>
-          <div class="card-actions">
-            <button class="share-btn" onclick="event.stopPropagation();nativeShare('${p.id}',${JSON.stringify(p.title_en)},'${p.status}')" aria-label="Share this promise">
-              ${shareIcon} Share
-            </button>
-            <span class="card-num">#${p.id}</span>
-          </div>
-        </div>
-        <div class="card-detail">
-          ${p.manifesto_page?`
-          <div class="detail-block">
-            <div class="detail-label">As stated in manifesto — page ${p.manifesto_page}</div>
-            <div class="verbatim-text">"${p.verbatim}"</div>
-          </div>`:`
-          <div class="detail-block">
-            <div class="detail-label">As stated in manifesto</div>
-            <div class="verbatim-text">"${p.verbatim}"</div>
-          </div>`}
-          ${p.departments&&p.departments.length?`
-          <div class="detail-block">
-            <div class="detail-label">Responsible departments</div>
-            <div class="dept-chips">${p.departments.map(d=>`<span class="dept-chip">${d}</span>`).join('')}</div>
-          </div>`:''}
-          <div class="detail-block">
-            <div class="detail-label">Latest update</div>
-            ${upd?`
-              <div class="update-text">${upd.note_en}</div>
-              ${upd.source_url?`
-              <div style="margin-top:6px">
-                <a class="source-link" href="${upd.source_url}" target="_blank" rel="noopener">
-                  ↗ ${upd.source_label}
-                </a>
-                <span class="tier-badge">Tier ${upd.source_tier}</span>
-              </div>`:''}
-            `:`<span class="no-update">No updates logged yet.</span>`}
-            ${canSubmit?`
-            <div style="margin-top:8px">
-              <a class="submit-update-btn" href="${submitUrl(p.id,p.title_en)}" target="_blank" rel="noopener">
-                ↗ Submit an update
-              </a>
-            </div>`:''}
-          </div>
-          <div class="detail-block">
-            <div class="detail-label">Share this promise</div>
-            <div class="share-toolbar">
-              <a class="share-action share-wa"
-                 href="https://api.whatsapp.com/send?text=${shareText}%0A${shareUrl}"
-                 target="_blank" rel="noopener" aria-label="Share on WhatsApp">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                WhatsApp
-              </a>
-              <a class="share-action share-tw"
-                 href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}"
-                 target="_blank" rel="noopener" aria-label="Share on Twitter/X">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.736-8.868L2.25 2.25h6.918l4.243 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                X / Twitter
-              </a>
-              <button class="share-action share-copy" id="copy-btn-${p.id}"
-                      onclick="copyPromiseLink('${p.id}',this)"
-                      aria-label="Copy link to this promise">
-                ${copyIcon} Copy link
-              </button>
-            </div>
-          </div>
-          ${p.updates&&p.updates.length>1?`
-          <div class="detail-block">
-            <div class="detail-label">History (${p.updates.length} updates)</div>
-            ${p.updates.map(u=>`
-              <div class="history-item">
-                <span class="history-date">${u.date}</span> — ${u.prev_status} → ${u.new_status}: ${u.note_en}
-                ${u.source_url?`<a class="source-link" href="${u.source_url}" style="margin-left:6px" target="_blank" rel="noopener">source ↗</a>`:''}
-              </div>
-            `).join('')}
-          </div>`:''}
-        </div>
-      </article>`;
-    });
-  });
-
-  list.innerHTML=html;
-
-  list.querySelectorAll('.card-summary').forEach(s=>{
-    const handler=()=>{
-      const card=s.closest('.promise-card');
-      const isOpen=card.classList.toggle('open');
-      s.setAttribute('aria-expanded',isOpen);
-      if(isOpen){
-        const id=card.dataset.id;
-        const url=new URL(window.location);
-        url.searchParams.set('promise',id);
-        window.history.replaceState({},'',url);
-      }
-    };
-    s.addEventListener('click',handler);
-    s.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();handler();}});
-  });
-
-  checkUrlParam();
-}
-
-/* status filters */
-document.querySelectorAll('.filter-pill').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.filter-pill').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    activeStatus=btn.dataset.s;
-    render();
-  });
-});
-
-/* search */
-document.getElementById('q').addEventListener('input',e=>{
-  searchQ=e.target.value;
-  render();
-});
-
-/* language toggle */
+/* Language toggle */
+let mlMode=false;
 function toggleLang(){
   mlMode=!mlMode;
   document.body.classList.toggle('ml',mlMode);
   document.getElementById('lang-btn').textContent=mlMode?'English':'മലയാളം';
 }
-
-loadData();
 </script>
 </body>
 </html>
