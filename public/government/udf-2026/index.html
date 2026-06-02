@@ -74,7 +74,7 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 }
 .hero-inner{
   max-width:var(--max-w);margin:0 auto;
-  display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;
+  display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end;
   position:relative;z-index:1;
 }
 .hero-coalition{
@@ -96,16 +96,21 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 }
 .hero-chip .dot{width:6px;height:6px;border-radius:50%;background:var(--green-400);flex-shrink:0}
 .hero-portrait{
-  width:120px;height:120px;border-radius:50%;
+  width:160px;height:210px;
+  border-radius:var(--radius-lg) var(--radius-lg) 0 0;
   object-fit:cover;object-position:top center;
-  border:3px solid rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.15);
+  border-bottom:none;
   flex-shrink:0;
+  display:block;
 }
 .hero-portrait-ph{
-  width:120px;height:120px;border-radius:50%;
-  background:rgba(255,255,255,0.07);border:3px solid rgba(255,255,255,0.1);
+  width:160px;height:210px;
+  border-radius:var(--radius-lg) var(--radius-lg) 0 0;
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);
+  border-bottom:none;
   display:flex;align-items:center;justify-content:center;
-  font-size:48px;color:rgba(255,255,255,0.3);flex-shrink:0;
+  font-size:56px;color:rgba(255,255,255,0.3);flex-shrink:0;
 }
 
 /* ── TAB BAR ── */
