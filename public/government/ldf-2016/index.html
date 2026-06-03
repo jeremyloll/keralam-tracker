@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LDF 2016–2021 — Keralam Promise Tracker</title>
+<meta name="description" content="Tracking every promise made by the UDF government (2026–2031) to the people of Kerala.">
+<link rel="icon" type="image/png" href="/assets/keralam_map2.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green-900:#0a2e18;--green-800:#0f4c2a;--green-700:#1a6638;
+  --green-600:#1e7a41;--green-500:#2a9956;--green-400:#3db86a;
+  --green-300:#6acf8a;--green-200:#a8deba;--green-100:#d4f0de;--green-50:#edfaf3;
+  --gold-700:#9a6e1a;--gold-500:#c8922a;--gold-200:#f0d090;--gold-50:#fffbf2;
+  --red-700:#8b1f1f;--red-500:#c0392b;--red-100:#fdf0f0;
+  --blue-600:#1a4e7a;--blue-100:#e8f0fb;
+  --ink:#1a1a1a;--ink-2:#3a3a3a;--ink-3:#666;--ink-4:#999;
+  --border:#e0ddd5;--border-light:#eceae4;
+  --surface:#f5f3ee;--surface-2:#faf9f6;--white:#fff;
+  --font-display:'Fraunces',Georgia,serif;
+  --font-body:'DM Sans',sans-serif;
+  --font-ml:'Noto Serif Malayalam',serif;
+  --radius-sm:6px;--radius-md:10px;--radius-lg:14px;
+  --max-w:1200px;--pad:clamp(1rem,4vw,2.5rem);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--surface);color:var(--ink);font-size:15px;line-height:1.65;min-height:100vh}
+
+/* ── TOP NAV ── */
+.topnav{
+  background:var(--green-900);
+  padding:0.75rem var(--pad);
+  display:flex;align-items:center;gap:1rem;
+  position:sticky;top:0;z-index:200;
+  border-bottom:1px solid rgba(255,255,255,0.07);
+}
+.topnav-back{
+  display:flex;align-items:center;gap:6px;
+  color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;
+  transition:color 0.15s;
+}
+.topnav-back:hover{color:white}
+.topnav-back svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.topnav-sep{color:rgba(255,255,255,0.2);font-size:18px}
+.topnav-title{color:rgba(255,255,255,0.9);font-size:13px;font-weight:500}
+.topnav-right{margin-left:auto;display:flex;align-items:center;gap:0.75rem}
+.topnav-countdown{
+  font-family:var(--font-display);font-size:12px;
+  color:var(--green-400);letter-spacing:0.02em;
+  font-variant-numeric:tabular-nums;
+}
+.topnav-live{
+  background:#e63946;color:white;
+  font-size:9px;font-weight:700;letter-spacing:0.15em;
+  padding:2px 7px;border-radius:3px;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.55}}
+
+/* ── HERO ── */
+.hero{
+  background:var(--green-900);
+  padding:2.5rem var(--pad) 0;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 50% at 60% 0%,rgba(61,184,106,0.1),transparent);
+  pointer-events:none;
+}
+.hero-inner{
+  max-width:var(--max-w);margin:0 auto;
+  display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end;
+  position:relative;z-index:1;
+}
+.hero-coalition{
+  font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--green-400);margin-bottom:0.5rem;font-weight:600;
+}
+.hero-title{
+  font-family:var(--font-display);
+  font-size:clamp(26px,4vw,44px);font-weight:500;line-height:1.1;
+  letter-spacing:-0.02em;color:white;margin-bottom:0.3rem;
+}
+.hero-sub{font-size:14px;color:rgba(255,255,255,0.45);margin-bottom:1.5rem}
+.hero-meta{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-bottom:2rem}
+.hero-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;color:rgba(255,255,255,0.65);
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);
+  border-radius:20px;padding:4px 12px;
+}
+.hero-chip .dot{width:6px;height:6px;border-radius:50%;background:var(--green-400);flex-shrink:0}
+.hero-portrait{
+  width:160px;height:210px;
+  border-radius:var(--radius-lg) var(--radius-lg) 0 0;
+  object-fit:cover;object-position:top center;
+  border:1px solid rgba(255,255,255,0.15);
+  border-bottom:none;
+  flex-shrink:0;
+  display:block;
+}
+.hero-portrait-ph{
+  width:160px;height:210px;
+  border-radius:var(--radius-lg) var(--radius-lg) 0 0;
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);
+  border-bottom:none;
+  display:flex;align-items:center;justify-content:center;
+  font-size:56px;color:rgba(255,255,255,0.3);flex-shrink:0;
+}
+
+/* ── TAB BAR ── */
+.tab-bar-wrap{
+  background:var(--green-900);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  position:sticky;top:49px;z-index:190;
+}
+.tab-bar{
+  max-width:var(--max-w);margin:0 auto;
+  display:flex;padding:0 var(--pad);gap:0;
+}
+.tab-btn{
+  padding:0.9rem 1.5rem;font-size:13px;font-weight:500;
+  color:rgba(255,255,255,0.5);background:none;border:none;cursor:pointer;
+  border-bottom:2px solid transparent;
+  transition:color 0.15s,border-color 0.15s;
+  font-family:var(--font-body);letter-spacing:0.01em;white-space:nowrap;
+}
+.tab-btn:hover{color:rgba(255,255,255,0.85)}
+.tab-btn.active{color:white;border-bottom-color:var(--green-400)}
+
+/* ── SECTION WRAPPER ── */
+.tab-section{display:none}
+.tab-section.active{display:block}
+.section-inner{max-width:var(--max-w);margin:0 auto;padding:2rem var(--pad)}
+
+/* ── OVERVIEW TAB ── */
+.overview-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.5rem;margin-bottom:1.5rem;
+}
+.ov-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:1.5rem;
+}
+.ov-card-title{
+  font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:1.2rem;font-weight:500;
+}
+.stats-row{display:flex;gap:1rem;flex-wrap:wrap}
+.stat-item{flex:1;min-width:100px;text-align:center}
+.stat-n{
+  font-family:var(--font-display);
+  font-size:clamp(28px,4vw,42px);font-weight:500;
+  line-height:1;display:block;margin-bottom:4px;
+}
+.stat-l{font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink-3)}
+.stat-item.fulfilled .stat-n{color:var(--green-700)}
+.stat-item.progress .stat-n{color:var(--gold-700)}
+.stat-item.evaded .stat-n{color:var(--red-700)}
+.stat-item.pending .stat-n{color:var(--ink-4)}
+.stat-item.total .stat-n{color:var(--ink)}
+
+.prog-bar-wrap{margin-top:1.5rem}
+.prog-bar-label{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-3);margin-bottom:6px}
+.prog-bar{height:8px;background:var(--border);border-radius:20px;overflow:hidden;display:flex}
+.pb-seg{height:100%;transition:width 0.6s ease}
+.pb-fulfilled{background:var(--green-500)}
+.pb-progress{background:var(--gold-500)}
+.pb-evaded{background:var(--red-500)}
+.pb-pending{background:var(--border)}
+
+.legend{display:flex;gap:1rem;flex-wrap:wrap;margin-top:0.75rem}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--ink-3)}
+.legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+.chart-wrap{position:relative;height:220px;margin-top:0.5rem}
+
+.ov-timeline{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:1.5rem;
+  grid-column:1/-1;
+}
+.timeline-list{list-style:none;display:flex;flex-direction:column;gap:0}
+.tl-item{
+  display:grid;grid-template-columns:90px 1fr;
+  gap:1rem;padding:1rem 0;
+  border-bottom:1px solid var(--border-light);
+  align-items:start;
+}
+.tl-item:last-child{border-bottom:none;padding-bottom:0}
+.tl-date{font-size:12px;color:var(--ink-3);padding-top:2px;font-variant-numeric:tabular-nums}
+.tl-content{}
+.tl-promise{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:3px}
+.tl-note{font-size:13px;color:var(--ink-3);line-height:1.55}
+.tl-source{font-size:11px;color:var(--ink-4);margin-top:4px}
+.tl-source a{color:var(--green-700);text-decoration:none}
+.tl-source a:hover{text-decoration:underline}
+.status-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:10px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;
+  padding:2px 8px;border-radius:20px;margin-bottom:4px;
+}
+.badge-fulfilled{background:var(--green-100);color:var(--green-700)}
+.badge-progress{background:var(--gold-50);color:var(--gold-700)}
+.badge-evaded{background:var(--red-100);color:var(--red-700)}
+.badge-pending{background:var(--surface);color:var(--ink-3);border:1px solid var(--border)}
+.badge-flagship{background:var(--green-50);color:var(--green-700);border:1px solid var(--green-200)}
+
+/* ── PROMISES TAB ── */
+.promises-toolbar{
+  display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;
+  margin-bottom:1.5rem;
+}
+.toolbar-search{
+  flex:1;min-width:200px;max-width:360px;
+  position:relative;
+}
+.toolbar-search input{
+  width:100%;padding:0.6rem 0.75rem 0.6rem 2.2rem;
+  border:1px solid var(--border);border-radius:var(--radius-md);
+  background:var(--white);font-size:13px;font-family:var(--font-body);
+  color:var(--ink);outline:none;transition:border-color 0.15s;
+}
+.toolbar-search input:focus{border-color:var(--green-500)}
+.toolbar-search svg{
+  position:absolute;left:0.65rem;top:50%;transform:translateY(-50%);
+  width:15px;height:15px;stroke:var(--ink-4);fill:none;stroke-width:2;stroke-linecap:round;
+}
+.filter-select{
+  padding:0.6rem 0.75rem;border:1px solid var(--border);
+  border-radius:var(--radius-md);background:var(--white);
+  font-size:13px;font-family:var(--font-body);color:var(--ink);
+  cursor:pointer;outline:none;
+}
+.filter-pills{display:flex;gap:6px;flex-wrap:wrap}
+.pill{
+  padding:5px 12px;border-radius:20px;font-size:12px;font-weight:500;
+  border:1px solid var(--border);background:var(--white);
+  color:var(--ink-3);cursor:pointer;transition:all 0.12s;
+  font-family:var(--font-body);
+}
+.pill:hover{border-color:var(--green-400);color:var(--green-700)}
+.pill.active{background:var(--green-900);color:white;border-color:var(--green-900)}
+.pill.p-fulfilled.active{background:var(--green-700);border-color:var(--green-700)}
+.pill.p-progress.active{background:var(--gold-700);border-color:var(--gold-700)}
+.pill.p-evaded.active{background:var(--red-700);border-color:var(--red-700)}
+.pill.p-pending.active{background:var(--ink-3);border-color:var(--ink-3)}
+
+.promises-count{font-size:13px;color:var(--ink-3);margin-bottom:1rem}
+.promises-count strong{color:var(--ink)}
+
+.promise-list{display:flex;flex-direction:column;gap:10px}
+.promise-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  transition:border-color 0.15s,box-shadow 0.15s;
+  cursor:pointer;
+}
+.promise-card:hover{border-color:var(--green-400);box-shadow:0 2px 12px rgba(0,0,0,0.06)}
+.promise-card.expanded .pc-body{display:block}
+.promise-card.expanded .pc-chevron{transform:rotate(180deg)}
+
+.pc-header{
+  display:grid;grid-template-columns:auto 1fr auto auto;
+  gap:0.75rem;align-items:center;padding:1rem 1.1rem;
+}
+.pc-status-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:2px}
+.dot-fulfilled{background:var(--green-500)}
+.dot-progress{background:var(--gold-500)}
+.dot-evaded{background:var(--red-500)}
+.dot-pending{background:#ccc}
+.pc-title{font-size:14px;font-weight:500;color:var(--ink);line-height:1.4}
+.pc-section{font-size:11px;color:var(--ink-4);margin-top:2px}
+.pc-badge-wrap{display:flex;gap:5px;align-items:center;flex-shrink:0}
+.pc-chevron{
+  width:16px;height:16px;stroke:var(--ink-4);fill:none;
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  flex-shrink:0;transition:transform 0.2s;
+}
+
+.pc-body{
+  display:none;
+  border-top:1px solid var(--border-light);
+  padding:1rem 1.1rem;
+}
+.pc-verbatim{
+  font-size:13px;color:var(--ink-2);line-height:1.7;
+  border-left:3px solid var(--green-300);
+  padding:0.75rem 1rem;background:var(--surface);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom:1rem;font-style:italic;
+}
+.pc-meta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
+.pc-meta-item{font-size:12px;color:var(--ink-3)}
+.pc-meta-item strong{color:var(--ink-2)}
+.pc-no-updates{font-size:13px;color:var(--ink-4);font-style:italic}
+
+/* ── PROMISE PIPELINE ── */
+.pc-pipeline-wrap{margin-bottom:1.25rem}
+.pc-pipeline-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:0.65rem;font-weight:500}
+.pc-pipeline{position:relative;padding:18px 0 8px}
+.pc-pipeline-track{position:relative;height:6px;border-radius:3px;background:#d0cec8;margin:0 11px}
+.pc-pipeline-fill{position:absolute;left:0;top:0;height:100%;border-radius:3px;background:var(--green-400);transition:width 0.5s ease}
+.pc-pipeline-nodes{position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);display:flex;justify-content:space-between;pointer-events:none}
+.pc-stage-node{width:14px;height:14px;border-radius:50%;background:#d0cec8;border:2px solid var(--white);flex-shrink:0;position:relative;transition:background 0.2s}
+.pc-stage-node.done{background:var(--green-400);border-color:var(--white)}
+.pc-stage-node.current{background:var(--white);border:3px solid var(--green-400);box-shadow:0 0 0 2px rgba(42,153,86,0.2)}
+.pc-pipeline-tooltip{
+  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:var(--ink);color:var(--white);
+  font-size:11px;font-weight:500;white-space:nowrap;
+  padding:4px 8px;border-radius:5px;pointer-events:none;
+}
+.pc-pipeline-tooltip::after{
+  content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:4px solid transparent;border-top-color:var(--ink);
+}
+.pc-pipeline-pct{font-size:11px;color:var(--ink-3);margin-top:6px;text-align:right}
+
+/* ── EVIDENCE TIMELINE ── */
+.pc-evidence-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:0.75rem;font-weight:500}
+.pc-evidence{display:flex;flex-direction:column;gap:0}
+.pc-ev-item{display:grid;grid-template-columns:32px 1fr;gap:0.65rem;position:relative}
+.pc-ev-item:not(:last-child)::before{
+  content:'';position:absolute;
+  left:15px;top:32px;bottom:-4px;
+  width:1px;background:var(--border-light);
+}
+.pc-ev-icon{
+  width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:12px;
+  border:1px solid var(--border);background:var(--surface-2);
+}
+.pc-ev-icon.ev-fulfilled{background:var(--green-100);border-color:var(--green-200);color:var(--green-700)}
+.pc-ev-icon.ev-progress{background:var(--gold-50);border-color:var(--gold-200);color:var(--gold-700)}
+.pc-ev-icon.ev-evaded{background:var(--red-100);border-color:#f5c6c6;color:var(--red-700)}
+.pc-ev-icon.ev-pending{background:var(--surface);border-color:var(--border);color:var(--ink-4)}
+.pc-ev-content{padding-bottom:16px}
+.pc-ev-header{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:3px}
+.pc-ev-date{font-size:11px;color:var(--ink-4);font-variant-numeric:tabular-nums}
+.pc-ev-trans{font-size:11px;color:var(--ink-4)}
+.pc-ev-note{font-size:13px;color:var(--ink-2);line-height:1.55}
+.pc-ev-src{font-size:11px;color:var(--ink-4);margin-top:4px}
+.pc-ev-src a{color:var(--green-700);text-decoration:none}
+.pc-ev-src a:hover{text-decoration:underline}
+
+.load-more{
+  display:block;width:100%;margin-top:1rem;padding:0.85rem;
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  font-size:13px;font-weight:500;color:var(--ink-3);
+  cursor:pointer;font-family:var(--font-body);
+  transition:border-color 0.15s,color 0.15s;text-align:center;
+}
+.load-more:hover{border-color:var(--green-400);color:var(--green-700)}
+
+/* ── CATEGORIES TAB ── */
+.categories-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:12px;margin-bottom:2rem;
+}
+.cat-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:1.2rem;
+  cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s,transform 0.15s;
+}
+.cat-card:hover{border-color:var(--green-400);box-shadow:0 3px 16px rgba(0,0,0,0.07);transform:translateY(-1px)}
+.cat-name{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:6px}
+.cat-total{font-size:12px;color:var(--ink-3);margin-bottom:10px}
+.cat-prog-bar{height:4px;background:var(--border);border-radius:20px;overflow:hidden;display:flex;margin-bottom:8px}
+.cat-nums{display:flex;gap:8px;flex-wrap:wrap}
+.cat-num{font-size:11px}
+.cat-num.f{color:var(--green-700)}
+.cat-num.p{color:var(--gold-700)}
+.cat-num.e{color:var(--red-700)}
+.cat-num.n{color:var(--ink-4)}
+
+/* Category detail view */
+.cat-detail{display:none}
+.cat-detail.active{display:block}
+.cat-detail-back{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;color:var(--green-700);cursor:pointer;
+  margin-bottom:1.5rem;background:none;border:none;font-family:var(--font-body);
+}
+.cat-detail-back:hover{text-decoration:underline}
+.cat-detail-back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cat-detail-title{font-family:var(--font-display);font-size:26px;font-weight:500;margin-bottom:0.25rem}
+.cat-detail-sub{font-size:14px;color:var(--ink-3);margin-bottom:1.5rem}
+
+/* ── MINISTERS TAB ── */
+.ministers-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:12px;margin-bottom:2rem;
+}
+.minister-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius-lg);overflow:hidden;
+  cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s,transform 0.15s;
+}
+.minister-card:hover{border-color:var(--green-400);box-shadow:0 3px 16px rgba(0,0,0,0.07);transform:translateY(-1px)}
+.mc-body{display:flex;align-items:center;gap:1rem;padding:1.1rem}
+.mc-portrait{
+  width:56px;height:56px;border-radius:50%;
+  object-fit:cover;object-position:top;
+  border:2px solid var(--border);flex-shrink:0;background:var(--surface);
+}
+.mc-portrait-ph{
+  width:56px;height:56px;border-radius:50%;
+  background:var(--surface);border:2px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;color:var(--ink-4);flex-shrink:0;
+}
+.mc-info{flex:1;min-width:0}
+.mc-name{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:2px}
+.mc-role{font-size:11px;color:var(--ink-3);line-height:1.45;margin-bottom:8px}
+.mc-prog-bar{height:3px;background:var(--border);border-radius:20px;overflow:hidden;display:flex;margin-bottom:6px}
+.mc-nums{display:flex;gap:8px}
+.mc-num{font-size:11px}
+.mc-num.f{color:var(--green-700)}
+.mc-num.p{color:var(--gold-700)}
+.mc-num.n{color:var(--ink-4)}
+
+/* Minister detail view */
+.min-detail{display:none}
+.min-detail.active{display:block}
+.min-detail-head{display:flex;align-items:center;gap:1.25rem;margin-bottom:1.5rem}
+.min-detail-portrait{
+  width:72px;height:72px;border-radius:50%;
+  object-fit:cover;border:2px solid var(--border);background:var(--surface);
+}
+.min-detail-portrait-ph{
+  width:72px;height:72px;border-radius:50%;
+  background:var(--surface);border:2px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;color:var(--ink-4);
+}
+.min-detail-name{font-family:var(--font-display);font-size:24px;font-weight:500;margin-bottom:2px}
+.min-detail-role{font-size:13px;color:var(--ink-3)}
+
+/* ── CONTRIBUTE ── */
+.contribute{
+  background:var(--green-900);padding:1.25rem var(--pad);margin-top:1rem;
+}
+.contribute-inner{
+  max-width:var(--max-w);margin:0 auto;
+  display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;
+}
+.contribute p{font-size:13px;color:rgba(255,255,255,0.6);flex:1;line-height:1.55}
+.contribute a{
+  font-size:13px;padding:8px 16px;
+  border:1px solid rgba(255,255,255,0.2);border-radius:7px;
+  color:white;text-decoration:none;white-space:nowrap;
+  transition:background 0.12s;
+}
+.contribute a:hover{background:rgba(255,255,255,0.08)}
+
+footer{
+  text-align:center;padding:1.25rem;
+  font-size:11.5px;color:var(--ink-3);
+  border-top:1px solid var(--border);background:var(--white);line-height:2;
+}
+footer a{color:var(--green-700);text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+@media(max-width:768px){
+  .overview-grid{grid-template-columns:1fr}
+  .ov-timeline{grid-column:1}
+  .tab-btn{padding:0.8rem 0.9rem;font-size:12px}
+  .pc-header{grid-template-columns:auto 1fr auto}
+  .pc-badge-wrap{display:none}
+  .hero-inner{grid-template-columns:1fr}
+  .hero-portrait,.hero-portrait-ph{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <a class="topnav-back" href="/">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    All governments
+  </a>
+  <span class="topnav-sep">·</span>
+  <span class="topnav-title">LDF 2016–2021</span>
+  <div class="topnav-right">
+    <span class="topnav-live">● LIVE</span>
+    <span class="topnav-countdown" id="countdown"></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-coalition">Left Democratic Front — Kerala State Government</div>
+      <h1 class="hero-title">Pinarayi Vijayan</h1>
+      <div style="font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:1rem;font-family:var(--font-ml)">വി. ഡി. സതീശൻ</div>
+      <div class="hero-meta">
+        <span class="hero-chip"><span class="dot"></span> Chief Minister, Kerala</span>
+        <span class="hero-chip" id="days-chip">In power since 25 May 2016</span>
+        <span class="hero-chip" id="term-chip">Term: 25 May 2016 — 20 May 2021</span>
+      </div>
+    </div>
+    <img class="hero-portrait" src="/assets/portraits/vd-satheesan.jpg" alt="VD Satheesan"
+      onerror="this.style.display='none';document.getElementById('hero-ph').style.display='flex'">
+    <div class="hero-portrait-ph" id="hero-ph" style="display:none">👤</div>
+  </div>
+</header>
+
+<!-- TAB BAR -->
+<div class="tab-bar-wrap">
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="overview" onclick="switchTab('overview')">Overview</button>
+    <button class="tab-btn" data-tab="promises" onclick="switchTab('promises')">Promises</button>
+    <button class="tab-btn" data-tab="categories" onclick="switchTab('categories')">Categories</button>
+    <button class="tab-btn" data-tab="ministers" onclick="switchTab('ministers')">Ministers</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     OVERVIEW TAB
+════════════════════════════════════════════════ -->
+<section id="tab-overview" class="tab-section active">
+<div class="section-inner">
+
+  <div class="overview-grid">
+
+    <!-- Stats card -->
+    <div class="ov-card">
+      <div class="ov-card-title">Promise tracker</div>
+      <div class="stats-row" id="stats-row">
+        <div class="stat-item total"><span class="stat-n" id="ov-total">1300</span><span class="stat-l">Total</span></div>
+        <div class="stat-item fulfilled"><span class="stat-n" id="ov-fulfilled">5</span><span class="stat-l">Fulfilled</span></div>
+        <div class="stat-item progress"><span class="stat-n" id="ov-progress">34</span><span class="stat-l">In Progress</span></div>
+        <div class="stat-item evaded"><span class="stat-n" id="ov-evaded">0</span><span class="stat-l">Evaded</span></div>
+        <div class="stat-item pending"><span class="stat-n" id="ov-pending">1261</span><span class="stat-l">Pending</span></div>
+      </div>
+      <div class="prog-bar-wrap">
+        <div class="prog-bar-label">
+          <span>Progress on promises</span>
+          <span id="ov-pct">3%</span>
+        </div>
+        <div class="prog-bar">
+          <div class="pb-seg pb-fulfilled" id="pb-fulfilled" style="width:0%"></div>
+          <div class="pb-seg pb-progress" id="pb-progress" style="width:0%"></div>
+          <div class="pb-seg pb-evaded" id="pb-evaded" style="width:0%"></div>
+          <div class="pb-seg pb-pending" style="width:100%" id="pb-pending"></div>
+        </div>
+        <div class="legend">
+          <span class="legend-item"><span class="legend-dot" style="background:var(--green-500)"></span>Fulfilled</span>
+          <span class="legend-item"><span class="legend-dot" style="background:var(--gold-500)"></span>In Progress</span>
+          <span class="legend-item"><span class="legend-dot" style="background:var(--red-500)"></span>Evaded</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#ddd"></span>Pending</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Doughnut chart -->
+    <div class="ov-card" style="display:flex;flex-direction:column">
+      <div class="ov-card-title">Distribution</div>
+      <div class="chart-wrap">
+        <canvas id="doughnut-chart"></canvas>
+      </div>
+    </div>
+
+    <!-- Recent activity -->
+    <div class="ov-timeline ov-card">
+      <div class="ov-card-title">Recent activity</div>
+      <ul class="timeline-list" id="timeline-list">
+        <li style="padding:1rem 0;font-size:13px;color:var(--ink-3)">Loading…</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     PROMISES TAB
+════════════════════════════════════════════════ -->
+<section id="tab-promises" class="tab-section">
+<div class="section-inner">
+  <div class="promises-toolbar">
+    <div class="toolbar-search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="search-input" placeholder="Search promises…" oninput="filterPromises()">
+    </div>
+    <select class="filter-select" id="cat-filter" onchange="filterPromises()">
+      <option value="">All categories</option>
+    </select>
+    <select class="filter-select" id="section-filter" onchange="filterPromises()">
+      <option value="">All sections</option>
+    </select>
+    <div class="filter-pills">
+      <button class="pill active" data-status="" onclick="setStatusFilter(this,'')">All</button>
+      <button class="pill p-fulfilled" data-status="fulfilled" onclick="setStatusFilter(this,'fulfilled')">Fulfilled</button>
+      <button class="pill p-progress" data-status="progress" onclick="setStatusFilter(this,'progress')">In Progress</button>
+      <button class="pill p-evaded" data-status="evaded" onclick="setStatusFilter(this,'evaded')">Evaded</button>
+      <button class="pill p-pending" data-status="pending" onclick="setStatusFilter(this,'pending')">Pending</button>
+    </div>
+  </div>
+  <div class="promises-count"><strong id="visible-count">0</strong> promises shown</div>
+  <div class="promise-list" id="promise-list"></div>
+  <button class="load-more" id="load-more-btn" onclick="loadMore()" style="display:none">Show more promises</button>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     CATEGORIES TAB
+════════════════════════════════════════════════ -->
+<section id="tab-categories" class="tab-section">
+<div class="section-inner">
+
+  <!-- Category grid -->
+  <div id="cat-grid-view">
+    <div class="categories-grid" id="cat-grid"></div>
+  </div>
+
+  <!-- Category detail -->
+  <div id="cat-detail-view" class="cat-detail">
+    <button class="cat-detail-back" onclick="closeCatDetail()">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to categories
+    </button>
+    <h2 class="cat-detail-title" id="cat-detail-title"></h2>
+    <div class="cat-detail-sub" id="cat-detail-sub"></div>
+    <div class="promises-toolbar" style="margin-bottom:1rem">
+      <div class="filter-pills" id="cat-detail-pills">
+        <button class="pill active" onclick="setCatDetailFilter(this,'')">All</button>
+        <button class="pill p-fulfilled" onclick="setCatDetailFilter(this,'fulfilled')">Fulfilled</button>
+        <button class="pill p-progress" onclick="setCatDetailFilter(this,'progress')">In Progress</button>
+        <button class="pill p-evaded" onclick="setCatDetailFilter(this,'evaded')">Evaded</button>
+        <button class="pill p-pending" onclick="setCatDetailFilter(this,'pending')">Pending</button>
+      </div>
+    </div>
+    <div class="promises-count"><strong id="cat-detail-count">0</strong> promises</div>
+    <div class="promise-list" id="cat-detail-list"></div>
+    <button class="load-more" id="cat-detail-more" onclick="loadMoreCat()" style="display:none">Show more</button>
+  </div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     MINISTERS TAB
+════════════════════════════════════════════════ -->
+<section id="tab-ministers" class="tab-section">
+<div class="section-inner">
+
+  <!-- Ministers grid -->
+  <div id="min-grid-view">
+    <div class="ministers-grid" id="min-grid"></div>
+  </div>
+
+  <!-- Minister detail -->
+  <div id="min-detail-view" class="min-detail">
+    <button class="cat-detail-back" onclick="closeMinDetail()">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to ministers
+    </button>
+    <div class="min-detail-head">
+      <img class="min-detail-portrait" id="min-detail-portrait" src="" alt=""
+        onerror="this.style.display='none';document.getElementById('min-detail-ph').style.display='flex'">
+      <div class="min-detail-portrait-ph" id="min-detail-ph" style="display:none">👤</div>
+      <div>
+        <div class="min-detail-name" id="min-detail-name"></div>
+        <div class="min-detail-role" id="min-detail-role"></div>
+      </div>
+    </div>
+    <div class="promises-toolbar" style="margin-bottom:1rem">
+      <div class="filter-pills" id="min-detail-pills">
+        <button class="pill active" onclick="setMinDetailFilter(this,'')">All</button>
+        <button class="pill p-fulfilled" onclick="setMinDetailFilter(this,'fulfilled')">Fulfilled</button>
+        <button class="pill p-progress" onclick="setMinDetailFilter(this,'progress')">In Progress</button>
+        <button class="pill p-evaded" onclick="setMinDetailFilter(this,'evaded')">Evaded</button>
+        <button class="pill p-pending" onclick="setMinDetailFilter(this,'pending')">Pending</button>
+      </div>
+    </div>
+    <div class="promises-count"><strong id="min-detail-count">0</strong> promises under this ministry</div>
+    <div class="promise-list" id="min-detail-list"></div>
+    <button class="load-more" id="min-detail-more" onclick="loadMoreMin()" style="display:none">Show more</button>
+  </div>
+
+</div>
+</section>
+
+<!-- CONTRIBUTE -->
+<div class="contribute">
+  <div class="contribute-inner">
+    <p>Know of an update? Help keep this tracker accurate — submit a source-backed update via GitHub.</p>
+    <a href="https://github.com/jeremyloll/keralam-tracker/issues/new?template=promise-update.md" target="_blank" rel="noopener">Submit an update →</a>
+  </div>
+</div>
+
+<footer>
+  <a href="/">← All governments</a> ·
+  <a href="/methodology.html">Methodology</a> ·
+  <a href="https://github.com/jeremyloll/keralam-tracker" target="_blank" rel="noopener">GitHub</a>
+  <br>Non-partisan public record. Not affiliated with any political party.
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════
+   DATA & CONFIG
+═══════════════════════════════════════════ */
+const DATA_PATH = '/data/ldf-2016/';
+const TERM_START = new Date('2016-05-25');
+const TERM_END   = new Date('2021-05-20');
+const PAGE_SIZE  = 50;
+
+const MINISTERS_DATA = [
+  {id:'vd-satheesan',name:'V. D. Satheesan',role:'Chief Minister · Finance, Law, Planning, IT, NRI Affairs, Ports, Environment, Airports, Metro Rail',portrait:'/assets/portraits/vd-satheesan.jpg',departments:['Finance','Law','General Administration','Transport','IT','Non-Resident Keralites Affairs','Environment','Industries']},
+  {id:'pk-kunhalikutty',name:'P. K. Kunhalikutty',role:'Industry & Commerce · IT, AI, Startups, Mining, Handlooms',portrait:'/assets/portraits/pk-kunhalikutty.jpg',departments:['Industries','IT','Electronics']},
+  {id:'ramesh-chennithala',name:'Ramesh Chennithala',role:'Home · Vigilance, Fire & Rescue, Prisons, Coir',portrait:'/assets/portraits/ramesh-chennithala.jpg',departments:['Home','Coir']},
+  {id:'sunny-joseph',name:'Sunny Joseph',role:'Electricity · Environment, Parliamentary Affairs, ANERT',portrait:'/assets/portraits/sunny-joseph.jpg',departments:['Electricity','Energy','Environment']},
+  {id:'k-muraleedharan',name:'K. Muraleedharan',role:'Health · Medical Education, AYUSH, Drugs Control, Food Safety, Devaswom',portrait:'/assets/portraits/k-muraleedharan.jpg',departments:['Health','Devaswom']},
+  {id:'mons-joseph',name:'Mons Joseph',role:'Irrigation · Water Supply, Sanitation, Housing, Groundwater',portrait:'/assets/portraits/mons-joseph.jpg',departments:['Water Resources','Housing']},
+  {id:'shibu-baby-john',name:'Shibu Baby John',role:'Forest · Wildlife, Skill Development, KASE',portrait:'/assets/portraits/shibu-baby-john.jpg',departments:['Forest','Employment']},
+  {id:'anoop-jacob',name:'Anoop Jacob',role:'Food & Civil Supplies · Consumer Affairs, Legal Metrology',portrait:'/assets/portraits/anoop-jacob.jpg',departments:['Civil Supplies']},
+  {id:'cp-john',name:'C. P. John',role:'Road Transport · Motor Vehicles, Water Transport',portrait:'/assets/portraits/cp-john.jpg',departments:['Transport']},
+  {id:'ap-anilkumar',name:'A. P. Anilkumar',role:'Land Revenue · Survey, Land Records, Land Reforms',portrait:'/assets/portraits/ap-anilkumar.jpg',departments:['General Administration']},
+  {id:'n-shamsuddin',name:'N. Shamsuddin',role:'Public Education · Literacy, Waqf, Hajj, Minority Welfare',portrait:'/assets/portraits/n-shamsuddin.jpg',departments:['Education']},
+  {id:'pc-vishnunath',name:'P. C. Vishnunath',role:'Tourism · Culture, Cinema, KSFDC',portrait:'/assets/portraits/pc-vishnunath.jpg',departments:['Tourism','Cultural Affairs']},
+  {id:'roji-m-john',name:'Roji M. John',role:'Collegiate & Technical Education · Universities, NCC, ASAP',portrait:'/assets/portraits/roji-m-john.jpg',departments:['Higher Education']},
+  {id:'bindu-krishna',name:'Bindu Krishna',role:'Labour · Animal Husbandry, Dairy, Women & Child Development',portrait:'/assets/portraits/bindu-krishna.jpg',departments:['Labour','Women & Child Development']},
+  {id:'m-liju',name:'M. Liju',role:'Cooperation · Excise',portrait:'/assets/portraits/m-liju.jpg',departments:['Cooperation','Excise']},
+  {id:'km-shaji',name:'K. M. Shaji',role:'Panchayat · Municipality, Corporation, Rural Development, KILA',portrait:'/assets/portraits/km-shaji.jpg',departments:['Local Self Government']},
+  {id:'pk-basheer',name:'P. K. Basheer',role:'Public Works Department',portrait:'/assets/portraits/pk-basheer.jpg',departments:['Public Works']},
+  {id:'ve-abdul-ghafoor',name:'V. E. Abdul Ghafoor',role:'Fisheries · Harbour Engineering, Social Justice',portrait:'/assets/portraits/ve-abdul-ghafoor.jpg',departments:['Fisheries','Social Justice']},
+  {id:'t-siddique',name:'T. Siddique',role:'Agriculture · Soil Conservation, Kerala Agricultural University',portrait:'/assets/portraits/t-siddique.jpg',departments:['Agriculture']},
+  {id:'ka-tulasi',name:'K. A. Tulasi',role:'SC/ST & Backward Classes Development',portrait:'/assets/portraits/ka-tulasi.jpg',departments:['SC/ST Welfare','Tribal Welfare']},
+  {id:'oj-janeesh',name:'O. J. Janeesh',role:'Sports & Youth Affairs · Zoo, Museum, Registration, Archaeology',portrait:'/assets/portraits/oj-janeesh.jpg',departments:['Sports & Youth Affairs','Youth Affairs']},
+];
+
+let allPromises = [];
+let filtered = [];
+let currentStatusFilter = '';
+let promisesOffset = 0;
+
+let catDetailPromises = [];
+let catDetailFilter = '';
+let catDetailOffset = 0;
+
+let minDetailPromises = [];
+let minDetailFilter = '';
+let minDetailOffset = 0;
+
+/* ═══════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════ */
+async function init() {
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+  updateDaysChip();
+
+  try {
+    const res = await fetch(DATA_PATH + 'promises.json');
+    if (!res.ok) throw new Error('HTTP ' + res.status + ' fetching promises.json');
+    allPromises = await res.json();
+  } catch(e) {
+    console.error('promises.json load failed:', e);
+    allPromises = [];
+    const list = document.getElementById('promise-list');
+    if (list) list.innerHTML = '<p style="color:var(--red-500);padding:1rem;font-size:13px">⚠ Could not load promises data. Check that <code>/data/ldf-2016/promises.json</code> exists and is valid JSON. See browser console for details.</p>';
+  }
+
+  buildOverview();
+  buildPromisesFilters();
+  filterPromises();
+  buildCategories();
+  buildMinisters();
+
+  const hash = location.hash.replace('#','') || 'overview';
+  switchTab(hash);
+}
+
+/* ═══════════════════════════════════════════
+   TAB SWITCHING
+═══════════════════════════════════════════ */
+function switchTab(tab) {
+  document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const sec = document.getElementById('tab-' + tab);
+  const btn = document.querySelector('[data-tab="' + tab + '"]');
+  if (sec) sec.classList.add('active');
+  if (btn) btn.classList.add('active');
+  history.replaceState(null,'','#' + tab);
+}
+
+/* ═══════════════════════════════════════════
+   COUNTDOWN & DAYS
+═══════════════════════════════════════════ */
+function updateCountdown() {
+  const now = new Date();
+  const rem = Math.max(0, TERM_END - now);
+  const d = Math.floor(rem / 86400000);
+  const h = Math.floor((rem % 86400000) / 3600000);
+  const m = Math.floor((rem % 3600000) / 60000);
+  const s = Math.floor((rem % 60000) / 1000);
+  const el = document.getElementById('countdown');
+  if (el) el.textContent = d.toLocaleString('en-IN') + 'd ' +
+    String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+}
+
+function updateDaysChip() {
+  const now = new Date();
+  const days = Math.floor((now - TERM_START) / 86400000);
+  const el = document.getElementById('days-chip');
+  if (el) el.textContent = 'In power for ' + days.toLocaleString('en-IN') + ' days';
+}
+
+/* ═══════════════════════════════════════════
+   OVERVIEW
+═══════════════════════════════════════════ */
+function buildOverview() {
+  const t = allPromises.length || 1300;
+  const f = allPromises.filter(p => p.status === 'fulfilled').length;
+  const pr = allPromises.filter(p => p.status === 'progress').length;
+  const ev = allPromises.filter(p => p.status === 'evaded').length;
+  const pe = allPromises.filter(p => p.status === 'pending').length;
+
+  setText('ov-total', t);
+  setText('ov-fulfilled', f);
+  setText('ov-progress', pr);
+  setText('ov-evaded', ev);
+  setText('ov-pending', pe);
+
+  const acted = f + pr + ev;
+  const pct = t > 0 ? Math.round(acted / t * 100) : 0;
+  setText('ov-pct', pct + '%');
+
+  setWidth('pb-fulfilled', f / t * 100);
+  setWidth('pb-progress', pr / t * 100);
+  setWidth('pb-evaded', ev / t * 100);
+  setWidth('pb-pending', pe / t * 100);
+
+  buildDoughnut(f, pr, ev, pe);
+  buildTimeline();
+}
+
+function buildDoughnut(f, pr, ev, pe) {
+  const ctx = document.getElementById('doughnut-chart');
+  if (!ctx) return;
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Fulfilled','In Progress','Evaded','Pending'],
+      datasets: [{
+        data: [f, pr, ev, pe],
+        backgroundColor: ['#2a9956','#c8922a','#c0392b','#ddd'],
+        borderWidth: 0,
+        hoverOffset: 6,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: '68%',
+      plugins: {
+        legend: {display: false},
+        tooltip: {
+          callbacks: {
+            label: ctx => ' ' + ctx.label + ': ' + ctx.parsed + ' (' + Math.round(ctx.parsed / (f+pr+ev+pe) * 100) + '%)'
+          }
+        }
+      }
+    }
+  });
+}
+
+function buildTimeline() {
+  const updates = [];
+  allPromises.forEach(p => {
+    (p.updates || []).forEach(u => {
+      updates.push({promise: p, update: u});
+    });
+  });
+  updates.sort((a,b) => new Date(b.update.date) - new Date(a.update.date));
+  const recent = updates.slice(0, 15);
+
+  const list = document.getElementById('timeline-list');
+  if (!list) return;
+  if (recent.length === 0) {
+    list.innerHTML = '<li style="padding:1rem 0;font-size:13px;color:var(--ink-3)">No updates recorded yet.</li>';
+    return;
+  }
+  list.innerHTML = recent.map(({promise: p, update: u}) => `
+    <li class="tl-item">
+      <div class="tl-date">${formatDate(u.date)}</div>
+      <div class="tl-content">
+        <span class="status-badge badge-${u.new_status}">${statusLabel(u.new_status)}</span>
+        ${p.section_type === 'flagship' ? '<span class="status-badge badge-flagship">Flagship</span>' : ''}
+        <div class="tl-promise">${esc(p.title_en)}</div>
+        <div class="tl-note">${esc(u.note_en)}</div>
+        ${u.source_url ? `<div class="tl-source"><a href="${u.source_url}" target="_blank" rel="noopener">${esc(u.source_label || u.source_url)}</a></div>` : ''}
+      </div>
+    </li>`).join('');
+}
+
+/* ═══════════════════════════════════════════
+   PROMISES TAB
+═══════════════════════════════════════════ */
+function buildPromisesFilters() {
+  const cats = [...new Set(allPromises.map(p => p.category).filter(Boolean))].sort();
+  const secs = [...new Set(allPromises.map(p => p.section).filter(Boolean))].sort();
+  const catSel = document.getElementById('cat-filter');
+  const secSel = document.getElementById('section-filter');
+  cats.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = c; catSel.appendChild(o); });
+  secs.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = s; secSel.appendChild(o); });
+}
+
+function setStatusFilter(btn, status) {
+  currentStatusFilter = status;
+  document.querySelectorAll('#tab-promises .pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  promisesOffset = 0;
+  filterPromises();
+}
+
+function filterPromises() {
+  const q = (document.getElementById('search-input')?.value || '').toLowerCase();
+  const cat = document.getElementById('cat-filter')?.value || '';
+  const sec = document.getElementById('section-filter')?.value || '';
+  filtered = allPromises.filter(p => {
+    if (currentStatusFilter && p.status !== currentStatusFilter) return false;
+    if (cat && p.category !== cat) return false;
+    if (sec && p.section !== sec) return false;
+    if (q) {
+      const hay = (p.title_en + ' ' + (p.verbatim || '') + ' ' + (p.section || '')).toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+  promisesOffset = 0;
+  setText('visible-count', filtered.length);
+  renderPromises('promise-list', 'load-more-btn', filtered, promisesOffset);
+}
+
+function loadMore() {
+  promisesOffset += PAGE_SIZE;
+  renderPromises('promise-list', 'load-more-btn', filtered, promisesOffset, true);
+}
+
+function renderPromises(listId, moreId, arr, offset, append = false) {
+  const list = document.getElementById(listId);
+  const moreBtn = document.getElementById(moreId);
+  if (!list) return;
+
+  const slice = arr.slice(0, offset + PAGE_SIZE);
+  const cards = slice.map(p => promiseCard(p)).join('');
+
+  if (append) {
+    const existing = list.querySelectorAll('.promise-card').length;
+    const newCards = arr.slice(existing, offset + PAGE_SIZE).map(p => promiseCard(p)).join('');
+    list.insertAdjacentHTML('beforeend', newCards);
+  } else {
+    list.innerHTML = arr.length === 0
+      ? '<p style="font-size:13px;color:var(--ink-3);padding:1rem 0">No promises match this filter.</p>'
+      : cards;
+  }
+
+  if (moreBtn) {
+    moreBtn.style.display = arr.length > offset + PAGE_SIZE ? 'block' : 'none';
+    moreBtn.textContent = 'Show more (' + (arr.length - (offset + PAGE_SIZE)) + ' remaining)';
+  }
+
+  setText(listId === 'promise-list' ? 'visible-count'
+    : listId === 'cat-detail-list' ? 'cat-detail-count'
+    : 'min-detail-count', arr.length);
+}
+
+/* ── PIPELINE STAGES ── */
+const PIPELINE_STAGES = [
+  {key:'promised',   label:'Promised',              pct:0},
+  {key:'announced',  label:'Announced',             pct:5},
+  {key:'approvals',  label:'Approvals',             pct:15},
+  {key:'clearances', label:'Clearances',            pct:40},
+  {key:'budget',     label:'Budget Allocated',      pct:55},
+  {key:'tender',     label:'Tender Floated',        pct:70},
+  {key:'started',    label:'Project Started',       pct:90},
+  {key:'fulfilled',  label:'Fulfilled',             pct:100}
+];
+
+/* Map a status/new_status value to a pipeline stage key */
+function resolveStage(p) {
+  /* Explicit stage field takes priority */
+  if (p.stage) return p.stage;
+  /* Infer from latest update's new_status */
+  const updates = p.updates || [];
+  if (updates.length === 0) return 'promised';
+  const latest = updates[updates.length - 1].new_status;
+  const map = {
+    pending:   'promised',
+    announced: 'announced',
+    approvals: 'approvals',
+    clearances:'clearances',
+    budget:    'budget',
+    tender:    'tender',
+    started:   'started',
+    progress:  'announced',   /* generic "in progress" → announced */
+    fulfilled: 'fulfilled',
+    evaded:    'promised'
+  };
+  return map[latest] || 'promised';
+}
+
+function buildPipelineHtml(p) {
+  const stageKey = resolveStage(p);
+  const currentIdx = PIPELINE_STAGES.findIndex(s => s.key === stageKey);
+  const safeIdx = currentIdx < 0 ? 0 : currentIdx;
+  const cur = PIPELINE_STAGES[safeIdx];
+  /* Fill % = position of current node along the track */
+  const fillPct = safeIdx === 0 ? 0
+    : safeIdx === PIPELINE_STAGES.length - 1 ? 100
+    : (safeIdx / (PIPELINE_STAGES.length - 1)) * 100;
+
+  const nodes = PIPELINE_STAGES.map((s, i) => {
+    const cls = i < safeIdx ? 'done' : i === safeIdx ? 'current' : '';
+    const tooltip = i === safeIdx
+      ? `<div class="pc-pipeline-tooltip">${esc(s.label)} &mdash; ${s.pct}%</div>`
+      : '';
+    return `<div class="pc-stage-node ${cls}" title="${esc(s.label)} (${s.pct}%)">${tooltip}</div>`;
+  }).join('');
+
+  return `
+  <div class="pc-pipeline-wrap">
+    <div class="pc-pipeline-label">Progress pipeline</div>
+    <div class="pc-pipeline">
+      <div class="pc-pipeline-track">
+        <div class="pc-pipeline-fill" style="width:${fillPct.toFixed(1)}%"></div>
+        <div class="pc-pipeline-nodes">${nodes}</div>
+      </div>
+    </div>
+    <div class="pc-pipeline-pct">${cur.label} &mdash; ${cur.pct}% complete</div>
+  </div>`;
+}
+
+function buildEvidenceHtml(p) {
+  const updates = p.updates || [];
+
+  /* Always prepend the origin entry */
+  const originEntry = `
+  <div class="pc-ev-item">
+    <div class="pc-ev-icon ev-pending">📋</div>
+    <div class="pc-ev-content">
+      <div class="pc-ev-header">
+        <span class="status-badge badge-pending">Promised</span>
+        <span class="pc-ev-date">20 May 2026</span>
+      </div>
+      <div class="pc-ev-note">Included in the UDF election manifesto${p.section ? ' under ' + esc(p.section) : ''}.</div>
+    </div>
+  </div>`;
+
+  if (updates.length === 0) {
+    return `
+    <div class="pc-evidence-label">Evidence history</div>
+    <div class="pc-evidence">
+      ${originEntry}
+      <div class="pc-no-updates" style="padding-left:2.5rem;margin-top:4px">No updates recorded yet.</div>
+    </div>`;
+  }
+
+  const iconMap = {
+    fulfilled: {cls:'ev-fulfilled', sym:'✓'},
+    progress:  {cls:'ev-progress',  sym:'↗'},
+    announced: {cls:'ev-progress',  sym:'↗'},
+    approvals: {cls:'ev-progress',  sym:'↗'},
+    clearances:{cls:'ev-progress',  sym:'↗'},
+    budget:    {cls:'ev-progress',  sym:'↗'},
+    tender:    {cls:'ev-progress',  sym:'↗'},
+    started:   {cls:'ev-progress',  sym:'↗'},
+    evaded:    {cls:'ev-evaded',    sym:'✗'},
+    pending:   {cls:'ev-pending',   sym:'○'}
+  };
+
+  const updateRows = [...updates].reverse().map(u => {
+    const ic = iconMap[u.new_status] || {cls:'ev-pending', sym:'○'};
+    return `
+    <div class="pc-ev-item">
+      <div class="pc-ev-icon ${ic.cls}">${ic.sym}</div>
+      <div class="pc-ev-content">
+        <div class="pc-ev-header">
+          <span class="status-badge badge-${u.new_status}">${statusLabel(u.new_status)}</span>
+          <span class="pc-ev-date">${formatDate(u.date)}</span>
+          <span class="pc-ev-trans">${statusLabel(u.prev_status)} → ${statusLabel(u.new_status)}</span>
+        </div>
+        <div class="pc-ev-note">${esc(u.note_en)}</div>
+        ${u.source_url ? `<div class="pc-ev-src"><a href="${esc(u.source_url)}" target="_blank" rel="noopener">${esc(u.source_label || 'Source')}</a></div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  return `
+  <div class="pc-evidence-label">Evidence history</div>
+  <div class="pc-evidence">
+    ${updateRows}
+    ${originEntry}
+  </div>`;
+}
+
+function promiseCard(p) {
+  const depts = (p.departments || []).join(', ');
+
+  return `
+  <div class="promise-card" id="pc-${p.id}" onclick="toggleCard('pc-${p.id}')">
+    <div class="pc-header">
+      <span class="pc-status-dot dot-${p.status}"></span>
+      <div>
+        <div class="pc-title">${esc(p.title_en)}</div>
+        <div class="pc-section">${esc(p.section || '')}${depts ? ' · ' + esc(depts) : ''}</div>
+      </div>
+      <div class="pc-badge-wrap">
+        <span class="status-badge badge-${p.status}">${statusLabel(p.status)}</span>
+        ${p.section_type === 'flagship' ? '<span class="status-badge badge-flagship">Flagship</span>' : ''}
+      </div>
+      <svg class="pc-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="pc-body">
+      <div class="pc-verbatim">${esc(p.verbatim || p.title_en)}</div>
+      <div class="pc-meta-row">
+        ${p.timeline_promised ? `<span class="pc-meta-item"><strong>Timeline promised:</strong> ${esc(p.timeline_promised)}</span>` : ''}
+        ${p.category ? `<span class="pc-meta-item"><strong>Category:</strong> ${esc(p.category)}</span>` : ''}
+      </div>
+      ${buildPipelineHtml(p)}
+      ${buildEvidenceHtml(p)}
+    </div>
+  </div>`;
+}
+
+function toggleCard(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('expanded');
+}
+
+/* ═══════════════════════════════════════════
+   CATEGORIES TAB
+═══════════════════════════════════════════ */
+function buildCategories() {
+  const grid = document.getElementById('cat-grid');
+  if (!grid) return;
+
+  const cats = [...new Set(allPromises.map(p => p.category).filter(Boolean))].sort();
+  grid.innerHTML = cats.map(cat => {
+    const ps = allPromises.filter(p => p.category === cat);
+    const t = ps.length;
+    const f = ps.filter(p => p.status === 'fulfilled').length;
+    const pr = ps.filter(p => p.status === 'progress').length;
+    const ev = ps.filter(p => p.status === 'evaded').length;
+    const pe = ps.filter(p => p.status === 'pending').length;
+    const fp = t > 0 ? (f/t*100).toFixed(1) : 0;
+    const pp = t > 0 ? (pr/t*100).toFixed(1) : 0;
+    const ep = t > 0 ? (ev/t*100).toFixed(1) : 0;
+    const np = t > 0 ? (pe/t*100).toFixed(1) : 0;
+    return `
+    <div class="cat-card" onclick="openCatDetail('${esc(cat)}')">
+      <div class="cat-name">${esc(cat)}</div>
+      <div class="cat-total">${t} promise${t!==1?'s':''}</div>
+      <div class="cat-prog-bar">
+        <div class="pb-seg pb-fulfilled" style="width:${fp}%"></div>
+        <div class="pb-seg pb-progress" style="width:${pp}%"></div>
+        <div class="pb-seg pb-evaded" style="width:${ep}%"></div>
+        <div class="pb-seg pb-pending" style="width:${np}%"></div>
+      </div>
+      <div class="cat-nums">
+        ${f>0?`<span class="cat-num f">✓ ${f} fulfilled</span>`:''}
+        ${pr>0?`<span class="cat-num p">↗ ${pr} in progress</span>`:''}
+        ${ev>0?`<span class="cat-num e">✗ ${ev} evaded</span>`:''}
+        <span class="cat-num n">${pe} pending</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function openCatDetail(cat) {
+  catDetailPromises = allPromises.filter(p => p.category === cat);
+  catDetailFilter = '';
+  catDetailOffset = 0;
+  document.getElementById('cat-detail-title').textContent = cat;
+  document.getElementById('cat-detail-sub').textContent = catDetailPromises.length + ' promises in this category';
+  document.getElementById('cat-grid-view').style.display = 'none';
+  const dv = document.getElementById('cat-detail-view');
+  dv.classList.add('active');
+  document.querySelectorAll('#cat-detail-pills .pill').forEach(p => p.classList.remove('active'));
+  document.querySelector('#cat-detail-pills .pill').classList.add('active');
+  renderPromises('cat-detail-list','cat-detail-more', catDetailPromises, catDetailOffset);
+}
+
+function closeCatDetail() {
+  document.getElementById('cat-grid-view').style.display = '';
+  document.getElementById('cat-detail-view').classList.remove('active');
+}
+
+function setCatDetailFilter(btn, status) {
+  catDetailFilter = status;
+  catDetailOffset = 0;
+  document.querySelectorAll('#cat-detail-pills .pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  const base = allPromises.filter(p => p.category === document.getElementById('cat-detail-title').textContent);
+  catDetailPromises = status ? base.filter(p => p.status === status) : base;
+  renderPromises('cat-detail-list','cat-detail-more', catDetailPromises, catDetailOffset);
+}
+
+function loadMoreCat() {
+  catDetailOffset += PAGE_SIZE;
+  renderPromises('cat-detail-list','cat-detail-more', catDetailPromises, catDetailOffset, true);
+}
+
+/* ═══════════════════════════════════════════
+   MINISTERS TAB
+═══════════════════════════════════════════ */
+function buildMinisters() {
+  const grid = document.getElementById('min-grid');
+  if (!grid) return;
+
+  grid.innerHTML = MINISTERS_DATA.map(m => {
+    const ps = allPromises.filter(p =>
+      (p.departments || []).some(d => m.departments.includes(d))
+    );
+    const t = ps.length;
+    const f = ps.filter(p => p.status === 'fulfilled').length;
+    const pr = ps.filter(p => p.status === 'progress').length;
+    const ev = ps.filter(p => p.status === 'evaded').length;
+    const pe = ps.filter(p => p.status === 'pending').length;
+    const fp = t > 0 ? (f/t*100).toFixed(1) : 0;
+    const pp = t > 0 ? (pr/t*100).toFixed(1) : 0;
+    const ep = t > 0 ? (ev/t*100).toFixed(1) : 0;
+    const np = t > 0 ? (pe/t*100).toFixed(1) : 0;
+    return `
+    <div class="minister-card" onclick="openMinDetail('${m.id}')">
+      <div class="mc-body">
+        <img class="mc-portrait" src="${m.portrait}" alt="${esc(m.name)}"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="mc-portrait-ph" style="display:none">👤</div>
+        <div class="mc-info">
+          <div class="mc-name">${esc(m.name)}</div>
+          <div class="mc-role">${esc(m.role)}</div>
+          <div class="mc-prog-bar">
+            <div class="pb-seg pb-fulfilled" style="width:${fp}%"></div>
+            <div class="pb-seg pb-progress" style="width:${pp}%"></div>
+            <div class="pb-seg pb-evaded" style="width:${ep}%"></div>
+            <div class="pb-seg pb-pending" style="width:${np}%"></div>
+          </div>
+          <div class="mc-nums">
+            ${f>0?`<span class="mc-num f">✓ ${f}</span>`:''}
+            ${pr>0?`<span class="mc-num p">↗ ${pr}</span>`:''}
+            ${ev>0?`<span class="mc-num" style="color:var(--red-700)">✗ ${ev}</span>`:''}
+            <span class="mc-num n">${pe} pending · ${t} total</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function openMinDetail(minId) {
+  const m = MINISTERS_DATA.find(x => x.id === minId);
+  if (!m) return;
+  minDetailPromises = allPromises.filter(p =>
+    (p.departments || []).some(d => m.departments.includes(d))
+  );
+  minDetailFilter = '';
+  minDetailOffset = 0;
+
+  const portrait = document.getElementById('min-detail-portrait');
+  portrait.src = m.portrait;
+  portrait.alt = m.name;
+  portrait.style.display = '';
+  document.getElementById('min-detail-ph').style.display = 'none';
+  document.getElementById('min-detail-name').textContent = m.name;
+  document.getElementById('min-detail-role').textContent = m.role;
+
+  document.getElementById('min-grid-view').style.display = 'none';
+  document.getElementById('min-detail-view').classList.add('active');
+  document.querySelectorAll('#min-detail-pills .pill').forEach(p => p.classList.remove('active'));
+  document.querySelector('#min-detail-pills .pill').classList.add('active');
+  renderPromises('min-detail-list','min-detail-more', minDetailPromises, minDetailOffset);
+}
+
+function closeMinDetail() {
+  document.getElementById('min-grid-view').style.display = '';
+  document.getElementById('min-detail-view').classList.remove('active');
+}
+
+function setMinDetailFilter(btn, status) {
+  minDetailFilter = status;
+  minDetailOffset = 0;
+  document.querySelectorAll('#min-detail-pills .pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  const minId = document.getElementById('min-detail-portrait').alt;
+  const m = MINISTERS_DATA.find(x => x.name === minId) ||
+            MINISTERS_DATA.find(x => x.name === document.getElementById('min-detail-name').textContent);
+  const base = m ? allPromises.filter(p => (p.departments||[]).some(d=>m.departments.includes(d))) : [];
+  minDetailPromises = status ? base.filter(p => p.status === status) : base;
+  renderPromises('min-detail-list','min-detail-more', minDetailPromises, minDetailOffset);
+}
+
+function loadMoreMin() {
+  minDetailOffset += PAGE_SIZE;
+  renderPromises('min-detail-list','min-detail-more', minDetailPromises, minDetailOffset, true);
+}
+
+/* ═══════════════════════════════════════════
+   UTILS
+═══════════════════════════════════════════ */
+function setText(id, val) { const el = document.getElementById(id); if(el) el.textContent = val; }
+function setWidth(id, pct) { const el = document.getElementById(id); if(el) el.style.width = Math.min(100, pct).toFixed(2) + '%'; }
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function statusLabel(s) {
+  return {fulfilled:'Fulfilled',progress:'In Progress',evaded:'Evaded',pending:'Pending'}[s] || s;
+}
+function formatDate(d) {
+  if (!d) return '';
+  const dt = new Date(d);
+  return dt.toLocaleDateString('en-IN', {day:'2-digit', month:'short', year:'numeric'});
+}
+
+/* ═══════════════════════════════════════════
+   BOOT
+═══════════════════════════════════════════ */
+init();
+</script>
+</body>
+</html>
