@@ -299,17 +299,57 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 .pc-meta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
 .pc-meta-item{font-size:12px;color:var(--ink-3)}
 .pc-meta-item strong{color:var(--ink-2)}
-.pc-updates{display:flex;flex-direction:column;gap:8px}
-.pc-update-item{
-  background:var(--surface-2);border:1px solid var(--border-light);
-  border-radius:var(--radius-sm);padding:0.75rem;
-}
-.pc-update-date{font-size:11px;color:var(--ink-4);margin-bottom:3px;font-variant-numeric:tabular-nums}
-.pc-update-note{font-size:13px;color:var(--ink-2);line-height:1.55}
-.pc-update-src{font-size:11px;color:var(--ink-4);margin-top:4px}
-.pc-update-src a{color:var(--green-700);text-decoration:none}
-.pc-update-src a:hover{text-decoration:underline}
 .pc-no-updates{font-size:13px;color:var(--ink-4);font-style:italic}
+
+/* ── PROMISE PIPELINE ── */
+.pc-pipeline-wrap{margin-bottom:1.25rem}
+.pc-pipeline-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:0.65rem;font-weight:500}
+.pc-pipeline{position:relative;padding:18px 0 8px}
+.pc-pipeline-track{position:relative;height:6px;border-radius:3px;background:#d0cec8;margin:0 11px}
+.pc-pipeline-fill{position:absolute;left:0;top:0;height:100%;border-radius:3px;background:var(--green-400);transition:width 0.5s ease}
+.pc-pipeline-nodes{position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);display:flex;justify-content:space-between;pointer-events:none}
+.pc-stage-node{width:14px;height:14px;border-radius:50%;background:#d0cec8;border:2px solid var(--white);flex-shrink:0;position:relative;transition:background 0.2s}
+.pc-stage-node.done{background:var(--green-400);border-color:var(--white)}
+.pc-stage-node.current{background:var(--white);border:3px solid var(--green-400);box-shadow:0 0 0 2px rgba(42,153,86,0.2)}
+.pc-pipeline-tooltip{
+  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:var(--ink);color:var(--white);
+  font-size:11px;font-weight:500;white-space:nowrap;
+  padding:4px 8px;border-radius:5px;pointer-events:none;
+}
+.pc-pipeline-tooltip::after{
+  content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:4px solid transparent;border-top-color:var(--ink);
+}
+.pc-pipeline-pct{font-size:11px;color:var(--ink-3);margin-top:6px;text-align:right}
+
+/* ── EVIDENCE TIMELINE ── */
+.pc-evidence-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:0.75rem;font-weight:500}
+.pc-evidence{display:flex;flex-direction:column;gap:0}
+.pc-ev-item{display:grid;grid-template-columns:32px 1fr;gap:0.65rem;position:relative}
+.pc-ev-item:not(:last-child)::before{
+  content:'';position:absolute;
+  left:15px;top:32px;bottom:-4px;
+  width:1px;background:var(--border-light);
+}
+.pc-ev-icon{
+  width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:12px;
+  border:1px solid var(--border);background:var(--surface-2);
+}
+.pc-ev-icon.ev-fulfilled{background:var(--green-100);border-color:var(--green-200);color:var(--green-700)}
+.pc-ev-icon.ev-progress{background:var(--gold-50);border-color:var(--gold-200);color:var(--gold-700)}
+.pc-ev-icon.ev-evaded{background:var(--red-100);border-color:#f5c6c6;color:var(--red-700)}
+.pc-ev-icon.ev-pending{background:var(--surface);border-color:var(--border);color:var(--ink-4)}
+.pc-ev-content{padding-bottom:16px}
+.pc-ev-header{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:3px}
+.pc-ev-date{font-size:11px;color:var(--ink-4);font-variant-numeric:tabular-nums}
+.pc-ev-trans{font-size:11px;color:var(--ink-4)}
+.pc-ev-note{font-size:13px;color:var(--ink-2);line-height:1.55}
+.pc-ev-src{font-size:11px;color:var(--ink-4);margin-top:4px}
+.pc-ev-src a{color:var(--green-700);text-decoration:none}
+.pc-ev-src a:hover{text-decoration:underline}
 
 .load-more{
   display:block;width:100%;margin-top:1rem;padding:0.85rem;
@@ -937,17 +977,136 @@ function renderPromises(listId, moreId, arr, offset, append = false) {
     : 'min-detail-count', arr.length);
 }
 
-function promiseCard(p) {
-  const hasUpdates = p.updates && p.updates.length > 0;
-  const updatesHtml = hasUpdates
-    ? p.updates.map(u => `
-        <div class="pc-update-item">
-          <div class="pc-update-date">${formatDate(u.date)} · ${statusLabel(u.prev_status)} → ${statusLabel(u.new_status)}</div>
-          <div class="pc-update-note">${esc(u.note_en)}</div>
-          ${u.source_url ? `<div class="pc-update-src"><a href="${u.source_url}" target="_blank" rel="noopener">${esc(u.source_label || 'Source')}</a></div>` : ''}
-        </div>`).join('')
-    : '<div class="pc-no-updates">No updates recorded yet.</div>';
+/* ── PIPELINE STAGES ── */
+const PIPELINE_STAGES = [
+  {key:'promised',   label:'Promised',              pct:0},
+  {key:'announced',  label:'Announced',             pct:5},
+  {key:'approvals',  label:'Approvals',             pct:15},
+  {key:'clearances', label:'Clearances',            pct:40},
+  {key:'budget',     label:'Budget Allocated',      pct:55},
+  {key:'tender',     label:'Tender Floated',        pct:70},
+  {key:'started',    label:'Project Started',       pct:90},
+  {key:'fulfilled',  label:'Fulfilled',             pct:100}
+];
 
+/* Map a status/new_status value to a pipeline stage key */
+function resolveStage(p) {
+  /* Explicit stage field takes priority */
+  if (p.stage) return p.stage;
+  /* Infer from latest update's new_status */
+  const updates = p.updates || [];
+  if (updates.length === 0) return 'promised';
+  const latest = updates[updates.length - 1].new_status;
+  const map = {
+    pending:   'promised',
+    announced: 'announced',
+    approvals: 'approvals',
+    clearances:'clearances',
+    budget:    'budget',
+    tender:    'tender',
+    started:   'started',
+    progress:  'announced',   /* generic "in progress" → announced */
+    fulfilled: 'fulfilled',
+    evaded:    'promised'
+  };
+  return map[latest] || 'promised';
+}
+
+function buildPipelineHtml(p) {
+  const stageKey = resolveStage(p);
+  const currentIdx = PIPELINE_STAGES.findIndex(s => s.key === stageKey);
+  const safeIdx = currentIdx < 0 ? 0 : currentIdx;
+  const cur = PIPELINE_STAGES[safeIdx];
+  /* Fill % = position of current node along the track */
+  const fillPct = safeIdx === 0 ? 0
+    : safeIdx === PIPELINE_STAGES.length - 1 ? 100
+    : (safeIdx / (PIPELINE_STAGES.length - 1)) * 100;
+
+  const nodes = PIPELINE_STAGES.map((s, i) => {
+    const cls = i < safeIdx ? 'done' : i === safeIdx ? 'current' : '';
+    const tooltip = i === safeIdx
+      ? `<div class="pc-pipeline-tooltip">${esc(s.label)} &mdash; ${s.pct}%</div>`
+      : '';
+    return `<div class="pc-stage-node ${cls}" title="${esc(s.label)} (${s.pct}%)">${tooltip}</div>`;
+  }).join('');
+
+  return `
+  <div class="pc-pipeline-wrap">
+    <div class="pc-pipeline-label">Progress pipeline</div>
+    <div class="pc-pipeline">
+      <div class="pc-pipeline-track">
+        <div class="pc-pipeline-fill" style="width:${fillPct.toFixed(1)}%"></div>
+        <div class="pc-pipeline-nodes">${nodes}</div>
+      </div>
+    </div>
+    <div class="pc-pipeline-pct">${cur.label} &mdash; ${cur.pct}% complete</div>
+  </div>`;
+}
+
+function buildEvidenceHtml(p) {
+  const updates = p.updates || [];
+
+  /* Always prepend the origin entry */
+  const originEntry = `
+  <div class="pc-ev-item">
+    <div class="pc-ev-icon ev-pending">📋</div>
+    <div class="pc-ev-content">
+      <div class="pc-ev-header">
+        <span class="status-badge badge-pending">Promised</span>
+        <span class="pc-ev-date">20 May 2026</span>
+      </div>
+      <div class="pc-ev-note">Included in the UDF election manifesto${p.section ? ' under ' + esc(p.section) : ''}.</div>
+    </div>
+  </div>`;
+
+  if (updates.length === 0) {
+    return `
+    <div class="pc-evidence-label">Evidence history</div>
+    <div class="pc-evidence">
+      ${originEntry}
+      <div class="pc-no-updates" style="padding-left:2.5rem;margin-top:4px">No updates recorded yet.</div>
+    </div>`;
+  }
+
+  const iconMap = {
+    fulfilled: {cls:'ev-fulfilled', sym:'✓'},
+    progress:  {cls:'ev-progress',  sym:'↗'},
+    announced: {cls:'ev-progress',  sym:'↗'},
+    approvals: {cls:'ev-progress',  sym:'↗'},
+    clearances:{cls:'ev-progress',  sym:'↗'},
+    budget:    {cls:'ev-progress',  sym:'↗'},
+    tender:    {cls:'ev-progress',  sym:'↗'},
+    started:   {cls:'ev-progress',  sym:'↗'},
+    evaded:    {cls:'ev-evaded',    sym:'✗'},
+    pending:   {cls:'ev-pending',   sym:'○'}
+  };
+
+  const updateRows = [...updates].reverse().map(u => {
+    const ic = iconMap[u.new_status] || {cls:'ev-pending', sym:'○'};
+    return `
+    <div class="pc-ev-item">
+      <div class="pc-ev-icon ${ic.cls}">${ic.sym}</div>
+      <div class="pc-ev-content">
+        <div class="pc-ev-header">
+          <span class="status-badge badge-${u.new_status}">${statusLabel(u.new_status)}</span>
+          <span class="pc-ev-date">${formatDate(u.date)}</span>
+          <span class="pc-ev-trans">${statusLabel(u.prev_status)} → ${statusLabel(u.new_status)}</span>
+        </div>
+        <div class="pc-ev-note">${esc(u.note_en)}</div>
+        ${u.source_url ? `<div class="pc-ev-src"><a href="${esc(u.source_url)}" target="_blank" rel="noopener">${esc(u.source_label || 'Source')}</a></div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  return `
+  <div class="pc-evidence-label">Evidence history</div>
+  <div class="pc-evidence">
+    ${updateRows}
+    ${originEntry}
+  </div>`;
+}
+
+function promiseCard(p) {
   const depts = (p.departments || []).join(', ');
 
   return `
@@ -970,7 +1129,8 @@ function promiseCard(p) {
         ${p.timeline_promised ? `<span class="pc-meta-item"><strong>Timeline promised:</strong> ${esc(p.timeline_promised)}</span>` : ''}
         ${p.category ? `<span class="pc-meta-item"><strong>Category:</strong> ${esc(p.category)}</span>` : ''}
       </div>
-      <div class="pc-updates">${updatesHtml}</div>
+      ${buildPipelineHtml(p)}
+      ${buildEvidenceHtml(p)}
     </div>
   </div>`;
 }
