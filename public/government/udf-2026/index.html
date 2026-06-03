@@ -211,6 +211,15 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 .badge-evaded{background:var(--red-100);color:var(--red-700)}
 .badge-pending{background:var(--surface);color:var(--ink-3);border:1px solid var(--border)}
 .badge-flagship{background:var(--green-50);color:var(--green-700);border:1px solid var(--green-200)}
+/* ── STAGE BADGES ── */
+.badge-stage-promised{background:var(--surface);color:var(--ink-3);border:1px solid var(--border)}
+.badge-stage-announced{background:#e8f0fb;color:var(--blue-600);border:1px solid #b8cff5}
+.badge-stage-approvals{background:#fdf6e3;color:#7a5c0a;border:1px solid #f0d090}
+.badge-stage-clearances{background:#fdf6e3;color:#7a5c0a;border:1px solid #e8c070}
+.badge-stage-budget{background:#e8f5eb;color:#1a5c2a;border:1px solid #a8deba}
+.badge-stage-tender{background:#e8f5eb;color:#1a5c2a;border:1px solid #7acf8a}
+.badge-stage-started{background:#d4f0de;color:var(--green-700);border:1px solid var(--green-300)}
+.badge-stage-fulfilled{background:var(--green-100);color:var(--green-700);border:1px solid var(--green-200)}
 
 /* ── PROMISES TAB ── */
 .promises-toolbar{
@@ -883,6 +892,8 @@ function buildTimeline() {
   const updates = [];
   allPromises.forEach(p => {
     (p.updates || []).forEach(u => {
+      /* Skip the origin (promised) entries — they all have the same date and add no signal */
+      if (u.stage === 'promised') return;
       updates.push({promise: p, update: u});
     });
   });
@@ -895,17 +906,20 @@ function buildTimeline() {
     list.innerHTML = '<li style="padding:1rem 0;font-size:13px;color:var(--ink-3)">No updates recorded yet.</li>';
     return;
   }
-  list.innerHTML = recent.map(({promise: p, update: u}) => `
+  list.innerHTML = recent.map(({promise: p, update: u}) => {
+    const stage = u.stage || 'promised';
+    return `
     <li class="tl-item">
       <div class="tl-date">${formatDate(u.date)}</div>
       <div class="tl-content">
-        <span class="status-badge badge-${u.new_status}">${statusLabel(u.new_status)}</span>
+        <span class="status-badge badge-stage-${esc(stage)}">${esc(stageLabel(stage))}</span>
         ${p.section_type === 'flagship' ? '<span class="status-badge badge-flagship">Flagship</span>' : ''}
         <div class="tl-promise">${esc(p.title_en)}</div>
-        <div class="tl-note">${esc(u.note_en)}</div>
+        <div class="tl-note">${esc(u.note_en || '')}</div>
         ${u.source_url ? `<div class="tl-source"><a href="${u.source_url}" target="_blank" rel="noopener">${esc(u.source_label || u.source_url)}</a></div>` : ''}
       </div>
-    </li>`).join('');
+    </li>`;
+  }).join('');
 }
 
 /* ═══════════════════════════════════════════
@@ -992,27 +1006,23 @@ const PIPELINE_STAGES = [
   {key:'fulfilled',  label:'Fulfilled',             pct:100}
 ];
 
-/* Map a status/new_status value to a pipeline stage key */
+/* Stage key → human label */
+function stageLabel(key) {
+  return {
+    promised:   'Promised',
+    announced:  'Announced',
+    approvals:  'Approvals',
+    clearances: 'Clearances & Other Procedures',
+    budget:     'Budget Allocated',
+    tender:     'Tender Floated & Awarded',
+    started:    'Project Started',
+    fulfilled:  'Fulfilled',
+  }[key] || key;
+}
+
+/* Read top-level stage field; fall back to 'promised' for old/missing data */
 function resolveStage(p) {
-  /* Explicit stage field takes priority */
-  if (p.stage) return p.stage;
-  /* Infer from latest update's new_status */
-  const updates = p.updates || [];
-  if (updates.length === 0) return 'promised';
-  const latest = updates[updates.length - 1].new_status;
-  const map = {
-    pending:   'promised',
-    announced: 'announced',
-    approvals: 'approvals',
-    clearances:'clearances',
-    budget:    'budget',
-    tender:    'tender',
-    started:   'started',
-    progress:  'announced',   /* generic "in progress" → announced */
-    fulfilled: 'fulfilled',
-    evaded:    'promised'
-  };
-  return map[latest] || 'promised';
+  return p.stage || 'promised';
 }
 
 function buildPipelineHtml(p) {
@@ -1049,54 +1059,43 @@ function buildPipelineHtml(p) {
 function buildEvidenceHtml(p) {
   const updates = p.updates || [];
 
-  /* Always prepend the origin entry */
-  const originEntry = `
-  <div class="pc-ev-item">
-    <div class="pc-ev-icon ev-pending">📋</div>
-    <div class="pc-ev-content">
-      <div class="pc-ev-header">
-        <span class="status-badge badge-pending">Promised</span>
-        <span class="pc-ev-date">20 May 2026</span>
-      </div>
-      <div class="pc-ev-note">Included in the UDF election manifesto${p.section ? ' under ' + esc(p.section) : ''}.</div>
-    </div>
-  </div>`;
+  const stageIconMap = {
+    promised:   {cls:'ev-pending',   sym:'📋'},
+    announced:  {cls:'ev-progress',  sym:'↗'},
+    approvals:  {cls:'ev-progress',  sym:'↗'},
+    clearances: {cls:'ev-progress',  sym:'↗'},
+    budget:     {cls:'ev-progress',  sym:'↗'},
+    tender:     {cls:'ev-progress',  sym:'↗'},
+    started:    {cls:'ev-progress',  sym:'↗'},
+    fulfilled:  {cls:'ev-fulfilled', sym:'✓'},
+    evaded:     {cls:'ev-evaded',    sym:'✗'},
+  };
 
   if (updates.length === 0) {
     return `
     <div class="pc-evidence-label">Evidence history</div>
     <div class="pc-evidence">
-      ${originEntry}
       <div class="pc-no-updates" style="padding-left:2.5rem;margin-top:4px">No updates recorded yet.</div>
     </div>`;
   }
 
-  const iconMap = {
-    fulfilled: {cls:'ev-fulfilled', sym:'✓'},
-    progress:  {cls:'ev-progress',  sym:'↗'},
-    announced: {cls:'ev-progress',  sym:'↗'},
-    approvals: {cls:'ev-progress',  sym:'↗'},
-    clearances:{cls:'ev-progress',  sym:'↗'},
-    budget:    {cls:'ev-progress',  sym:'↗'},
-    tender:    {cls:'ev-progress',  sym:'↗'},
-    started:   {cls:'ev-progress',  sym:'↗'},
-    evaded:    {cls:'ev-evaded',    sym:'✗'},
-    pending:   {cls:'ev-pending',   sym:'○'}
-  };
-
-  const updateRows = [...updates].reverse().map(u => {
-    const ic = iconMap[u.new_status] || {cls:'ev-pending', sym:'○'};
+  /* Render newest-first: reverse the array for display, but keep origin (first entry) at bottom */
+  const rows = [...updates].reverse().map(u => {
+    const stage = u.stage || 'promised';
+    const ic = stageIconMap[stage] || {cls:'ev-pending', sym:'○'};
+    const badgeCls = 'badge-stage-' + stage;
+    const label = stageLabel(stage);
     return `
     <div class="pc-ev-item">
       <div class="pc-ev-icon ${ic.cls}">${ic.sym}</div>
       <div class="pc-ev-content">
         <div class="pc-ev-header">
-          <span class="status-badge badge-${u.new_status}">${statusLabel(u.new_status)}</span>
+          <span class="status-badge ${badgeCls}">${esc(label)}</span>
           <span class="pc-ev-date">${formatDate(u.date)}</span>
-          <span class="pc-ev-trans">${statusLabel(u.prev_status)} → ${statusLabel(u.new_status)}</span>
         </div>
-        <div class="pc-ev-note">${esc(u.note_en)}</div>
-        ${u.source_url ? `<div class="pc-ev-src"><a href="${esc(u.source_url)}" target="_blank" rel="noopener">${esc(u.source_label || 'Source')}</a></div>` : ''}
+        <div class="pc-ev-note">${esc(u.note_en || '')}</div>
+        ${u.source_url ? `<div class="pc-ev-src"><a href="${esc(u.source_url)}" target="_blank" rel="noopener">${esc(u.source_label || 'Source')}</a></div>`
+          : u.source_label ? `<div class="pc-ev-src">${esc(u.source_label)}</div>` : ''}
       </div>
     </div>`;
   }).join('');
@@ -1104,8 +1103,7 @@ function buildEvidenceHtml(p) {
   return `
   <div class="pc-evidence-label">Evidence history</div>
   <div class="pc-evidence">
-    ${updateRows}
-    ${originEntry}
+    ${rows}
   </div>`;
 }
 
