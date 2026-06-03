@@ -766,10 +766,13 @@ async function init() {
 
   try {
     const res = await fetch(DATA_PATH + 'promises.json');
+    if (!res.ok) throw new Error('HTTP ' + res.status + ' fetching promises.json');
     allPromises = await res.json();
   } catch(e) {
-    console.warn('Could not load promises.json, using empty set');
+    console.error('promises.json load failed:', e);
     allPromises = [];
+    const list = document.getElementById('promise-list');
+    if (list) list.innerHTML = '<p style="color:var(--red-500);padding:1rem;font-size:13px">⚠ Could not load promises data. Check that <code>/data/udf-2026/promises.json</code> exists and is valid JSON. See browser console for details.</p>';
   }
 
   buildOverview();
