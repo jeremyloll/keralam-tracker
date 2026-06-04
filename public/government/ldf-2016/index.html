@@ -764,14 +764,16 @@ async function init() {
   try {
     const res = await fetch(DATA_PATH + 'promises.json');
     if (!res.ok) throw new Error('HTTP ' + res.status + ' fetching promises.json');
-    const raw = await res.json();
+    const text = await res.text();
+    const cleaned = text.replace(/,(\s*[\]}])/g, '$1');
+    const raw = JSON.parse(cleaned);
     allPromises = Array.isArray(raw) ? raw : [];
-    if (!Array.isArray(raw)) throw new Error('promises.json did not return an array — got: ' + typeof raw);
+    if (!Array.isArray(raw)) throw new Error('promises.json is not an array — got: ' + typeof raw);
   } catch(e) {
     console.error('promises.json load failed:', e);
     allPromises = [];
     const list = document.getElementById('promise-list');
-    if (list) list.innerHTML = '<p style="color:var(--red-500);padding:1rem;font-size:13px">⚠ Could not load promises data. Check that <code>' + DATA_PATH + 'promises.json</code> exists and is valid JSON (array). See browser console for details.</p>';
+    if (list) list.innerHTML = '<p style="color:var(--red-500);padding:1rem;font-size:13px">Could not load promises data. Check that <code>' + DATA_PATH + 'promises.json</code> exists and is valid JSON. Error: ' + e.message + '</p>';
   }
 
   buildOverview();
