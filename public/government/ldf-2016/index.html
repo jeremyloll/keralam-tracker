@@ -538,16 +538,16 @@ footer a:hover{text-decoration:underline}
     <div class="ov-card">
       <div class="ov-card-title">Promise tracker</div>
       <div class="stats-row" id="stats-row">
-        <div class="stat-item total"><span class="stat-n" id="ov-total">1300</span><span class="stat-l">Total</span></div>
-        <div class="stat-item fulfilled"><span class="stat-n" id="ov-fulfilled">5</span><span class="stat-l">Fulfilled</span></div>
-        <div class="stat-item progress"><span class="stat-n" id="ov-progress">34</span><span class="stat-l">In Progress</span></div>
-        <div class="stat-item evaded"><span class="stat-n" id="ov-evaded">0</span><span class="stat-l">Evaded</span></div>
-        <div class="stat-item pending"><span class="stat-n" id="ov-pending">1261</span><span class="stat-l">Pending</span></div>
+        <div class="stat-item total"><span class="stat-n" id="ov-total">—</span><span class="stat-l">Total</span></div>
+        <div class="stat-item fulfilled"><span class="stat-n" id="ov-fulfilled">—</span><span class="stat-l">Fulfilled</span></div>
+        <div class="stat-item progress"><span class="stat-n" id="ov-progress">—</span><span class="stat-l">In Progress</span></div>
+        <div class="stat-item evaded"><span class="stat-n" id="ov-evaded">—</span><span class="stat-l">Evaded</span></div>
+        <div class="stat-item pending"><span class="stat-n" id="ov-pending">—</span><span class="stat-l">Pending</span></div>
       </div>
       <div class="prog-bar-wrap">
         <div class="prog-bar-label">
           <span>Progress on promises</span>
-          <span id="ov-pct">3%</span>
+          <span id="ov-pct">—</span>
         </div>
         <div class="prog-bar">
           <div class="pb-seg pb-fulfilled" id="pb-fulfilled" style="width:0%"></div>
@@ -764,12 +764,14 @@ async function init() {
   try {
     const res = await fetch(DATA_PATH + 'promises.json');
     if (!res.ok) throw new Error('HTTP ' + res.status + ' fetching promises.json');
-    allPromises = await res.json();
+    const raw = await res.json();
+    allPromises = Array.isArray(raw) ? raw : [];
+    if (!Array.isArray(raw)) throw new Error('promises.json did not return an array — got: ' + typeof raw);
   } catch(e) {
     console.error('promises.json load failed:', e);
     allPromises = [];
     const list = document.getElementById('promise-list');
-    if (list) list.innerHTML = '<p style="color:var(--red-500);padding:1rem;font-size:13px">⚠ Could not load promises data. Check that <code>/data/ldf-2016/promises.json</code> exists and is valid JSON. See browser console for details.</p>';
+    if (list) list.innerHTML = '<p style="color:var(--red-500);padding:1rem;font-size:13px">⚠ Could not load promises data. Check that <code>' + DATA_PATH + 'promises.json</code> exists and is valid JSON (array). See browser console for details.</p>';
   }
 
   buildOverview();
@@ -832,7 +834,7 @@ function updateDaysChip() {
    OVERVIEW
 ═══════════════════════════════════════════ */
 function buildOverview() {
-  const t = allPromises.length || 1300;
+  const t = allPromises.length;
   const f = allPromises.filter(p => p.status === 'fulfilled').length;
   const pr = allPromises.filter(p => p.status === 'progress').length;
   const ev = allPromises.filter(p => p.status === 'evaded').length;
@@ -848,10 +850,10 @@ function buildOverview() {
   const pct = t > 0 ? Math.round(acted / t * 100) : 0;
   setText('ov-pct', pct + '%');
 
-  setWidth('pb-fulfilled', f / t * 100);
-  setWidth('pb-progress', pr / t * 100);
-  setWidth('pb-evaded', ev / t * 100);
-  setWidth('pb-pending', pe / t * 100);
+  setWidth('pb-fulfilled', t > 0 ? f / t * 100 : 0);
+  setWidth('pb-progress',  t > 0 ? pr / t * 100 : 0);
+  setWidth('pb-evaded',    t > 0 ? ev / t * 100 : 0);
+  setWidth('pb-pending',   t > 0 ? pe / t * 100 : 100);
 
   buildDoughnut(f, pr, ev, pe);
   buildTimeline();
