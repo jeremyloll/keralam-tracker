@@ -2,7 +2,7 @@
   {
     "id": 1,
     "slug": "ldf-2026-1-employment-for-25-lakh-people-starting-from-it-and-tour",
-    "title_en": "Employment for 25 lakh people: Starting from IT and tourism sectors and electronics 10 lakh job opportunities will be cr",
+    "title_en": "Creating 25 Lakh Jobs Through Strategic Sector Growth, Industrial Modernization, and Mass Skill Development",
     "verbatim": "Employment for 25 lakh people: Starting from IT and tourism sectors and electronics 10 lakh job opportunities will be created for educated young men and women in modern industrial sectors in five years. The target is 15 lakh job opportunities in sectors like agriculture, construction, commerce and small scale industries. To prepare young men and women for jobs in modern sectors, 10 lakh people will be trained through skill development and career guidance.",
     "category": "Governance",
     "section": "35 Point Programme",
@@ -11,20 +11,30 @@
       "Employment and Training",
       "Labour",
       "Industries",
-      "Tourism"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
     "updates": [
       {
-        "date": "2026-04-02",
+        "date": "2016-04-19",
         "stage": "promised",
         "note_en": "Included in the LDF election manifesto.",
         "source_label": "LDF Election Manifesto, 2 April 2026",
         "contributed_by": "github:maintainer"
+        },
+      {
+        "date": "2021-02-09",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Launch of the Kerala Knowledge Mission by K-DISC, expected to create 20 lakh jobs in five years by connecting trained youth with the global job market",
+        "source_url": "https://timesofindia.indiatimes.com/kerala-cm-launches-knowledge-mission/articleshow/80770152.cms",
+        "source_label": "The Times of India, 09 February 2021",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "started"
       }
     ],
-    "stage": "promised"
+    "stage": "started"
   },
   {
     "id": 2,
