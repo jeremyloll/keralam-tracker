@@ -19,7 +19,7 @@
         "date": "2016-04-19",
         "stage": "promised",
         "note_en": "Included in the LDF election manifesto.",
-        "source_label": "LDF Election Manifesto, 2 April 2026",
+        "source_label": "LDF Election Manifesto, 19 April 2016",
         "contributed_by": "github:maintainer"
         },
       {
@@ -872,29 +872,38 @@
   {
     "id": 33,
     "slug": "ldf-2026-33-social-security-pension-all-pensions-to-be-rs-1000-from",
-    "title_en": "Social Security Pension: All pensions to be Rs 1000 from June 1 Will be increased. Pension will be provided to all eligi",
+    "title_en": "Raising Social Security Pensions to ₹1000, Ensuring Timely Monthly Delivery, and Providing Universal Health Insurance",
     "verbatim": "Social Security Pension: All pensions to be Rs 1000 from June 1 Will be increased. Pension will be provided to all eligible persons above the age of 60. It will be increased in a timely manner every year. Pension will be delivered to the home every month without any arrears. Complete health insurance will be made available to all.",
-    "category": "Governance",
+    "category": "Social Welfare",
     "section": "35 Point Programme",
     "section_type": "flagship",
     "departments": [
       "Health",
-      "Medical Education",
-      "Family Welfare",
-      "Science, Technology, and Environment"
+      "Family Welfare"
     ],
-    "status": "pending",
+    "status": "fulfilled",
     "timeline_promised": null,
     "updates": [
       {
-        "date": "2026-04-02",
+        "date": "2016-04-19",
         "stage": "promised",
         "note_en": "Included in the LDF election manifesto.",
-        "source_label": "LDF Election Manifesto, 2 April 2026",
+        "source_label": "LDF Election Manifesto, 19 April 2016",
         "contributed_by": "github:maintainer"
-      }
+      },
+    {
+        "date": "2016-07-20",
+        "prev_status": "pending",
+        "new_status": "fulfilled",
+        "note_en": "Enhancement of the minimum pension under the social security pension scheme to ₹1,000 per month with effect from June 2016, as announced in the 2016-17 revised budget. The universal health insurance was fulfilled in 2019 by launching KASP",
+        "source_url": "https://timesofindia.indiatimes.com/city/thiruvananthapuram/kerala-government-enhances-social-security-pension/articleshow/53297368.cms",
+        "source_label": "The Times of India, 20 July 2016",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "fulfilled"
+      }  
     ],
-    "stage": "promised"
+    "stage": "fulfilled"
   },
   {
     "id": 34,
