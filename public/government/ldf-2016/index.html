@@ -1057,16 +1057,21 @@ function buildPipelineHtml(p) {
 function buildEvidenceHtml(p) {
   const updates = p.updates || [];
 
-  /* Always prepend the origin entry */
+  /* Always prepend the origin entry — read from the first update with stage:'promised' if available */
+  const originUpdate = updates.find(u => u.stage === 'promised');
+  const originDate = originUpdate ? formatDate(originUpdate.date) : '2 April 2016';
+  const originNote = originUpdate?.note_en
+    ? esc(originUpdate.note_en)
+    : `Included in the LDF election manifesto${p.section ? ' under ' + esc(p.section) : ''}.`;
   const originEntry = `
   <div class="pc-ev-item">
     <div class="pc-ev-icon ev-pending">📋</div>
     <div class="pc-ev-content">
       <div class="pc-ev-header">
         <span class="status-badge badge-pending">Promised</span>
-        <span class="pc-ev-date">20 May 2026</span>
+        <span class="pc-ev-date">${originDate}</span>
       </div>
-      <div class="pc-ev-note">Included in the UDF election manifesto${p.section ? ' under ' + esc(p.section) : ''}.</div>
+      <div class="pc-ev-note">${originNote}</div>
     </div>
   </div>`;
 
