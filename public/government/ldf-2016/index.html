@@ -1101,7 +1101,7 @@ function buildEvidenceHtml(p) {
     pending:   {cls:'ev-pending',   sym:'○'}
   };
 
-  const updateRows = [...updates].reverse().map(u => {
+  const updateRows = [...updates].reverse().filter(u => u.stage !== 'promised').map(u => {
     const ic = iconMap[u.new_status] || {cls:'ev-pending', sym:'○'};
     return `
     <div class="pc-ev-item">
