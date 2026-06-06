@@ -676,16 +676,12 @@ function updateCountdown(){
 updateCountdown();
 setInterval(updateCountdown,1000);
 
-/* Load live promise stats for the active UDF 2026 card */
+/* Load promise stats for the active UDF 2026 card from metadata.json */
 async function loadUDFStats(){
   try{
-    const res=await fetch('/data/promises.json');
-    const promises=await res.json();
-    const t=promises.length;
-    const f=promises.filter(p=>p.status==='fulfilled').length;
-    const pr=promises.filter(p=>p.status==='progress').length;
-    const ev=promises.filter(p=>p.status==='evaded').length;
-    const pe=promises.filter(p=>p.status==='pending').length;
+    const res=await fetch('/data/udf-2026/metadata.json');
+    const meta=await res.json();
+    const {total:t,fulfilled:f,progress:pr,evaded:ev,pending:pe}=meta.stats;
     document.getElementById('udf26-total').textContent=t;
     document.getElementById('udf26-done').textContent=f;
     document.getElementById('udf26-prog').textContent=pr;
@@ -695,7 +691,7 @@ async function loadUDFStats(){
       document.getElementById('udf26-bar-p').style.width=Math.round(pr/t*100)+'%';
       document.getElementById('udf26-bar-n').style.width=Math.round((pe+ev)/t*100)+'%';
     }
-  }catch(e){}
+  }catch(e){console.error('loadUDFStats failed:',e);}
 }
 loadUDFStats();
 
