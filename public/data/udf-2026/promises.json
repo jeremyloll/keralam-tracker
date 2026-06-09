@@ -31,9 +31,20 @@
         "source_tier": 1,
         "contributed_by": "github:maintainer",
         "stage": "announced"
+      },
+      {
+        "date": "2026-05-18",
+        "prev_status": "progress",
+        "new_status": "progress",
+        "note_en": "Free travel for women in KSRTC buses will start in ordinary buses from 15th on a trial basis for 100 days.",
+        "source_url": "https://www.newindianexpress.com/states/kerala/2026/Jun/09/free-ksrtc-rides-for-women-from-june-15",
+        "source_label": "The New Indian Express, 09 May 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "approvals"
       }
     ],
-    "stage": "announced"
+    "stage": "approvals"
   },
   {
     "id": 2,
