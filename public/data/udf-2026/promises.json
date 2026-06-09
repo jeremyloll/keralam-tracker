@@ -2387,7 +2387,7 @@
     "departments": [
       "Health"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
     "updates": [
       {
@@ -2396,9 +2396,20 @@
         "note_en": "Included in the UDF election manifesto. (Under: Healthcare)",
         "source_label": "UDF Election Manifesto, 2 April 2026",
         "contributed_by": "github:maintainer"
+      },
+      {
+        "date": "2026-06-09",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Minister K Muralidharan inaugurated the state-level 'Kaayakalpam' public outreach program, to understand and resolve the challenges and crises faced by the health sector.",
+        "source_url": "https://www.prd.kerala.gov.in/index.php/ml/node/348296",
+        "source_label": "IPRD - Govt of Keralam, 09 June 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "started"
       }
     ],
-    "stage": "promised"
+    "stage": "started"
   },
   {
     "id": 95,
