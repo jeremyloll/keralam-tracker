@@ -895,6 +895,9 @@ function buildTimeline() {
   const updates = [];
   allPromises.forEach(p => {
     (p.updates || []).forEach(u => {
+      /* Skip origin (promised) entries — same date on all records, no signal */
+      const stg = u.stage || u.new_status;
+      if (stg === 'promised') return;
       updates.push({promise: p, update: u});
     });
   });
@@ -907,17 +910,21 @@ function buildTimeline() {
     list.innerHTML = '<li style="padding:1rem 0;font-size:13px;color:var(--ink-3)">No updates recorded yet.</li>';
     return;
   }
-  list.innerHTML = recent.map(({promise: p, update: u}) => `
+  list.innerHTML = recent.map(({promise: p, update: u}) => {
+    const stage = u.stage || u.new_status || 'pending';
+    const label = statusLabel(stage);
+    return `
     <li class="tl-item">
       <div class="tl-date">${formatDate(u.date)}</div>
       <div class="tl-content">
-        <span class="status-badge badge-${u.new_status}">${statusLabel(u.new_status)}</span>
+        <span class="status-badge badge-${esc(stage)}">${esc(label)}</span>
         ${p.section_type === 'flagship' ? '<span class="status-badge badge-flagship">Flagship</span>' : ''}
         <div class="tl-promise">${esc(p.title_en)}</div>
-        <div class="tl-note">${esc(u.note_en)}</div>
+        <div class="tl-note">${esc(u.note_en || '')}</div>
         ${u.source_url ? `<div class="tl-source"><a href="${u.source_url}" target="_blank" rel="noopener">${esc(u.source_label || u.source_url)}</a></div>` : ''}
       </div>
-    </li>`).join('');
+    </li>`;
+  }).join('');
 }
 
 /* ═══════════════════════════════════════════
