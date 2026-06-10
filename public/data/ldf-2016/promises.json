@@ -54,10 +54,10 @@
     "timeline_promised": null,
     "updates": [
       {
-        "date": "2026-04-02",
+        "date": "2016-04-19",
         "stage": "promised",
         "note_en": "Included in the LDF election manifesto.",
-        "source_label": "LDF Election Manifesto, 2 April 2026",
+        "source_label": "LDF Election Manifesto, 19 April 2016",
         "contributed_by": "github:maintainer"
       }
     ],
@@ -81,10 +81,10 @@
     "timeline_promised": null,
     "updates": [
       {
-        "date": "2026-04-02",
+        "date": "2016-04-19",
         "stage": "promised",
         "note_en": "Included in the LDF election manifesto.",
-        "source_label": "LDF Election Manifesto, 2 April 2026",
+        "source_label": "LDF Election Manifesto, 19 April 2016",
         "contributed_by": "github:maintainer"
       },
       {
@@ -148,7 +148,7 @@
   {
     "id": 4,
     "slug": "ldf-2026-4-the-number-of-foreign-tourists-will-be-doubled-the-numb",
-    "title_en": "The number of foreign tourists will be doubled: The number of foreign tourists coming to Kerala will be increased from 1",
+    "title_en": "Doubling Foreign Tourist Arrivals, Achieving a 25% Increase in Domestic Tourism, and Generating 4 Lakh Jobs",
     "verbatim": "The number of foreign tourists will be doubled: The number of foreign tourists coming to Kerala will be increased from 12 lakh to 24 lakh in five years. The number of domestic tourists will be increased by 25 percent. This will generate employment for 4 lakh people.",
     "category": "Governance",
     "section": "35 Point Programme",
@@ -159,18 +159,29 @@
       "Industries",
       "Tourism"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
     "updates": [
       {
-        "date": "2026-04-02",
+        "date": "2016-04-19",
         "stage": "promised",
         "note_en": "Included in the LDF election manifesto.",
-        "source_label": "LDF Election Manifesto, 2 April 2026",
+        "source_label": "LDF Election Manifesto, 19 April 2016",
         "contributed_by": "github:maintainer"
+      },
+      {
+        "date": "2020-03-31",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Achievement of a 48% growth in domestic tourists and a 69% increase in total tourism revenue in 2019 compared to 2015, with foreign tourist arrivals remaining under 12 lakhs",
+        "source_url": "https://www.keralatourism.org/tourismstatistics/tourist_statistics_2019_book20210306071249.pdf",
+        "source_label": "Kerala Tourism Statistics - Government of Kerala, 31 March 2020",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "started"
       }
     ],
-    "stage": "promised"
+    "stage": "started"
   },
   {
     "id": 5,
