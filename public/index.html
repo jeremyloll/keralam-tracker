@@ -16,8 +16,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  /* Kerala green palette */
-  --green-950:#020a05;
+  --green-950:#040f09;
   --green-900:#0a2e18;
   --green-800:#0f4c2a;
   --green-700:#1a6638;
@@ -28,7 +27,6 @@
   --green-200:#a8deba;
   --green-100:#d4f0de;
   --green-50:#edfaf3;
-  /* Gold palette */
   --gold-800:#7a520f;
   --gold-700:#9a6e1a;
   --gold-500:#c8922a;
@@ -36,50 +34,28 @@
   --gold-200:#f0d090;
   --gold-100:#fdf3e3;
   --gold-50:#fffbf2;
-  /* Red palette */
   --red-800:#6b1515;
   --red-700:#8b1f1f;
   --red-500:#c0392b;
   --red-100:#fdf0f0;
-  /* Blue palette */
   --blue-800:#0d2f4f;
   --blue-700:#133d61;
   --blue-600:#1a4e7a;
   --blue-500:#2368a2;
-  --blue-400:#4a8ec4;
   --blue-200:#9fc4e8;
   --blue-100:#e8f0fb;
   --blue-50:#f0f5ff;
   --saffron:#ff9933;
   --navy:#000080;
-
-  /* ── LIGHT IVORY THEME SURFACES ── */
-  --page-bg:#FFFFF0;
-  --surface-1:rgba(0,0,0,0.04);
-  --surface-2:rgba(0,0,0,0.06);
-  --surface-3:rgba(0,0,0,0.09);
-  --card-bg:rgba(255,255,248,0.88);
-  --card-bg-hover:rgba(255,255,240,0.98);
-
-  /* Text */
-  --text-primary:rgba(20,28,40,0.92);
-  --text-secondary:rgba(20,28,40,0.58);
-  --text-muted:rgba(20,28,40,0.40);
-  --text-faint:rgba(20,28,40,0.25);
-
-  /* Borders */
-  --border:rgba(0,0,0,0.10);
-  --border-light:rgba(0,0,0,0.06);
-  --border-accent:rgba(35,104,162,0.22);
-
-  /* Legacy aliases so existing HTML refs still work */
-  --ink:var(--text-primary);
-  --ink-2:var(--text-secondary);
-  --ink-3:var(--text-secondary);
-  --ink-4:var(--text-muted);
-  --surface:var(--surface-1);
-  --white:#FFFFF0;
-
+  --ink:#1a1a1a;
+  --ink-2:#3a3a3a;
+  --ink-3:#666;
+  --ink-4:#999;
+  --border:#e0ddd5;
+  --border-light:#eceae4;
+  --surface:#f5f3ee;
+  --surface-2:#faf9f6;
+  --white:#ffffff;
   --font-display:'Fraunces',Georgia,serif;
   --font-body:'DM Sans',sans-serif;
   --font-ml:'Noto Serif Malayalam',serif;
@@ -91,25 +67,18 @@
   --side-pad:clamp(1rem,4vw,3rem);
 }
 
-html{scroll-behavior:smooth;background:var(--page-bg)}
-body{
-  font-family:var(--font-body);
-  background:var(--page-bg);
-  color:var(--text-primary);
-  font-size:15px;line-height:1.65;min-height:100vh;
-}
+html{scroll-behavior:smooth;background:var(--surface)}
+body{font-family:var(--font-body);background:transparent;color:var(--ink);font-size:15px;line-height:1.65;min-height:100vh}
 
 /* ── LIVE TICKER ── */
 .ticker-bar{
-  background:rgba(255,255,240,0.97);
-  backdrop-filter:blur(12px);
-  color:rgba(20,28,40,0.85);
+  background:var(--ink);
+  color:rgba(255,255,255,0.9);
   font-size:11.5px;letter-spacing:0.06em;
   padding:7px var(--side-pad);
   display:flex;align-items:center;gap:1rem;
   position:sticky;top:0;z-index:200;
-  border-bottom:1px solid rgba(35,104,162,0.14);
-  box-shadow:0 1px 8px rgba(0,0,0,0.06);
+  border-bottom:1px solid rgba(255,255,255,0.06);
 }
 .ticker-live{
   background:#e63946;color:white;
@@ -117,45 +86,58 @@ body{
   padding:2px 8px;border-radius:3px;flex-shrink:0;
   animation:pulse-live 2s infinite;
 }
-@keyframes pulse-live{0%,100%{opacity:1}50%{opacity:0.55}}
+@keyframes pulse-live{0%,100%{opacity:1}50%{opacity:0.6}}
 .ticker-text{flex:1;display:flex;gap:1.5rem;flex-wrap:wrap;overflow:hidden}
-.ticker-sep{color:rgba(20,28,40,0.22);margin:0 0.1rem}
+.ticker-sep{color:rgba(255,255,255,0.2);margin:0 0.1rem}
 .ticker-right{display:flex;align-items:center;gap:1rem;flex-shrink:0}
 .ticker-countdown{
   font-family:var(--font-display);font-size:12.5px;
-  color:var(--green-700);letter-spacing:0.02em;
+  color:var(--green-400);letter-spacing:0.02em;
   font-variant-numeric:tabular-nums;
 }
 .ticker-lang{
-  background:rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.14);
-  color:rgba(20,28,40,0.65);font-size:11px;
+  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);
+  color:rgba(255,255,255,0.75);font-size:11px;
   padding:3px 11px;border-radius:20px;cursor:pointer;
   font-family:var(--font-body);transition:background 0.15s;
 }
-.ticker-lang:hover{background:rgba(0,0,0,0.11)}
+.ticker-lang:hover{background:rgba(255,255,255,0.16)}
 
 /* ── MASTHEAD ── */
 .masthead{
   position:relative;overflow:hidden;
-  min-height:52vh;max-height:640px;
+  min-height:52vh;
+  max-height:640px;
   display:flex;flex-direction:column;justify-content:flex-start;
   padding:0;
 }
-.masthead-bg{position:absolute;inset:0;z-index:0}
+.masthead-bg{
+  position:absolute;inset:0;z-index:0;
+}
 .masthead-bg img{
   position:absolute;inset:0;
   width:100%;height:100%;
-  object-fit:cover;object-position:center 55%;
+  object-fit:cover;
+  object-position:center 55%;
   display:block;
 }
+/* Scrim: stronger at top-left for text legibility, fades toward right/bottom */
 .masthead-bg::after{
   content:'';position:absolute;inset:0;
   background:
-    linear-gradient(to bottom,rgba(255,255,240,0.75) 0%,rgba(255,255,240,0.45) 50%,rgba(255,255,240,0.28) 100%),
-    linear-gradient(to right,rgba(255,255,240,0.6) 0%,rgba(255,255,240,0.0) 60%);
+    linear-gradient(to bottom,
+      rgba(4,15,9,0.72) 0%,
+      rgba(4,15,9,0.45) 50%,
+      rgba(4,15,9,0.25) 100%
+    ),
+    linear-gradient(to right,
+      rgba(4,15,9,0.5) 0%,
+      rgba(4,15,9,0.0) 60%
+    );
 }
 .masthead-inner{
-  max-width:var(--max-w);margin:0 auto;width:100%;
+  max-width:var(--max-w);margin:0 auto;
+  width:100%;
   display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;
   position:relative;z-index:1;
   padding:2.2rem var(--side-pad) 2rem;
@@ -164,24 +146,24 @@ body{
 .masthead-center{}
 .masthead-supertitle{
   font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
-  color:rgba(20,28,40,0.52);margin-bottom:0.5rem;
+  color:rgba(255,255,255,0.5);margin-bottom:0.5rem;
 }
 .masthead-title{
   font-family:var(--font-display);
   font-size:clamp(30px,5vw,52px);font-weight:500;line-height:1.08;
-  letter-spacing:-0.02em;color:var(--green-900);margin-bottom:0.2rem;
-  text-shadow:0 1px 12px rgba(255,255,240,0.6);
+  letter-spacing:-0.02em;color:white;margin-bottom:0.2rem;
+  text-shadow:0 2px 20px rgba(0,0,0,0.4);
 }
 .masthead-title-ml{
   font-family:var(--font-ml);
   font-size:clamp(15px,2vw,20px);
-  color:rgba(20,28,40,0.40);
+  color:rgba(255,255,255,0.45);
   margin-bottom:1.5rem;font-weight:400;
 }
 .masthead-desc{
-  font-size:14px;color:rgba(20,28,40,0.65);
+  font-size:14px;color:rgba(255,255,255,0.65);
   max-width:520px;line-height:1.7;
-  border-left:2px solid rgba(35,104,162,0.45);
+  border-left:2px solid rgba(61,184,106,0.5);
   padding-left:1rem;
 }
 .masthead-art{display:none}
@@ -196,48 +178,57 @@ body{
 }
 .section-label-text{
   font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
-  color:var(--text-muted);font-weight:500;white-space:nowrap;
+  color:var(--ink-3);font-weight:500;
 }
 .section-label::after{content:'';flex:1;height:1px;background:var(--border)}
 .section-heading{
   font-family:var(--font-display);
   font-size:clamp(22px,3vw,32px);font-weight:500;
-  color:var(--text-primary);letter-spacing:-0.01em;margin-bottom:0.5rem;
+  color:var(--ink);letter-spacing:-0.01em;margin-bottom:0.5rem;
 }
-.section-sub{font-size:14px;color:var(--text-secondary);max-width:540px}
+.section-sub{font-size:14px;color:var(--ink-3);max-width:540px}
 
-/* ── GOVERNMENTS SECTION ── */
+/* ── GOVERNMENTS CAROUSEL SECTION ── */
 .govts-section{
   padding:0 var(--side-pad) 1rem;
   position:relative;
 }
 
-/* Dark kerala map wash behind cards */
+/* kerala_bw.png fixed behind all govt sections */
 .govts-bg{
-  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
 }
 .govts-bg img{
   width:100%;height:100%;
-  object-fit:cover;object-position:center;
-  opacity:0.04;filter:grayscale(1);
-}
-.govts-bg::after{
-  content:'';position:absolute;inset:0;
-  background:var(--page-bg);opacity:0.75;
+  object-fit:cover;
+  object-position:center;
+  opacity:0.13;
+  filter:grayscale(1);
 }
 
-/* Front group label */
+/* Tinted overlay — subtle warm wash, NOT opaque white */
+.govts-bg::after{
+  content:'';
+  position:absolute;inset:0;
+  background:var(--surface);
+  opacity:0.55;
+}
+
+/* Front group (Kerala/NDA) divider */
 .front-group{max-width:var(--max-w);margin:0 auto;padding:2rem 0 0}
 .front-group-label{
   display:inline-flex;align-items:center;gap:8px;
   font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
-  color:var(--text-muted);font-weight:500;margin-bottom:1rem;
+  color:var(--ink-3);font-weight:500;margin-bottom:1rem;
 }
 .front-group-label::before{
   content:'';width:12px;height:1px;background:var(--border);
 }
 
-/* Carousel grid */
+/* Carousel scroll container */
 .carousel-track{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
@@ -245,178 +236,132 @@ body{
   padding:0 0 2.5rem;
 }
 
-/* ── GOVT CARD — IVORY LIGHT ── */
+/* ── GOVT CARD ── */
 .govt-card{
-  background:var(--card-bg);
+  background:var(--white);
   border:1px solid var(--border);
   border-radius:var(--radius-lg);
   overflow:hidden;
   cursor:pointer;
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-  transition:border-color 0.35s cubic-bezier(0.34,1.56,0.64,1),
-             box-shadow 0.35s cubic-bezier(0.34,1.56,0.64,1),
-             transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
-             background 0.2s ease;
+  transition:border-color 0.18s,box-shadow 0.18s,transform 0.18s;
   display:flex;flex-direction:column;
   text-decoration:none;
   position:relative;
-  box-shadow:0 2px 8px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
 }
 .govt-card:hover{
-  background:var(--card-bg-hover);
   border-color:var(--card-accent,var(--green-500));
-  box-shadow:0 12px 36px rgba(0,0,0,0.13), 0 0 0 1px var(--card-accent,var(--green-500)), 0 2px 8px rgba(0,0,0,0.08);
-  transform:translateY(-5px) scale(1.012);
+  box-shadow:0 4px 24px rgba(0,0,0,0.08);
+  transform:translateY(-2px);
 }
 
-/* Accent glow sweep on hover */
-.govt-card::before{
-  content:'';
-  position:absolute;inset:0;
-  background:radial-gradient(ellipse at 50% 0%,var(--card-glow,rgba(42,153,86,0.10)) 0%,transparent 65%);
-  opacity:0;
-  transition:opacity 0.4s ease;
-  pointer-events:none;
-  z-index:0;
-}
-.govt-card:hover::before{opacity:1}
-
-/* Coalition accents */
-.govt-card.udf{
-  --card-accent:#4a8ec4;
-  --card-top:#0d2f4f;
-  --card-glow:rgba(35,104,162,0.22);
-}
-.govt-card.ldf{
-  --card-accent:#e05555;
-  --card-top:#3a0e0e;
-  --card-glow:rgba(192,57,43,0.18);
-}
-.govt-card.nda{
-  --card-accent:#e8a020;
-  --card-top:#3d2000;
-  --card-glow:rgba(232,160,32,0.18);
-}
+/* Color accents per coalition */
+.govt-card.udf{--card-accent:var(--green-500);--card-top:var(--green-900)}
+.govt-card.ldf{--card-accent:#c0392b;--card-top:#6b1515}
+.govt-card.nda{--card-accent:var(--saffron);--card-top:#7a3000}
 
 .card-top-bar{
-  height:3px;
+  height:4px;
   background:linear-gradient(90deg,var(--card-top),var(--card-accent));
-  position:relative;z-index:1;
 }
 
 .card-body{
   display:flex;align-items:flex-start;gap:1rem;
   padding:1.2rem 1.2rem 1rem;
-  position:relative;z-index:1;
 }
-
-/* Portrait ring matches coalition accent */
 .card-portrait{
-  width:68px;height:68px;border-radius:50%;
+  width:70px;height:70px;border-radius:50%;
   object-fit:cover;object-position:top;
   flex-shrink:0;
-  border:2px solid var(--card-accent,rgba(0,0,0,0.15));
-  background:var(--surface-2);
-  box-shadow:0 0 0 3px rgba(0,0,0,0.04);
+  border:2px solid var(--border);
+  background:var(--surface);
 }
 .card-portrait-placeholder{
-  width:68px;height:68px;border-radius:50%;
-  background:var(--surface-2);
+  width:70px;height:70px;border-radius:50%;
+  background:var(--surface);
   border:2px solid var(--border);
   display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;font-size:24px;color:var(--text-muted);
+  flex-shrink:0;
+  font-size:24px;
+  color:var(--ink-4);
 }
-.card-info{flex:1;min-width:0;position:relative;z-index:1}
+.card-info{flex:1;min-width:0}
 .card-coalition{
   font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
-  font-weight:600;color:var(--card-accent,var(--text-muted));
-  margin-bottom:3px;opacity:0.9;
+  font-weight:600;
+  color:var(--card-accent,var(--ink-3));
+  margin-bottom:3px;
 }
 .card-leader-name{
   font-family:var(--font-display);
   font-size:18px;font-weight:500;line-height:1.1;
-  color:var(--text-primary);margin-bottom:4px;
+  color:var(--ink);margin-bottom:4px;
 }
-.card-role{font-size:12px;color:var(--text-secondary);margin-bottom:8px}
+.card-role{font-size:12px;color:var(--ink-3);margin-bottom:8px}
 .card-term{
   display:inline-flex;align-items:center;gap:5px;
-  font-size:11px;color:var(--text-secondary);
-  background:rgba(0,0,0,0.05);
-  border:1px solid rgba(0,0,0,0.10);
+  font-size:11px;color:var(--ink-2);
+  background:var(--surface);border:1px solid var(--border);
   border-radius:20px;padding:3px 10px;
 }
 .card-term .dot{
   width:6px;height:6px;border-radius:50%;
-  background:var(--card-accent,var(--text-muted));
+  background:var(--card-accent,var(--ink-4));
   flex-shrink:0;
 }
 
-/* Stats row — light tinted */
 .card-stats{
   border-top:1px solid var(--border-light);
   padding:0.85rem 1.2rem;
   display:grid;grid-template-columns:repeat(4,1fr);
   gap:6px;
-  background:rgba(0,0,0,0.03);
-  position:relative;z-index:1;
+  background:var(--surface-2);
 }
 .cs-item{text-align:center}
 .cs-n{
   font-family:var(--font-display);
-  font-size:18px;font-weight:500;
+  font-size:17px;font-weight:500;
   line-height:1;display:block;margin-bottom:2px;
-  color:var(--text-primary);
 }
 .cs-l{
   font-size:9px;text-transform:uppercase;letter-spacing:0.07em;
-  color:var(--text-muted);
+  color:var(--ink-4);
 }
 .cs-item.done .cs-n{color:var(--green-700)}
 .cs-item.prog .cs-n{color:var(--gold-700)}
-.cs-item.evad .cs-n{color:#b83030}
-.cs-item.pend .cs-n{color:rgba(20,28,40,0.35)}
+.cs-item.evad .cs-n{color:var(--red-700)}
+.cs-item.pend .cs-n{color:var(--ink-4)}
 
-/* Progress bar */
 .card-prog-bar{
-  height:3px;
-  background:rgba(0,0,0,0.07);
+  height:3px;background:var(--border);
   display:flex;overflow:hidden;
   border-radius:0 0 var(--radius-lg) var(--radius-lg);
-  position:relative;z-index:1;
 }
 .cpb-seg{height:100%}
-.cpb-done{background:var(--green-600);}
-.cpb-prog{background:var(--gold-500);}
-.cpb-evad{background:#b83030;}
-.cpb-pend{background:rgba(0,0,0,0.10)}
+.cpb-done{background:var(--green-500)}
+.cpb-prog{background:var(--gold-500)}
+.cpb-evad{background:var(--red-700)}
+.cpb-pend{background:#ddd}
 
-/* ── BADGES ── */
-/* "IN POWER" badge */
+/* "ACTIVE" badge on running governments */
 .card-active-badge{
   position:absolute;top:12px;right:12px;
-  background:rgba(26,102,56,0.12);
-  color:var(--green-700);
-  border:1px solid rgba(26,102,56,0.28);
-  font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;
-  padding:3px 10px;border-radius:20px;font-weight:600;
-  animation:pulse-live 2.5s infinite;
-  box-shadow:0 0 10px rgba(26,102,56,0.12);
-  z-index:2;
+  background:var(--green-50);color:var(--green-700);
+  border:1px solid var(--green-200);
+  font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;
+  padding:2px 8px;border-radius:20px;font-weight:600;
+  animation:pulse-live 2s infinite;
 }
 
 /* Central govt badge */
 .card-central-badge{
   position:absolute;top:12px;right:12px;
   font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase;
-  padding:3px 10px;border-radius:20px;font-weight:600;
-  background:rgba(35,104,162,0.10);
-  color:var(--blue-600);
-  border:1px solid rgba(35,104,162,0.22);
-  z-index:2;
+  padding:2px 8px;border-radius:20px;font-weight:600;
+  background:var(--blue-50);color:var(--blue-700);
+  border:1px solid var(--blue-100);
 }
 
-/* ── DIVIDER ── */
+/* ── PAGE DIVIDER ── */
 .divider{
   max-width:var(--max-w);margin:0 auto var(--side-pad);
   padding:0 var(--side-pad);
@@ -425,9 +370,9 @@ body{
 
 /* ── ABOUT STRIP ── */
 .about-strip{
-  background:rgba(240,240,220,0.7);
-  border-top:1px solid rgba(35,104,162,0.10);
-  padding:2rem var(--side-pad);margin-top:1rem;
+  background:var(--green-900);
+  padding:2rem var(--side-pad);
+  margin-top:1rem;
 }
 .about-strip-inner{
   max-width:var(--max-w);margin:0 auto;
@@ -436,57 +381,38 @@ body{
 .about-col{flex:1;min-width:220px}
 .about-col-head{
   font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
-  color:rgba(20,28,40,0.38);margin-bottom:0.6rem;
+  color:rgba(255,255,255,0.35);margin-bottom:0.6rem;
 }
-.about-col p{font-size:13px;color:rgba(20,28,40,0.60);line-height:1.7}
-.about-col a{color:var(--green-700);text-decoration:none}
+.about-col p{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.7}
+.about-col a{color:var(--green-400);text-decoration:none}
 .about-col a:hover{text-decoration:underline}
 
 /* ── CONTRIBUTE BAR ── */
-.contribute{
-  background:rgba(232,238,220,0.8);
-  border-top:1px solid rgba(0,0,0,0.07);
-  padding:1.25rem var(--side-pad);
-}
+.contribute{background:var(--green-800);padding:1.25rem var(--side-pad)}
 .contribute-inner{
   max-width:var(--max-w);margin:0 auto;
   display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;
 }
-.contribute p{font-size:13px;color:rgba(20,28,40,0.60);flex:1;line-height:1.55}
+.contribute p{font-size:13px;color:rgba(255,255,255,0.65);flex:1;line-height:1.55}
 .contribute a{
   font-size:13px;padding:8px 18px;
-  border:1px solid rgba(35,104,162,0.28);
-  border-radius:7px;color:var(--blue-600);text-decoration:none;
-  white-space:nowrap;transition:background 0.12s,border-color 0.12s;
+  border:1px solid rgba(255,255,255,0.25);
+  border-radius:7px;color:white;text-decoration:none;
+  white-space:nowrap;transition:background 0.12s;
 }
-.contribute a:hover{background:rgba(35,104,162,0.08);border-color:rgba(35,104,162,0.45)}
+.contribute a:hover{background:rgba(255,255,255,0.1)}
 
 /* ── FOOTER ── */
 footer{
   text-align:center;padding:1.5rem;
-  font-size:11.5px;color:var(--text-muted);
+  font-size:11.5px;color:var(--ink-3);
   border-top:1px solid var(--border);line-height:2.2;
-  background:rgba(230,230,210,0.6);
+  background:var(--white);
 }
 footer a{color:var(--green-700);text-decoration:none}
 footer a:hover{text-decoration:underline}
 
 .scroll-hint{display:none!important}
-
-/* ── CARD ENTRANCE ANIMATION ── */
-@keyframes card-pop-in{
-  0%{opacity:0;transform:translateY(18px) scale(0.97)}
-  60%{opacity:1;transform:translateY(-4px) scale(1.008)}
-  80%{transform:translateY(2px) scale(0.999)}
-  100%{opacity:1;transform:translateY(0) scale(1)}
-}
-.carousel-track .govt-card{
-  animation:card-pop-in 0.52s cubic-bezier(0.34,1.56,0.64,1) both;
-}
-.carousel-track .govt-card:nth-child(1){animation-delay:0.05s}
-.carousel-track .govt-card:nth-child(2){animation-delay:0.13s}
-.carousel-track .govt-card:nth-child(3){animation-delay:0.21s}
-.carousel-track .govt-card:nth-child(4){animation-delay:0.29s}
 
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
@@ -757,7 +683,7 @@ footer a:hover{text-decoration:underline}
     </div>
     <div class="about-col">
       <div class="about-col-head">How we classify</div>
-      <p><strong style="color:rgba(20,28,40,0.85)">Fulfilled</strong> — implemented. <strong style="color:rgba(20,28,40,0.85)">In Progress / Partial</strong> — work begun. <strong style="color:rgba(20,28,40,0.85)">Evaded</strong> — denied or reversed. <strong style="color:rgba(20,28,40,0.85)">Pending</strong> — no action. See <a href="/methodology.html">methodology →</a></p>
+      <p><strong style="color:rgba(255,255,255,0.8)">Fulfilled</strong> — implemented. <strong style="color:rgba(255,255,255,0.8)">In Progress / Partial</strong> — work begun. <strong style="color:rgba(255,255,255,0.8)">Evaded</strong> — denied or reversed. <strong style="color:rgba(255,255,255,0.8)">Pending</strong> — no action. See <a href="/methodology.html">methodology →</a></p>
     </div>
     <div class="about-col">
       <div class="about-col-head">Contribute</div>
