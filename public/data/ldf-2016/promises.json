@@ -66,7 +66,7 @@
   {
     "id": 3,
     "slug": "ldf-2026-3-one-crore-additional-square-feet-of-it-parks-the-area-o",
-    "title_en": "One crore additional square feet of IT parks: The area of ​​IT parks in Kerala will be increased from 1.3 crore square f",
+    "title_en": "Expanding IT Infrastructure by One Crore Square Feet to Generate 2.5 Lakh Direct Jobs",
     "verbatim": "One crore additional square feet of IT parks: The area of ​​IT parks in Kerala will be increased from 1.3 crore square feet to 2.3 crore square feet. This will provide direct employment to 2.5 lakh people.",
     "category": "Governance",
     "section": "35 Point Programme",
@@ -86,9 +86,64 @@
         "note_en": "Included in the LDF election manifesto.",
         "source_label": "LDF Election Manifesto, 2 April 2026",
         "contributed_by": "github:maintainer"
+      },
+      {
+        "date": "2018-10-12",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Launch of a ₹1,500-crore project to construct the 57-lakh-sq-ft Taurus Downtown Trivandrum, featuring Embassy Taurus TechZone IT space, Taurus Zentrum retail space, and hospitality blocks. The project is still under construction",
+        "source_url": "https://economictimes.indiatimes.com/tech/ites/kerala-to-increase-it-park-space-to-2-3-crore-square-feet/articleshow/66185098.cms?from=mdr",
+        "source_label": "Economic Times, 12 October 2018",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "started"
+      },
+      {
+        "date": "2018-11-10",
+        "prev_status": "progress",
+        "new_status": "progress",
+        "note_en": "Inauguration of the premium 15-lakh-sq-ft Cyber Tower-2 at Infopark by Lulu Group",
+        "source_url": "https://www.newindianexpress.com/cities/kochi/2018/Nov/09/lulu-group-aims-for-five-million-sq-ft-it-space-by-2021-1895668.html",
+        "source_label": "The New Indian Express, 09 November 2018",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "started"
+      },
+      {
+        "date": "2019-08-14",
+        "prev_status": "progress",
+        "new_status": "progress",
+        "note_en": "Creation of 50 lakh sq ft of new IT office space, including the expansion of Kochi's Integrated Startup Complex to 3.80 lakh sq ft by 2020",
+        "source_url": "https://lsgkerala.gov.in/system/files/2020-02/Progress-Report-Kerala%20Government.pdf",
+        "source_label": "Progress Report, 14 August 2019",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "started"
+      },
+      {
+        "date": "2021-03-31",
+        "prev_status": "progress",
+        "new_status": "progress",
+        "note_en": "Completion of major IT infrastructure projects including TCS SEZ-B, Technocity's Kabani building, Infosys SDB 4, M2, and Embassy Taurus, adding over 14.4 lakh sq ft of office space between 2016 and 2020",
+        "source_url": "https://technopark.in/storage/documents/23.pdf",
+        "source_label": "Project Report - Technopark, 31 March 2021",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "started"
+      },
+      {
+        "date": "2021-12-18",
+        "prev_status": "progress",
+        "new_status": "progress",
+        "note_en": "Statement by Kerala IT Parks CEO John M. Thomas highlighting that the state's IT parks have achieved a combined built-up space of 20 million sq ft as of December 2021",
+        "source_url": "https://www.newindianexpress.com/states/kerala/2021/Dec/17/by-2026-it-space-in-kerala-to-hit-3-crore-sq-ft-2396690.html",
+        "source_label": "The New Indian Express, 18 December 2021",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "started"
       }
     ],
-    "stage": "promised"
+    "stage": "started"
   },
   {
     "id": 4,
