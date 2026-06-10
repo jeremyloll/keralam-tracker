@@ -54,12 +54,12 @@
   --navy:#000080;
 
   /* ── DARK THEME SURFACES ── */
-  --page-bg:#070d09;
+  --page-bg:#080b12;
   --surface-1:rgba(255,255,255,0.04);
   --surface-2:rgba(255,255,255,0.06);
   --surface-3:rgba(255,255,255,0.09);
-  --card-bg:rgba(14,26,18,0.75);
-  --card-bg-hover:rgba(20,38,26,0.9);
+  --card-bg:rgba(12,18,32,0.75);
+  --card-bg-hover:rgba(16,26,46,0.9);
 
   /* Text */
   --text-primary:rgba(255,255,255,0.92);
@@ -70,7 +70,7 @@
   /* Borders */
   --border:rgba(255,255,255,0.09);
   --border-light:rgba(255,255,255,0.06);
-  --border-accent:rgba(61,184,106,0.25);
+  --border-accent:rgba(74,142,196,0.25);
 
   /* Legacy aliases so existing HTML refs still work */
   --ink:var(--text-primary);
@@ -101,14 +101,14 @@ body{
 
 /* ── LIVE TICKER ── */
 .ticker-bar{
-  background:rgba(4,12,7,0.95);
+  background:rgba(4,6,16,0.95);
   backdrop-filter:blur(12px);
   color:rgba(255,255,255,0.85);
   font-size:11.5px;letter-spacing:0.06em;
   padding:7px var(--side-pad);
   display:flex;align-items:center;gap:1rem;
   position:sticky;top:0;z-index:200;
-  border-bottom:1px solid rgba(61,184,106,0.12);
+  border-bottom:1px solid rgba(74,142,196,0.12);
 }
 .ticker-live{
   background:#e63946;color:white;
@@ -150,8 +150,8 @@ body{
 .masthead-bg::after{
   content:'';position:absolute;inset:0;
   background:
-    linear-gradient(to bottom,rgba(4,15,9,0.82) 0%,rgba(4,15,9,0.55) 50%,rgba(4,15,9,0.35) 100%),
-    linear-gradient(to right,rgba(4,15,9,0.6) 0%,rgba(4,15,9,0.0) 60%);
+    linear-gradient(to bottom,rgba(4,8,18,0.82) 0%,rgba(4,8,18,0.55) 50%,rgba(4,8,18,0.35) 100%),
+    linear-gradient(to right,rgba(4,8,18,0.6) 0%,rgba(4,8,18,0.0) 60%);
 }
 .masthead-inner{
   max-width:var(--max-w);margin:0 auto;width:100%;
@@ -180,7 +180,7 @@ body{
 .masthead-desc{
   font-size:14px;color:rgba(255,255,255,0.6);
   max-width:520px;line-height:1.7;
-  border-left:2px solid rgba(61,184,106,0.45);
+  border-left:2px solid rgba(74,142,196,0.5);
   padding-left:1rem;
 }
 .masthead-art{display:none}
@@ -279,9 +279,9 @@ body{
 
 /* Coalition accents */
 .govt-card.udf{
-  --card-accent:#3db86a;
-  --card-top:#0a2e18;
-  --card-glow:rgba(42,153,86,0.18);
+  --card-accent:#4a8ec4;
+  --card-top:#0d2f4f;
+  --card-glow:rgba(35,104,162,0.22);
 }
 .govt-card.ldf{
   --card-accent:#e05555;
@@ -420,8 +420,8 @@ body{
 
 /* ── ABOUT STRIP ── */
 .about-strip{
-  background:rgba(10,26,16,0.9);
-  border-top:1px solid rgba(61,184,106,0.12);
+  background:rgba(10,14,28,0.9);
+  border-top:1px solid rgba(74,142,196,0.1);
   padding:2rem var(--side-pad);margin-top:1rem;
 }
 .about-strip-inner{
@@ -439,7 +439,7 @@ body{
 
 /* ── CONTRIBUTE BAR ── */
 .contribute{
-  background:rgba(15,40,24,0.95);
+  background:rgba(8,12,24,0.95);
   border-top:1px solid rgba(255,255,255,0.06);
   padding:1.25rem var(--side-pad);
 }
@@ -450,18 +450,18 @@ body{
 .contribute p{font-size:13px;color:rgba(255,255,255,0.55);flex:1;line-height:1.55}
 .contribute a{
   font-size:13px;padding:8px 18px;
-  border:1px solid rgba(61,184,106,0.3);
-  border-radius:7px;color:var(--green-400);text-decoration:none;
+  border:1px solid rgba(74,142,196,0.3);
+  border-radius:7px;color:var(--blue-400);text-decoration:none;
   white-space:nowrap;transition:background 0.12s,border-color 0.12s;
 }
-.contribute a:hover{background:rgba(61,184,106,0.08);border-color:rgba(61,184,106,0.5)}
+.contribute a:hover{background:rgba(74,142,196,0.08);border-color:rgba(74,142,196,0.5)}
 
 /* ── FOOTER ── */
 footer{
   text-align:center;padding:1.5rem;
   font-size:11.5px;color:var(--text-muted);
   border-top:1px solid var(--border);line-height:2.2;
-  background:rgba(4,8,5,0.95);
+  background:rgba(4,6,14,0.98);
 }
 footer a{color:var(--green-400);text-decoration:none}
 footer a:hover{text-decoration:underline}
