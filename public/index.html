@@ -442,12 +442,13 @@ footer a:hover{text-decoration:underline}
 
 /* Background: Kerala map + assembly silhouette SVG */
 .glass-bg-art{
-  position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden;
+  position:absolute;inset:0;pointer-events:none;z-index:2;overflow:hidden;
 }
 .glass-bg-art svg{
-  position:absolute;right:-10px;bottom:0;
-  width:75%;height:auto;
-  opacity:0.045;
+  position:absolute;right:-8px;bottom:0;
+  width:70%;height:auto;
+  opacity:0.07;
+  color:#1a4e7a;
 }
 
 /* Hero gradient banner */
@@ -731,33 +732,43 @@ footer a:hover{text-decoration:underline}
         <div class="glass-bg-art" aria-hidden="true">
           <!-- Kerala state outline + Niyamasabha dome silhouette -->
           <svg viewBox="0 0 340 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Kerala map simplified outline -->
-            <path d="M200 20 C215 18 228 22 238 30 C250 40 255 55 258 70 C262 88 260 105 255 120
-                     C250 138 242 154 240 170 C237 188 240 205 238 222 C235 240 228 256 224 272
-                     C220 288 218 305 215 320 C211 340 205 358 198 374 C192 388 184 400 178 410
-                     C172 420 168 425 165 428
-                     C162 425 158 420 152 410 C146 400 138 388 132 374
-                     C125 358 119 340 115 320 C112 305 110 288 106 272
-                     C102 256 95 240 92 222 C90 205 93 188 90 170
-                     C88 154 80 138 75 120 C70 105 68 88 72 70
-                     C75 55 80 40 92 30 C102 22 115 18 130 20
-                     C145 17 160 15 170 15 C180 15 185 17 200 20Z"
-              fill="currentColor" opacity="1"/>
-            <!-- Legislative Assembly dome silhouette -->
-            <g transform="translate(100, 240)">
-              <rect x="30" y="60" width="80" height="50" rx="2" fill="currentColor"/>
-              <rect x="10" y="55" width="120" height="10" rx="2" fill="currentColor"/>
-              <ellipse cx="70" cy="55" rx="45" ry="35" fill="currentColor"/>
-              <ellipse cx="70" cy="20" rx="20" ry="15" fill="currentColor"/>
-              <rect x="65" y="5" width="10" height="20" rx="3" fill="currentColor"/>
-              <rect x="5" y="65" width="15" height="45" rx="1" fill="currentColor"/>
-              <rect x="120" y="65" width="15" height="45" rx="1" fill="currentColor"/>
-              <rect x="25" y="75" width="10" height="35" fill="currentColor"/>
-              <rect x="45" y="75" width="10" height="35" fill="currentColor"/>
-              <rect x="85" y="75" width="10" height="35" fill="currentColor"/>
-              <rect x="105" y="75" width="10" height="35" fill="currentColor"/>
-            </g>
-          </svg>
+          <!-- Kerala state outline + Niyamasabha dome silhouette -->
+        <svg viewBox="0 0 220 380" fill="#1a4e7a" xmlns="http://www.w3.org/2000/svg">
+          <!-- Kerala map simplified outline — tall narrow state -->
+          <path d="M130 8 C142 7 154 11 163 20 C173 30 177 44 180 58
+                   C183 74 182 90 178 106 C174 122 167 136 164 152
+                   C161 168 163 184 161 200 C158 217 152 232 149 248
+                   C145 264 143 280 140 296 C136 314 131 332 125 348
+                   C120 360 114 370 108 378
+                   C102 370 96 360 91 348 C85 332 80 314 76 296
+                   C73 280 71 264 67 248 C64 232 58 217 55 200
+                   C53 184 55 168 52 152 C49 136 42 122 38 106
+                   C34 90 33 74 36 58 C39 44 43 30 53 20
+                   C62 11 74 7 86 8 C98 5 108 4 108 4 C108 4 118 5 130 8Z"/>
+          <!-- Kerala Legislative Assembly (Niyamasabha) dome silhouette -->
+          <g transform="translate(55, 275)">
+            <!-- Base building -->
+            <rect x="8" y="52" width="90" height="46" rx="2"/>
+            <!-- Plinth / platform -->
+            <rect x="0" y="47" width="106" height="8" rx="1.5"/>
+            <!-- Main dome body -->
+            <ellipse cx="53" cy="44" rx="40" ry="30"/>
+            <!-- Drum under dome -->
+            <rect x="28" y="38" width="50" height="12" rx="1"/>
+            <!-- Upper dome -->
+            <ellipse cx="53" cy="14" rx="18" ry="13"/>
+            <!-- Flagpole -->
+            <rect x="50" y="0" width="6" height="18" rx="2"/>
+            <!-- Side wings -->
+            <rect x="0" y="58" width="12" height="40" rx="1"/>
+            <rect x="94" y="58" width="12" height="40" rx="1"/>
+            <!-- Window columns -->
+            <rect x="18" y="62" width="8" height="28" rx="1"/>
+            <rect x="32" y="62" width="8" height="28" rx="1"/>
+            <rect x="62" y="62" width="8" height="28" rx="1"/>
+            <rect x="76" y="62" width="8" height="28" rx="1"/>
+          </g>
+        </svg>
         </div>
 
         <!-- Hero gradient banner -->
@@ -790,9 +801,21 @@ footer a:hover{text-decoration:underline}
 
             <!-- Text block -->
             <div class="glass-hero-text">
-                <div class="glass-name">VD Satheesan</div>
-                <div class="glass-role">Chief Minister · Kerala</div>
+              <div class="glass-party-row">
+                <!-- UDF hand logo outline -->
+                <div class="glass-party-logo">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 2 v7 M6 4 v6 M4 5.5 v5 M10 4 v6 M12 5.5 v5"/>
+                    <path d="M4 10.5 Q8 14 12 10.5"/>
+                  </svg>
+                </div>
+                <span class="glass-party-name">UDF — United Democratic Front</span>
               </div>
+              <div class="glass-name">VD Satheesan</div>
+              <div class="glass-role">Chief Minister · Kerala</div>
+            </div>
+          </div>
+        </div><!-- /glass-hero -->
 
         <!-- Stats: animated circular indicators -->
         <div class="glass-stats" id="ks-udf26">
