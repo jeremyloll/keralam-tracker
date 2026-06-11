@@ -236,63 +236,60 @@ body{font-family:var(--font-body);background:transparent;color:var(--ink);font-s
   padding:0 0 2.5rem;
 }
 
-/* ── GOVT CARD — BASE ── */
+/* ── GOVT CARD ── */
 .govt-card{
   background:var(--white);
   border:1px solid var(--border);
   border-radius:var(--radius-lg);
   overflow:hidden;
   cursor:pointer;
-  transition:box-shadow 0.22s,transform 0.22s;
+  transition:border-color 0.18s,box-shadow 0.18s,transform 0.18s;
   display:flex;flex-direction:column;
   text-decoration:none;
   position:relative;
-  animation:card-enter 0.35s ease both;
-}
-@keyframes card-enter{
-  from{opacity:0;transform:translateY(14px)}
-  to{opacity:1;transform:translateY(0)}
 }
 .govt-card:hover{
-  box-shadow:0 8px 32px rgba(0,0,0,0.11);
-  transform:translateY(-3px);
+  border-color:var(--card-accent,var(--green-500));
+  box-shadow:0 4px 24px rgba(0,0,0,0.08);
+  transform:translateY(-2px);
 }
 
 /* Color accents per coalition */
-.govt-card.udf{--card-accent:var(--green-500);--card-top:var(--green-900);--card-ring:42,153,86;--card-glow:rgba(42,153,86,0.18)}
-.govt-card.ldf{--card-accent:#c0392b;--card-top:#6b1515;--card-ring:192,57,43;--card-glow:rgba(192,57,43,0.15)}
-.govt-card.nda{--card-accent:var(--saffron);--card-top:#7a3000;--card-ring:255,153,51;--card-glow:rgba(255,153,51,0.15)}
+.govt-card.udf{--card-accent:var(--green-500);--card-top:var(--green-900)}
+.govt-card.ldf{--card-accent:#c0392b;--card-top:#6b1515}
+.govt-card.nda{--card-accent:var(--saffron);--card-top:#7a3000}
 
 .card-top-bar{
-  height:3px;
+  height:4px;
   background:linear-gradient(90deg,var(--card-top),var(--card-accent));
 }
 
-/* ── BASE card body (historical cards) ── */
 .card-body{
   display:flex;align-items:flex-start;gap:1rem;
   padding:1.2rem 1.2rem 1rem;
 }
 .card-portrait{
-  width:72px;height:72px;border-radius:50%;
+  width:70px;height:70px;border-radius:50%;
   object-fit:cover;object-position:top;
   flex-shrink:0;
   border:2px solid var(--border);
   background:var(--surface);
-  transition:transform 0.4s ease;
 }
-.govt-card:hover .card-portrait{transform:scale(1.04)}
 .card-portrait-placeholder{
-  width:72px;height:72px;border-radius:50%;
+  width:70px;height:70px;border-radius:50%;
   background:var(--surface);
   border:2px solid var(--border);
   display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;font-size:24px;color:var(--ink-4);
+  flex-shrink:0;
+  font-size:24px;
+  color:var(--ink-4);
 }
 .card-info{flex:1;min-width:0}
 .card-coalition{
-  font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;
-  font-weight:600;color:var(--card-accent,var(--ink-3));margin-bottom:3px;
+  font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  font-weight:600;
+  color:var(--card-accent,var(--ink-3));
+  margin-bottom:3px;
 }
 .card-leader-name{
   font-family:var(--font-display);
@@ -308,21 +305,27 @@ body{font-family:var(--font-body);background:transparent;color:var(--ink);font-s
 }
 .card-term .dot{
   width:6px;height:6px;border-radius:50%;
-  background:var(--card-accent,var(--ink-4));flex-shrink:0;
+  background:var(--card-accent,var(--ink-4));
+  flex-shrink:0;
 }
 
 .card-stats{
   border-top:1px solid var(--border-light);
   padding:0.85rem 1.2rem;
   display:grid;grid-template-columns:repeat(4,1fr);
-  gap:6px;background:var(--surface-2);
+  gap:6px;
+  background:var(--surface-2);
 }
 .cs-item{text-align:center}
 .cs-n{
-  font-family:var(--font-display);font-size:17px;font-weight:500;
+  font-family:var(--font-display);
+  font-size:17px;font-weight:500;
   line-height:1;display:block;margin-bottom:2px;
 }
-.cs-l{font-size:9px;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink-4)}
+.cs-l{
+  font-size:9px;text-transform:uppercase;letter-spacing:0.07em;
+  color:var(--ink-4);
+}
 .cs-item.done .cs-n{color:var(--green-700)}
 .cs-item.prog .cs-n{color:var(--gold-700)}
 .cs-item.evad .cs-n{color:var(--red-700)}
@@ -339,13 +342,14 @@ body{font-family:var(--font-body);background:transparent;color:var(--ink);font-s
 .cpb-evad{background:var(--red-700)}
 .cpb-pend{background:#ddd}
 
-/* "ACTIVE" badge — historical style */
+/* "ACTIVE" badge on running governments */
 .card-active-badge{
   position:absolute;top:12px;right:12px;
   background:var(--green-50);color:var(--green-700);
   border:1px solid var(--green-200);
   font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;
   padding:2px 8px;border-radius:20px;font-weight:600;
+  animation:pulse-live 2s infinite;
 }
 
 /* Central govt badge */
@@ -353,188 +357,9 @@ body{font-family:var(--font-body);background:transparent;color:var(--ink);font-s
   position:absolute;top:12px;right:12px;
   font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase;
   padding:2px 8px;border-radius:20px;font-weight:600;
-  background:var(--blue-50);color:var(--blue-700);border:1px solid var(--blue-100);
+  background:var(--blue-50);color:var(--blue-700);
+  border:1px solid var(--blue-100);
 }
-
-/* ════════════════════════════════════════
-   PREMIUM "IN POWER" CARD
-   ════════════════════════════════════════ */
-.govt-card.is-active{
-  border:none;
-  background:linear-gradient(160deg, #fff 0%, #f8fdf9 100%);
-  box-shadow:0 2px 20px rgba(0,0,0,0.06), 0 0 0 1.5px rgba(var(--card-ring),0.25);
-}
-.govt-card.is-active:hover{
-  box-shadow:0 12px 40px rgba(var(--card-ring),0.18), 0 0 0 1.5px rgba(var(--card-ring),0.35);
-  transform:translateY(-4px);
-}
-
-/* Hero banner with gradient + Kerala map silhouette */
-.premium-hero{
-  position:relative;overflow:hidden;
-  padding:1.3rem 1.2rem 1.1rem;
-  background:linear-gradient(135deg, var(--card-top) 0%, var(--card-accent) 100%);
-  min-height:110px;display:flex;align-items:flex-start;gap:1rem;
-}
-.premium-hero-map{
-  position:absolute;right:-10px;top:-10px;
-  width:130px;height:130px;
-  opacity:0.08;
-  pointer-events:none;
-}
-.premium-portrait-wrap{
-  position:relative;flex-shrink:0;
-  animation:portrait-scale-in 0.5s ease both 0.1s;
-}
-@keyframes portrait-scale-in{
-  from{transform:scale(0.88);opacity:0}
-  to{transform:scale(1);opacity:1}
-}
-.premium-portrait{
-  width:86px;height:86px;border-radius:50%;
-  object-fit:cover;object-position:top;
-  border:2.5px solid rgba(255,255,255,0.55);
-  background:rgba(255,255,255,0.2);
-  display:block;
-}
-.premium-portrait-placeholder{
-  width:86px;height:86px;border-radius:50%;
-  background:rgba(255,255,255,0.15);
-  border:2.5px solid rgba(255,255,255,0.4);
-  display:flex;align-items:center;justify-content:center;
-  font-size:28px;
-}
-.premium-verify{
-  position:absolute;bottom:2px;right:2px;
-  width:20px;height:20px;border-radius:50%;
-  background:var(--card-accent);
-  border:2px solid white;
-  display:flex;align-items:center;justify-content:center;
-  font-size:10px;line-height:1;color:white;
-}
-.premium-info{flex:1;min-width:0;padding-top:2px;
-  animation:name-fade-up 0.4s ease both 0.18s;
-}
-@keyframes name-fade-up{
-  from{opacity:0;transform:translateY(6px)}
-  to{opacity:1;transform:translateY(0)}
-}
-.premium-coalition-row{
-  display:flex;align-items:center;gap:6px;margin-bottom:5px;
-}
-.premium-flag{font-size:14px;line-height:1}
-.premium-coalition-name{
-  font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
-  font-weight:700;color:rgba(255,255,255,0.75);
-}
-.premium-leader{
-  font-family:var(--font-display);
-  font-size:20px;font-weight:600;line-height:1.05;
-  color:white;margin-bottom:3px;
-  text-shadow:0 1px 6px rgba(0,0,0,0.25);
-}
-.premium-role{font-size:11.5px;color:rgba(255,255,255,0.7);margin-bottom:6px;display:flex;align-items:center;gap:5px}
-.premium-location-dot{font-size:12px}
-/* IN POWER pill */
-.premium-power-pill{
-  display:inline-flex;align-items:center;gap:5px;
-  background:rgba(255,255,255,0.18);
-  border:1px solid rgba(255,255,255,0.35);
-  border-radius:20px;padding:3px 10px;
-  font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
-  color:white;
-  animation:badge-slide-in 0.4s ease both 0.28s;
-  backdrop-filter:blur(4px);
-}
-.premium-power-pill::before{
-  content:'';width:6px;height:6px;border-radius:50%;
-  background:#7defa0;
-  box-shadow:0 0 6px #7defa0;
-  animation:pulse-live 2s infinite;
-}
-@keyframes badge-slide-in{
-  from{opacity:0;transform:translateX(8px)}
-  to{opacity:1;transform:translateX(0)}
-}
-
-/* ── Donut stats grid ── */
-.premium-stats{
-  padding:1rem 1.1rem 0.8rem;
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:8px;
-  background:white;
-}
-.pstat{
-  display:flex;flex-direction:column;align-items:center;gap:4px;
-  padding:6px 0;
-}
-.pstat-donut{position:relative;width:44px;height:44px;flex-shrink:0}
-.pstat-donut svg{width:44px;height:44px;transform:rotate(-90deg)}
-.pstat-donut-bg{fill:none;stroke:var(--border);stroke-width:3.5}
-.pstat-donut-fill{
-  fill:none;stroke-width:3.5;stroke-linecap:round;
-  stroke-dasharray:0 113;
-  transition:stroke-dasharray 1s ease 0.4s;
-}
-.pstat-icon{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  font-size:15px;
-}
-.pstat-val{
-  font-family:var(--font-display);font-size:16px;font-weight:600;
-  line-height:1;color:var(--ink);
-}
-.pstat-lbl{font-size:8.5px;text-transform:uppercase;letter-spacing:0.07em;color:var(--ink-4);text-align:center}
-/* per-stat accent colors */
-.pstat.total .pstat-donut-fill{stroke:rgba(var(--card-ring),0.45)}
-.pstat.total .pstat-val{color:var(--ink)}
-.pstat.done .pstat-donut-fill{stroke:var(--green-500)}
-.pstat.done .pstat-val{color:var(--green-700)}
-.pstat.prog .pstat-donut-fill{stroke:var(--gold-500)}
-.pstat.prog .pstat-val{color:var(--gold-700)}
-.pstat.evad .pstat-donut-fill{stroke:var(--red-500)}
-.pstat.evad .pstat-val{color:var(--red-700)}
-
-/* ── Timeline ── */
-.premium-timeline{
-  padding:0 1.1rem 1rem;background:white;
-}
-.ptl-label{
-  font-size:9px;text-transform:uppercase;letter-spacing:0.13em;
-  color:var(--ink-4);font-weight:600;margin-bottom:7px;
-  display:flex;align-items:center;gap:6px;
-}
-.ptl-label::before{content:'📅';font-size:10px}
-.ptl-track{position:relative;height:4px;background:var(--border);border-radius:4px;margin-bottom:5px}
-.ptl-fill{
-  height:100%;border-radius:4px;
-  background:linear-gradient(90deg, var(--card-top), var(--card-accent));
-  width:0%;transition:width 1.2s ease 0.6s;
-}
-.ptl-knob{
-  position:absolute;top:50%;transform:translate(-50%,-50%);
-  width:10px;height:10px;border-radius:50%;
-  background:var(--card-accent);border:2px solid white;
-  box-shadow:0 0 0 2px var(--card-accent);
-  left:0%;transition:left 1.2s ease 0.6s;
-}
-.ptl-today{
-  position:absolute;top:14px;transform:translateX(-50%);
-  font-size:8.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
-  color:var(--card-accent);white-space:nowrap;
-}
-.ptl-ends{
-  display:flex;justify-content:space-between;
-  font-size:9.5px;color:var(--ink-4);margin-top:16px;
-}
-
-/* Bottom bar (keep the thin progress bar) */
-.premium-bar{
-  height:3px;background:var(--border);display:flex;overflow:hidden;
-}
-
-/* count-up animation flag */
-.pstat-val[data-target]{}
 
 /* ── PAGE DIVIDER ── */
 .divider{
@@ -589,7 +414,249 @@ footer a:hover{text-decoration:underline}
 
 .scroll-hint{display:none!important}
 
+/* ══════════════════════════════════════════
+   GLASS + MOTION DASHBOARD CARD  (active gov)
+   ══════════════════════════════════════════ */
+
+/* Kerala + Niyamasabha SVG silhouettes for card background */
+.govt-card.active-glass{
+  position:relative;
+  background:#fff;
+  border:none;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 2px 12px rgba(0,40,100,0.07), 0 1px 3px rgba(0,0,0,0.04);
+  transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+  cursor:pointer;
+  animation: card-entry 0.4s cubic-bezier(0.22,1,0.36,1) both;
+}
+.govt-card.active-glass:hover{
+  transform:translateY(-5px) scale(1.01);
+  box-shadow:0 12px 36px rgba(0,40,100,0.13), 0 3px 8px rgba(0,0,0,0.06);
+}
+
+@keyframes card-entry{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* Background: Kerala map + assembly silhouette SVG */
+.glass-bg-art{
+  position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden;
+}
+.glass-bg-art svg{
+  position:absolute;right:-10px;bottom:0;
+  width:75%;height:auto;
+  opacity:0.045;
+}
+
+/* Hero gradient banner */
+.glass-hero{
+  position:relative;z-index:1;
+  background:linear-gradient(135deg, #0d2f4f 0%, #1a4e7a 45%, #2368a2 100%);
+  padding:18px 18px 22px;
+  overflow:hidden;
+}
+.glass-hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 70% 30%, rgba(99,163,255,0.18) 0%, transparent 65%);
+}
+
+/* Portrait */
+.glass-portrait-wrap{
+  position:relative;display:inline-block;
+  animation:portrait-scalein 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.1s both;
+}
+@keyframes portrait-scalein{
+  from{transform:scale(0.88);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+.glass-portrait{
+  width:88px;height:88px;border-radius:50%;
+  object-fit:cover;object-position:top center;
+  border:2.5px solid rgba(255,255,255,0.35);
+  display:block;
+  background:rgba(255,255,255,0.1);
+}
+.glass-portrait-placeholder{
+  width:88px;height:88px;border-radius:50%;
+  background:rgba(255,255,255,0.08);
+  border:2.5px solid rgba(255,255,255,0.25);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,0.4);
+}
+.glass-portrait-placeholder svg{width:36px;height:36px}
+
+/* Verification checkmark overlay */
+.glass-verify{
+  position:absolute;bottom:2px;right:2px;
+  width:22px;height:22px;border-radius:50%;
+  background:#2368a2;
+  border:2px solid #fff;
+  display:flex;align-items:center;justify-content:center;
+}
+.glass-verify svg{width:11px;height:11px;color:#fff}
+
+/* IN POWER pill */
+.glass-inpower{
+  position:absolute;top:14px;right:14px;
+  background:rgba(255,255,255,0.14);
+  border:1px solid rgba(255,255,255,0.3);
+  backdrop-filter:blur(6px);
+  color:#fff;
+  font-size:9.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+  padding:4px 10px;border-radius:20px;
+  display:flex;align-items:center;gap:5px;
+  animation:badge-slidein 0.4s cubic-bezier(0.22,1,0.36,1) 0.2s both;
+  box-shadow:0 0 10px rgba(99,163,255,0.3);
+}
+.glass-inpower-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:#4adf82;
+  box-shadow:0 0 6px rgba(74,223,130,0.8);
+  animation:pulse-live 2s infinite;
+}
+@keyframes badge-slidein{
+  from{opacity:0;transform:translateX(8px)}
+  to{opacity:1;transform:translateX(0)}
+}
+
+/* Party row */
+.glass-party-row{
+  display:flex;align-items:center;gap:6px;
+  margin-bottom:2px;
+}
+.glass-party-logo{
+  width:18px;height:18px;border-radius:3px;overflow:hidden;
+  background:rgba(255,255,255,0.15);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.glass-party-logo svg{width:14px;height:14px}
+.glass-party-name{
+  font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(255,255,255,0.65);font-weight:600;
+}
+
+/* Name + role */
+.glass-name{
+  font-family:var(--font-display);
+  font-size:20px;font-weight:500;line-height:1.1;
+  color:#fff;
+  animation:name-fadein 0.45s ease 0.15s both;
+}
+@keyframes name-fadein{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.glass-role{font-size:11.5px;color:rgba(255,255,255,0.6);margin-top:2px}
+
+/* Hero content layout */
+.glass-hero-content{
+  display:flex;gap:14px;align-items:flex-start;
+  position:relative;z-index:1;
+}
+.glass-hero-text{flex:1;padding-top:4px}
+
+/* ── STATS SECTION ── */
+.glass-stats{
+  position:relative;z-index:1;
+  background:#fff;
+  padding:16px 16px 14px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+
+/* Circular progress indicator */
+.glass-stat{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+}
+.glass-ring-wrap{position:relative;width:52px;height:52px;flex-shrink:0}
+.glass-ring-svg{width:52px;height:52px;transform:rotate(-90deg)}
+.glass-ring-track{fill:none;stroke:#f0f4f8;stroke-width:3.5}
+.glass-ring-fill{
+  fill:none;stroke-width:3.5;stroke-linecap:round;
+  stroke-dasharray:131;stroke-dashoffset:131;
+  transition:stroke-dashoffset 1s cubic-bezier(0.22,1,0.36,1);
+}
+.glass-ring-fill.total{stroke:#2368a2}
+.glass-ring-fill.fulfilled{stroke:#16a34a}
+.glass-ring-fill.progress{stroke:#d97706}
+.glass-ring-fill.evaded{stroke:#dc2626}
+
+.glass-ring-center{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.glass-ring-icon{width:16px;height:16px;color:var(--stat-color,#2368a2)}
+
+.glass-stat-num{
+  font-family:var(--font-display);
+  font-size:19px;font-weight:600;line-height:1;
+  color:var(--stat-color,var(--ink));
+  font-variant-numeric:tabular-nums;
+}
+.glass-stat-label{
+  font-size:9px;text-transform:uppercase;letter-spacing:0.08em;
+  color:var(--ink-4);text-align:center;line-height:1.3;
+}
+
+/* Total stat: bigger ring */
+.glass-stat.total-stat .glass-ring-wrap{width:56px;height:56px}
+.glass-stat.total-stat .glass-ring-svg{width:56px;height:56px}
+.glass-stat.total-stat .glass-ring-wrap{--stat-color:#2368a2}
+.glass-stat.total-stat .glass-stat-num{font-size:20px;color:#2368a2}
+
+.glass-stat.fulfilled-stat{--stat-color:#16a34a}
+.glass-stat.fulfilled-stat .glass-stat-num{color:#16a34a}
+.glass-stat.progress-stat{--stat-color:#d97706}
+.glass-stat.progress-stat .glass-stat-num{color:#d97706}
+.glass-stat.evaded-stat{--stat-color:#dc2626}
+.glass-stat.evaded-stat .glass-stat-num{color:#dc2626}
+
+/* ── TIMELINE ── */
+.glass-timeline{
+  position:relative;z-index:1;
+  padding:0 16px 16px;
+  background:#fff;
+  border-top:1px solid #f0f4f8;
+}
+.glass-tl-labels{
+  display:flex;justify-content:space-between;
+  font-size:10px;color:var(--ink-3);
+  letter-spacing:0.04em;margin-bottom:6px;padding-top:12px;
+}
+.glass-tl-track{
+  position:relative;height:4px;
+  background:#e9eef5;border-radius:99px;overflow:hidden;
+}
+.glass-tl-fill{
+  position:absolute;left:0;top:0;bottom:0;
+  background:linear-gradient(90deg,#1a4e7a,#2368a2);
+  border-radius:99px;width:0%;
+  transition:width 1s cubic-bezier(0.22,1,0.36,1) 0.3s;
+}
+.glass-tl-marker{
+  position:absolute;top:50%;transform:translate(-50%,-50%);
+  width:12px;height:12px;border-radius:50%;
+  background:#2368a2;
+  border:2px solid #fff;
+  box-shadow:0 0 0 2px #2368a2;
+  transition:left 1s cubic-bezier(0.22,1,0.36,1) 0.3s;
+}
+.glass-tl-today{
+  text-align:center;margin-top:5px;
+  font-size:9.5px;color:#2368a2;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+}
+
+/* Keep the prog bar at bottom hidden for active-glass — we use timeline instead */
+.govt-card.active-glass .card-prog-bar{ display:none }
+
 /* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .masthead-inner{flex-direction:column;align-items:flex-start}
+  .scroll-hint{display:none}
+  .carousel-track{grid-template-columns:1fr}
+}
 @media(max-width:900px){
   .masthead-inner{flex-direction:column;align-items:flex-start}
   .scroll-hint{display:none}
@@ -657,92 +724,174 @@ footer a:hover{text-decoration:underline}
     <div class="front-group-label">United Democratic Front (UDF) · Congress-led</div>
     <div class="carousel-track">
 
-      <a class="govt-card udf is-active" href="/government/udf-2026/" aria-label="UDF Government 2026–2031 — In Power">
+      <!-- UDF 2026 — Glass + Motion Dashboard Card -->
+      <a class="govt-card active-glass udf" href="/government/udf-2026/" aria-label="UDF Government 2026–2031" id="udf26-card">
 
-        <!-- Hero banner -->
-        <div class="premium-hero">
-          <!-- Kerala map silhouette watermark -->
-          <svg class="premium-hero-map" viewBox="0 0 120 200" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M60,5 C75,8 90,18 95,30 C100,42 98,55 94,65 C105,68 110,78 108,88 C106,98 98,104 90,108 C94,118 92,130 86,138 C80,146 72,150 68,160 C64,170 62,182 60,195 C58,182 56,170 52,160 C48,150 40,146 34,138 C28,130 26,118 30,108 C22,104 14,98 12,88 C10,78 15,68 26,65 C22,55 20,42 25,30 C30,18 45,8 60,5 Z"/>
+        <!-- Kerala map + Assembly silhouette as background art -->
+        <div class="glass-bg-art" aria-hidden="true">
+          <!-- Kerala state outline + Niyamasabha dome silhouette -->
+          <svg viewBox="0 0 340 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Kerala map simplified outline -->
+            <path d="M200 20 C215 18 228 22 238 30 C250 40 255 55 258 70 C262 88 260 105 255 120
+                     C250 138 242 154 240 170 C237 188 240 205 238 222 C235 240 228 256 224 272
+                     C220 288 218 305 215 320 C211 340 205 358 198 374 C192 388 184 400 178 410
+                     C172 420 168 425 165 428
+                     C162 425 158 420 152 410 C146 400 138 388 132 374
+                     C125 358 119 340 115 320 C112 305 110 288 106 272
+                     C102 256 95 240 92 222 C90 205 93 188 90 170
+                     C88 154 80 138 75 120 C70 105 68 88 72 70
+                     C75 55 80 40 92 30 C102 22 115 18 130 20
+                     C145 17 160 15 170 15 C180 15 185 17 200 20Z"
+              fill="currentColor" opacity="1"/>
+            <!-- Legislative Assembly dome silhouette -->
+            <g transform="translate(100, 240)">
+              <rect x="30" y="60" width="80" height="50" rx="2" fill="currentColor"/>
+              <rect x="10" y="55" width="120" height="10" rx="2" fill="currentColor"/>
+              <ellipse cx="70" cy="55" rx="45" ry="35" fill="currentColor"/>
+              <ellipse cx="70" cy="20" rx="20" ry="15" fill="currentColor"/>
+              <rect x="65" y="5" width="10" height="20" rx="3" fill="currentColor"/>
+              <rect x="5" y="65" width="15" height="45" rx="1" fill="currentColor"/>
+              <rect x="120" y="65" width="15" height="45" rx="1" fill="currentColor"/>
+              <rect x="25" y="75" width="10" height="35" fill="currentColor"/>
+              <rect x="45" y="75" width="10" height="35" fill="currentColor"/>
+              <rect x="85" y="75" width="10" height="35" fill="currentColor"/>
+              <rect x="105" y="75" width="10" height="35" fill="currentColor"/>
+            </g>
           </svg>
-          <!-- Portrait -->
-          <div class="premium-portrait-wrap">
-            <img class="premium-portrait" src="/assets/portraits/vd-satheesan.jpg" alt="VD Satheesan"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-            <div class="premium-portrait-placeholder" style="display:none">👤</div>
-            <div class="premium-verify">✓</div>
-          </div>
-          <!-- Info -->
-          <div class="premium-info">
-            <div class="premium-coalition-row">
-              <span class="premium-flag">🇮🇳</span>
-              <span class="premium-coalition-name">UDF — United Democratic Front</span>
-            </div>
-            <div class="premium-leader">VD Satheesan</div>
-            <div class="premium-role">
-              <span class="premium-location-dot">📍</span> Chief Minister · Kerala
-            </div>
-            <div class="premium-power-pill">In Power</div>
-          </div>
         </div>
 
-        <!-- Donut stat grid -->
-        <div class="premium-stats" id="ks-udf26">
+        <!-- Hero gradient banner -->
+        <div class="glass-hero">
 
-          <div class="pstat total">
-            <div class="pstat-donut">
-              <svg viewBox="0 0 44 44"><circle class="pstat-donut-bg" cx="22" cy="22" r="18"/><circle class="pstat-donut-fill" id="udf26-ring-total" cx="22" cy="22" r="18"/></svg>
-              <div class="pstat-icon">📋</div>
-            </div>
-            <div class="pstat-val" id="udf26-total" data-target="0">—</div>
-            <div class="pstat-lbl">Total</div>
+          <!-- IN POWER pill -->
+          <div class="glass-inpower">
+            <span class="glass-inpower-dot"></span>
+            In Power
           </div>
 
-          <div class="pstat done">
-            <div class="pstat-donut">
-              <svg viewBox="0 0 44 44"><circle class="pstat-donut-bg" cx="22" cy="22" r="18"/><circle class="pstat-donut-fill" id="udf26-ring-done" cx="22" cy="22" r="18"/></svg>
-              <div class="pstat-icon">✅</div>
+          <div class="glass-hero-content">
+            <!-- Portrait -->
+            <div class="glass-portrait-wrap">
+              <img class="glass-portrait" src="/assets/portraits/vd-satheesan.jpg" alt="VD Satheesan"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="glass-portrait-placeholder" style="display:none">
+                <!-- Person outline clipart -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="12" cy="8" r="4"/>
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                </svg>
+              </div>
+              <div class="glass-verify" title="Verified">
+                <svg viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="2,6 5,9 10,3"/>
+                </svg>
+              </div>
             </div>
-            <div class="pstat-val" id="udf26-done" data-target="0">—</div>
-            <div class="pstat-lbl">Fulfilled</div>
+
+            <!-- Text block -->
+            <div class="glass-hero-text">
+              <div class="glass-party-row">
+                <!-- UDF hand logo outline -->
+                <div class="glass-party-logo">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 2 v7 M6 4 v6 M4 5.5 v5 M10 4 v6 M12 5.5 v5"/>
+                    <path d="M4 10.5 Q8 14 12 10.5"/>
+                  </svg>
+                </div>
+                <span class="glass-party-name">UDF — United Democratic Front</span>
+              </div>
+              <div class="glass-name">VD Satheesan</div>
+              <div class="glass-role">Chief Minister · Kerala</div>
+            </div>
+          </div>
+        </div><!-- /glass-hero -->
+
+        <!-- Stats: animated circular indicators -->
+        <div class="glass-stats" id="ks-udf26">
+
+          <div class="glass-stat total-stat">
+            <div class="glass-ring-wrap">
+              <svg class="glass-ring-svg" viewBox="0 0 52 52">
+                <circle class="glass-ring-track" cx="26" cy="26" r="20.9"/>
+                <circle class="glass-ring-fill total" cx="26" cy="26" r="20.9" id="ring-total"/>
+              </svg>
+              <div class="glass-ring-center">
+                <svg class="glass-ring-icon" style="color:#2368a2" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="2" y="3" width="12" height="11" rx="1.5"/>
+                  <path d="M5 3V2M11 3V2M2 7h12"/>
+                </svg>
+              </div>
+            </div>
+            <span class="glass-stat-num" id="udf26-total" data-target="0">—</span>
+            <span class="glass-stat-label">Total</span>
           </div>
 
-          <div class="pstat prog">
-            <div class="pstat-donut">
-              <svg viewBox="0 0 44 44"><circle class="pstat-donut-bg" cx="22" cy="22" r="18"/><circle class="pstat-donut-fill" id="udf26-ring-prog" cx="22" cy="22" r="18"/></svg>
-              <div class="pstat-icon">↗</div>
+          <div class="glass-stat fulfilled-stat">
+            <div class="glass-ring-wrap">
+              <svg class="glass-ring-svg" viewBox="0 0 52 52">
+                <circle class="glass-ring-track" cx="26" cy="26" r="20.9"/>
+                <circle class="glass-ring-fill fulfilled" cx="26" cy="26" r="20.9" id="ring-fulfilled"/>
+              </svg>
+              <div class="glass-ring-center">
+                <svg class="glass-ring-icon" style="color:#16a34a" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <polyline points="3,8 6.5,11.5 13,4.5"/>
+                </svg>
+              </div>
             </div>
-            <div class="pstat-val" id="udf26-prog" data-target="0">—</div>
-            <div class="pstat-lbl">In Progress</div>
+            <span class="glass-stat-num" id="udf26-done" data-target="0">—</span>
+            <span class="glass-stat-label">Fulfilled</span>
           </div>
 
-          <div class="pstat evad">
-            <div class="pstat-donut">
-              <svg viewBox="0 0 44 44"><circle class="pstat-donut-bg" cx="22" cy="22" r="18"/><circle class="pstat-donut-fill" id="udf26-ring-evad" cx="22" cy="22" r="18"/></svg>
-              <div class="pstat-icon">✗</div>
+          <div class="glass-stat progress-stat">
+            <div class="glass-ring-wrap">
+              <svg class="glass-ring-svg" viewBox="0 0 52 52">
+                <circle class="glass-ring-track" cx="26" cy="26" r="20.9"/>
+                <circle class="glass-ring-fill progress" cx="26" cy="26" r="20.9" id="ring-progress"/>
+              </svg>
+              <div class="glass-ring-center">
+                <svg class="glass-ring-icon" style="color:#d97706" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <line x1="3" y1="13" x2="8" y2="3"/>
+                  <line x1="8" y1="3" x2="13" y2="8"/>
+                </svg>
+              </div>
             </div>
-            <div class="pstat-val" id="udf26-pend" data-target="0">—</div>
-            <div class="pstat-lbl">Evaded</div>
+            <span class="glass-stat-num" id="udf26-prog" data-target="0">—</span>
+            <span class="glass-stat-label">In Progress</span>
           </div>
 
+          <div class="glass-stat evaded-stat">
+            <div class="glass-ring-wrap">
+              <svg class="glass-ring-svg" viewBox="0 0 52 52">
+                <circle class="glass-ring-track" cx="26" cy="26" r="20.9"/>
+                <circle class="glass-ring-fill evaded" cx="26" cy="26" r="20.9" id="ring-evaded"/>
+              </svg>
+              <div class="glass-ring-center">
+                <svg class="glass-ring-icon" style="color:#dc2626" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <line x1="4" y1="4" x2="12" y2="12"/><line x1="12" y1="4" x2="4" y2="12"/>
+                </svg>
+              </div>
+            </div>
+            <span class="glass-stat-num" id="udf26-pend" data-target="0">—</span>
+            <span class="glass-stat-label">Evaded</span>
+          </div>
+
+        </div><!-- /glass-stats -->
+
+        <!-- Timeline -->
+        <div class="glass-timeline">
+          <div class="glass-tl-labels">
+            <span>18 May 2026</span>
+            <span>18 May 2031</span>
+          </div>
+          <div class="glass-tl-track">
+            <div class="glass-tl-fill" id="udf26-tl-fill"></div>
+            <div class="glass-tl-marker" id="udf26-tl-marker"></div>
+          </div>
+          <div class="glass-tl-today">Today · <span id="udf26-tl-label"></span></div>
         </div>
 
-        <!-- Term timeline -->
-        <div class="premium-timeline">
-          <div class="ptl-label">Term Duration</div>
-          <div class="ptl-track">
-            <div class="ptl-fill" id="udf26-tl-fill"></div>
-            <div class="ptl-knob" id="udf26-tl-knob"></div>
-            <div class="ptl-today" id="udf26-tl-today">Today</div>
-          </div>
-          <div class="ptl-ends">
-            <span>May 2026</span>
-            <span>May 2031</span>
-          </div>
-        </div>
-
-        <!-- thin progress bar at bottom -->
-        <div class="premium-bar">
+        <!-- Keep legacy bar IDs so loadUDFStats() can still write to them (hidden) -->
+        <div class="card-prog-bar" style="display:none">
           <div class="cpb-seg cpb-done" id="udf26-bar-d" style="width:0%"></div>
           <div class="cpb-seg cpb-prog" id="udf26-bar-p" style="width:0%"></div>
           <div class="cpb-seg cpb-pend" style="width:100%" id="udf26-bar-n"></div>
@@ -964,80 +1113,114 @@ function updateCountdown(){
 updateCountdown();
 setInterval(updateCountdown,1000);
 
-/* ── Timeline for UDF 2026 ── */
-function initTimeline(){
-  const start=new Date('2026-05-18');
-  const end=new Date('2031-05-18');
-  const now=new Date();
-  const total=end-start;
-  const elapsed=Math.max(0,Math.min(now-start,total));
-  const pct=Math.round(elapsed/total*100);
-  const fill=document.getElementById('udf26-tl-fill');
-  const knob=document.getElementById('udf26-tl-knob');
-  const label=document.getElementById('udf26-tl-today');
-  if(fill){setTimeout(()=>{fill.style.width=pct+'%';},100);}
-  if(knob){setTimeout(()=>{knob.style.left=pct+'%';},100);}
-  if(label){label.style.left=pct+'%';label.style.transform='translateX(-50%)';}
-}
-initTimeline();
-
-/* ── Count-up animation ── */
-function countUp(el,target,duration=800){
-  const start=Date.now();
-  const tick=()=>{
-    const elapsed=Date.now()-start;
-    const progress=Math.min(elapsed/duration,1);
-    const eased=1-Math.pow(1-progress,3);
-    el.textContent=Math.round(eased*target).toLocaleString('en-IN');
-    if(progress<1)requestAnimationFrame(tick);
-  };
-  requestAnimationFrame(tick);
-}
-
-/* ── Donut ring helper (circumference ≈ 113 for r=18) ── */
-const CIRC=2*Math.PI*18;
-function setRing(id,fraction){
-  const el=document.getElementById(id);
-  if(!el)return;
-  const dash=Math.round(fraction*CIRC*100)/100;
-  el.style.strokeDasharray=dash+' '+CIRC;
-}
-
-/* Load promise stats for the active UDF 2026 card */
+/* Load promise stats for the active UDF 2026 card from metadata.json */
 async function loadUDFStats(){
   try{
     const res=await fetch('/data/udf-2026/metadata.json');
     const meta=await res.json();
     const {total:t,fulfilled:f,progress:pr,evaded:ev,pending:pe}=meta.stats;
-    const pendTotal=pe+ev;
-
-    /* count-up on numbers */
-    const els={
-      'udf26-total':[t, t],
-      'udf26-done': [f, t],
-      'udf26-prog': [pr, t],
-      'udf26-pend': [ev, t],
-    };
-    for(const [id,[val]]of Object.entries(els)){
-      const el=document.getElementById(id);
-      if(el)countUp(el,val);
-    }
-
-    /* donut rings — triggered after short delay for animation */
+    const elT=document.getElementById('udf26-total');
+    const elF=document.getElementById('udf26-done');
+    const elP=document.getElementById('udf26-prog');
+    const elE=document.getElementById('udf26-pend');
+    if(elT){elT.dataset.target=t;}
+    if(elF){elF.dataset.target=f;}
+    if(elP){elP.dataset.target=pr;}
+    if(elE){elE.dataset.target=ev;}
+    animateGlassCard(t,f,pr,ev);
     if(t>0){
-      setTimeout(()=>{
-        setRing('udf26-ring-total', 1);
-        setRing('udf26-ring-done', f/t);
-        setRing('udf26-ring-prog', pr/t);
-        setRing('udf26-ring-evad', ev/t);
-      },300);
       document.getElementById('udf26-bar-d').style.width=Math.round(f/t*100)+'%';
       document.getElementById('udf26-bar-p').style.width=Math.round(pr/t*100)+'%';
-      document.getElementById('udf26-bar-n').style.width=Math.round(pendTotal/t*100)+'%';
+      document.getElementById('udf26-bar-n').style.width=Math.round((pe+ev)/t*100)+'%';
     }
   }catch(e){console.error('loadUDFStats failed:',e);}
 }
 loadUDFStats();
+
+/* ── Glass card animations ── */
+function animateGlassCard(total, fulfilled, inProgress, evaded) {
+  const CIRCUMFERENCE = 2 * Math.PI * 20.9; // ~131.3
+
+  function animateRing(el, pct, delay) {
+    if (!el) return;
+    el.style.transition = 'none';
+    el.style.strokeDashoffset = CIRCUMFERENCE;
+    setTimeout(() => {
+      el.style.transition = `stroke-dashoffset 1s cubic-bezier(0.22,1,0.36,1) ${delay}ms`;
+      el.style.strokeDashoffset = CIRCUMFERENCE * (1 - pct);
+    }, 50);
+  }
+
+  function countUp(el, target, delay) {
+    if (!el || target === 0) return;
+    el.textContent = '0';
+    setTimeout(() => {
+      const dur = 800;
+      const start = performance.now();
+      function step(now) {
+        const t = Math.min((now - start) / dur, 1);
+        const ease = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.round(ease * target).toLocaleString('en-IN');
+        if (t < 1) requestAnimationFrame(step);
+        else el.textContent = target.toLocaleString('en-IN');
+      }
+      requestAnimationFrame(step);
+    }, delay);
+  }
+
+  const t = total || 1;
+  animateRing(document.getElementById('ring-total'),     1,                        300);
+  animateRing(document.getElementById('ring-fulfilled'), fulfilled / t,            450);
+  animateRing(document.getElementById('ring-progress'),  inProgress / t,           600);
+  animateRing(document.getElementById('ring-evaded'),    evaded / t,               750);
+
+  countUp(document.getElementById('udf26-total'), total,      300);
+  countUp(document.getElementById('udf26-done'),  fulfilled,  450);
+  countUp(document.getElementById('udf26-prog'),  inProgress, 600);
+  countUp(document.getElementById('udf26-pend'),  evaded,     750);
+}
+
+/* Timeline fill based on current date */
+function animateTimeline() {
+  const start = new Date('2026-05-18');
+  const end   = new Date('2031-05-18');
+  const now   = new Date();
+  const pct   = Math.min(1, Math.max(0, (now - start) / (end - start)));
+  const fill  = document.getElementById('udf26-tl-fill');
+  const marker = document.getElementById('udf26-tl-marker');
+  const label  = document.getElementById('udf26-tl-label');
+
+  if (fill)  { setTimeout(() => { fill.style.width = (pct * 100).toFixed(2) + '%'; }, 400); }
+  if (marker){ setTimeout(() => { marker.style.left = (pct * 100).toFixed(2) + '%'; }, 400); }
+  if (label) {
+    const daysIn = Math.floor((now - start) / 86400000);
+    label.textContent = 'Day ' + daysIn.toLocaleString('en-IN') + ' of term';
+  }
+}
+animateTimeline();
+
+/* Intersection observer → trigger animations when card enters viewport */
+(function() {
+  const card = document.getElementById('udf26-card');
+  if (!card) return;
+  let triggered = false;
+  const obs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !triggered) {
+      triggered = true;
+      // Rings + counters fire once we know the real data (or use defaults)
+      const fetchData = () => {
+        const t = parseInt(document.getElementById('udf26-total').dataset.target) || 0;
+        const f = parseInt(document.getElementById('udf26-done').dataset.target) || 0;
+        const p = parseInt(document.getElementById('udf26-prog').dataset.target) || 0;
+        const e = parseInt(document.getElementById('udf26-pend').dataset.target) || 0;
+        if (t > 0) animateGlassCard(t, f, p, e);
+      };
+      // Wait briefly so loadUDFStats has a chance to populate data-target attrs
+      setTimeout(fetchData, 200);
+    }
+  }, {threshold: 0.2});
+  obs.observe(card);
+})();
 
 /* Language toggle */
 let mlMode=false;
