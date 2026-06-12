@@ -462,6 +462,13 @@ footer a:hover{text-decoration:underline}
   content:'';position:absolute;inset:0;
   background:radial-gradient(ellipse at 70% 30%, rgba(99,163,255,0.18) 0%, transparent 65%);
 }
+.glass-hero::after{
+  content:'';position:absolute;inset:0;
+  background:url('/assets/niyamam.png') center bottom / auto 92% no-repeat;
+  opacity:0.07;
+  pointer-events:none;
+  mix-blend-mode:luminosity;
+}
 
 /* Portrait */
 .glass-portrait-wrap{
@@ -802,14 +809,6 @@ footer a:hover{text-decoration:underline}
             <!-- Text block -->
             <div class="glass-hero-text">
               <div class="glass-party-row">
-                <!-- UDF hand logo outline -->
-                <div class="glass-party-logo">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 2 v7 M6 4 v6 M4 5.5 v5 M10 4 v6 M12 5.5 v5"/>
-                    <path d="M4 10.5 Q8 14 12 10.5"/>
-                  </svg>
-                </div>
-                <span class="glass-party-name">UDF — United Democratic Front</span>
               </div>
               <div class="glass-name">VD Satheesan</div>
               <div class="glass-role">Chief Minister · Kerala</div>
@@ -860,9 +859,9 @@ footer a:hover{text-decoration:underline}
                 <circle class="glass-ring-fill progress" cx="26" cy="26" r="20.9" id="ring-progress"/>
               </svg>
               <div class="glass-ring-center">
-                <svg class="glass-ring-icon" style="color:#d97706" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                  <line x1="3" y1="13" x2="8" y2="3"/>
-                  <line x1="8" y1="3" x2="13" y2="8"/>
+                <svg class="glass-ring-icon" style="color:#d97706" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="4" y1="12" x2="12" y2="4"/>
+                  <polyline points="7,4 12,4 12,9"/>
                 </svg>
               </div>
             </div>
