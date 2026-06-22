@@ -217,7 +217,7 @@
       "Transport",
       "Tourism"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": "5 years",
     "updates": [
       {
@@ -226,9 +226,20 @@
         "note_en": "Included in the UDF election manifesto. (Under: Dream Projects)",
         "source_label": "UDF Election Manifesto, 2 April 2026",
         "contributed_by": "github:maintainer"
+      },
+      {
+        "date": "2026-06-19",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Launch of 'Mission Samudra' with an allocation of ₹400 crore to integrate Kerala's 600-km coastline, two international seaports, container transshipment terminal, 17 non-major ports, and aquatic resources",
+        "source_url": "https://budget.kerala.gov.in/build/budget_speech/2026rev/2026Eng.pdf",
+        "source_label": "Kerala Budget, 19 June 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "budget"
       }
     ],
-    "stage": "promised"
+    "stage": "budget"
   },
   {
     "id": 8,
