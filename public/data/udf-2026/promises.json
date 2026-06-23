@@ -311,7 +311,7 @@
       "Industries",
       "Finance"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": "5 years",
     "updates": [
       {
@@ -320,9 +320,20 @@
         "note_en": "Included in the UDF election manifesto. (Under: Dream Projects)",
         "source_label": "UDF Election Manifesto, 2 April 2026",
         "contributed_by": "github:maintainer"
+      },
+      {
+        "date": "2026-06-19",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Formulation of the 'Kerala MSME Growth Scheme' with a ₹100-crore allocation to establish 10,000 new MSME ventures across the state, backed by Revolving, Technology, and Challenge funds alongside mentor support.",
+        "source_url": "https://budget.kerala.gov.in/build/budget_speech/2026rev/2026Eng.pdf",
+        "source_label": "Revised Kerala Budget, 19 June 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "budget"
       }
     ],
-    "stage": "promised"
+    "stage": "budget"
   },
   {
     "id": 10,
@@ -336,7 +347,7 @@
       "Labour",
       "Higher Education"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": "5 years",
     "updates": [
       {
@@ -345,9 +356,20 @@
         "note_en": "Included in the UDF election manifesto. (Under: Dream Projects)",
         "source_label": "UDF Election Manifesto, 2 April 2026",
         "contributed_by": "github:maintainer"
+      },
+      {
+        "date": "2026-06-19",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Establishment of the 'Global Job Watch Tower'—a state-level Future Skills and Employment Intelligence Mission to align Kerala's youth and skill ecosystems with the global economy, with an initial provision of ₹2 crore.",
+        "source_url": "https://budget.kerala.gov.in/build/budget_speech/2026rev/2026Eng.pdf",
+        "source_label": "Revised Kerala Budget, 19 June 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "budget"
       }
     ],
-    "stage": "promised"
+    "stage": "budget"
   },
   {
     "id": 11,
@@ -361,7 +383,7 @@
       "Higher Education",
       "Tribal Welfare"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": "5 years",
     "updates": [
       {
@@ -370,9 +392,20 @@
         "note_en": "Included in the UDF election manifesto. (Under: Dream Projects)",
         "source_label": "UDF Election Manifesto, 2 April 2026",
         "contributed_by": "github:maintainer"
+      },
+      {
+        "date": "2026-06-19",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Establishment of the 'Wayanad Tribal University and Indigenous Knowledge Zone' with a ₹50-crore allocation to drive educational advancement, research, innovation, and socio-economic transformation for tribal communities",
+        "source_url": "https://budget.kerala.gov.in/build/budget_speech/2026rev/2026Eng.pdf",
+        "source_label": "Revised Kerala Budget, 19 June 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "budget"
       }
     ],
-    "stage": "promised"
+    "stage": "budget"
   },
   {
     "id": 12,
@@ -520,7 +553,7 @@
         "note_en": "Included in the UDF election manifesto. (Under: Social Security and Equality)",
         "source_label": "UDF Election Manifesto, 2 April 2026",
         "contributed_by": "github:maintainer"
-      }
+      },
     ],
     "stage": "promised"
   },
@@ -661,7 +694,7 @@
       "Social Justice",
       "Finance"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
     "updates": [
       {
@@ -670,6 +703,17 @@
         "note_en": "Included in the UDF election manifesto. (Under: Social Security and Equality)",
         "source_label": "UDF Election Manifesto, 2 April 2026",
         "contributed_by": "github:maintainer"
+      },
+      {
+        "date": "2026-06-19",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Apportionment of ₹590.11 crore for the Social Security and Welfare sector, with steps being taken to grant aided status to eligible special schools",
+        "source_url": "https://budget.kerala.gov.in/build/budget_speech/2026rev/2026Eng.pdf",
+        "source_label": "Revised Kerala Budget, 19 June 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "budget"
       }
     ],
     "stage": "promised"
@@ -838,7 +882,7 @@
   {
     "id": 30,
     "slug": "welfare-schemes-the-service-pay-conditions-of-pre-primary-teachers-will-be-revised",
-    "title_en": "The service pay conditions of pre-primary teachers will be revised.",
+    "title_en": "The service pay conditions of pre-primary teachers will be revised",
     "verbatim": "The service pay conditions of pre-primary teachers will be revised.",
     "category": "Social Welfare",
     "section": "Welfare Schemes",
@@ -847,7 +891,7 @@
       "Social Justice",
       "Labour"
     ],
-    "status": "pending",
+    "status": "fulfilled",
     "timeline_promised": null,
     "updates": [
       {
@@ -856,9 +900,20 @@
         "note_en": "Included in the UDF election manifesto. (Under: Welfare Schemes)",
         "source_label": "UDF Election Manifesto, 2 April 2026",
         "contributed_by": "github:maintainer"
+      },
+      {
+        "date": "2026-06-19",
+        "prev_status": "pending",
+        "new_status": "fulfilled",
+        "note_en": "Increase of ₹1,000 in the monthly honorarium for pre-primary teachers and ayahs in the state over the existing rate, effective from 1 June 2026",
+        "source_url": "https://budget.kerala.gov.in/build/budget_speech/2026rev/2026Eng.pdf",
+        "source_label": "Revised Kerala Budget, 19 June 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "fulfilled"
       }
     ],
-    "stage": "promised"
+    "stage": "fulfilled"
   },
   {
     "id": 31,
