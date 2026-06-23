@@ -42,6 +42,17 @@
         "source_tier": 1,
         "contributed_by": "github:maintainer",
         "stage": "approvals"
+      },
+      {
+        "date": "2026-06-15",
+        "prev_status": "progress",
+        "new_status": "progress",
+        "note_en": "Official inauguration of the Priyadarshini Scheme by Chief Minister V. D. Satheesan, providing free travel for women and transgender persons on KSRTC ordinary bus services.",
+        "source_url": "https://timesofindia.indiatimes.com/city/thiruvananthapuram/priyadarshini-scheme-a-salute-to-women-kerala-chief-minister-v-d-satheesan/articleshow/131749139.cms",
+        "source_label": "The Times of India, 15 June 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "started"
       }
     ],
     "stage": "approvals"
