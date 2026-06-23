@@ -150,9 +150,20 @@
         "source_tier": 1,
         "contributed_by": "github:maintainer",
         "stage": "announced"
+      },
+      {
+        "date": "2026-06-19",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Implementation of the Oommen Chandy Health Insurance Scheme providing free, comprehensive medical coverage up to ₹25 lakh for all families, with an initial allocation of ₹10 crore",
+        "source_url": "https://budget.kerala.gov.in/build/budget_speech/2026rev/2026Eng.pdf",
+        "source_label": "Revised Kerala Budget, 29 May 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "budget"
       }
     ],
-    "stage": "announced"
+    "stage": "budget"
   },
   {
     "id": 5,
@@ -244,7 +255,7 @@
         "new_status": "progress",
         "note_en": "Launch of 'Mission Samudra' with an allocation of ₹400 crore to integrate Kerala's 600-km coastline, two international seaports, container transshipment terminal, 17 non-major ports, and aquatic resources",
         "source_url": "https://budget.kerala.gov.in/build/budget_speech/2026rev/2026Eng.pdf",
-        "source_label": "Kerala Budget, 19 June 2026",
+        "source_label": "Revised Kerala Budget, 19 June 2026",
         "source_tier": 1,
         "contributed_by": "github:maintainer",
         "stage": "budget"
@@ -273,9 +284,20 @@
         "note_en": "Included in the UDF election manifesto. (Under: Dream Projects)",
         "source_label": "UDF Election Manifesto, 2 April 2026",
         "contributed_by": "github:maintainer"
+      },
+      {
+        "date": "2026-06-19",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Strengthening of the MRO sector through DGCA-standard pilot and engineering training, implementation of flagship Aeropark and Aerocity projects integrating IT/ITES, GCCs, and hospitality, and the formulation of a comprehensive Aviation Policy",
+        "source_url": "https://budget.kerala.gov.in/build/budget_speech/2026rev/2026Eng.pdf",
+        "source_label": "Revised Kerala Budget, 19 June 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "budget"
       }
     ],
-    "stage": "promised"
+    "stage": "budget"
   },
   {
     "id": 9,
