@@ -444,7 +444,7 @@
       "Social Justice",
       "Finance"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
     "updates": [
       {
@@ -453,9 +453,20 @@
         "note_en": "Included in the UDF election manifesto. (Under: Social Security and Equality)",
         "source_label": "UDF Election Manifesto, 2 April 2026",
         "contributed_by": "github:maintainer"
+      },
+      {
+        "date": "2026-06-19",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Revival of several welfare and medical aid schemes effectively implemented during the previous UDF period, including Karunya Benevolent Fund, Shruthitharangam, Snehapoorvam, Snehasparsham, Thalolam, Cancer Suraksha, Sneha Santhwanam, Pakal Veedu, Vayomithram, Ashwasakiranam, and Sukrutham",
+        "source_url": "https://budget.kerala.gov.in/build/budget_speech/2026rev/2026Eng.pdf",
+        "source_label": "Revised Kerala Budget, 19 June 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "budget"
       }
     ],
-    "stage": "promised"
+    "stage": "budget"
   },
   {
     "id": 14,
@@ -1268,7 +1279,7 @@
   {
     "id": 45,
     "slug": "welfare-schemes-all-the-benefits-due-to-endosulfan-victims-will-be-provided-the-govern",
-    "title_en": "All the benefits due to endosulfan victims will be provided. The government will take steps to take over the affected...",
+    "title_en": "Providing Full Benefits to Endosulfan Victims and Guaranteeing Comprehensive Government Welfare for Affected Families",
     "verbatim": "All the benefits due to endosulfan victims will be provided. The government will take steps to take over the affected families.",
     "category": "Social Welfare",
     "section": "Welfare Schemes",
@@ -1277,7 +1288,7 @@
       "Social Justice",
       "Labour"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
     "updates": [
       {
@@ -1286,9 +1297,20 @@
         "note_en": "Included in the UDF election manifesto. (Under: Welfare Schemes)",
         "source_label": "UDF Election Manifesto, 2 April 2026",
         "contributed_by": "github:maintainer"
+      },
+      {
+        "date": "2026-06-19",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Commitment to provide all eligible benefits to Endosulfan victims and take steps for the Government to assume complete responsibility for the welfare of the affected families.",
+        "source_url": "https://budget.kerala.gov.in/build/budget_speech/2026rev/2026Eng.pdf",
+        "source_label": "Revised Kerala Budget, 19 June 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "budget"
       }
     ],
-    "stage": "promised"
+    "stage": "budget"
   },
   {
     "id": 46,
@@ -1318,7 +1340,7 @@
   {
     "id": 47,
     "slug": "welfare-schemes-recreational-centers-will-be-developed-as-community-hubs-for-senior-ci",
-    "title_en": "Recreational centers will be developed as community hubs for senior citizens for relaxation, social interaction and w...",
+    "title_en": "Developing Comprehensive Senior Citizen Villages, Dedicated Community Wellness Hubs, and State-Guided Day Care Infrastructure",
     "verbatim": "Recreational centers will be developed as community hubs for senior citizens for relaxation, social interaction and wellness activities. Senior citizen parks, day homes and fitness centers will be provided for senior citizens. Senior citizen villages including shelter homes will be established with the help of cooperative sector/CSR.",
     "category": "Social Welfare",
     "section": "Welfare Schemes",
@@ -1327,7 +1349,7 @@
       "Social Justice",
       "Labour"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
     "updates": [
       {
@@ -1336,9 +1358,20 @@
         "note_en": "Included in the UDF election manifesto. (Under: Welfare Schemes)",
         "source_label": "UDF Election Manifesto, 2 April 2026",
         "contributed_by": "github:maintainer"
+      },
+      {
+        "date": "2026-06-19",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Establishment of dedicated elderly parks, day-care centres (Pakalveedu), and fitness centres to keep senior citizens physically and socially active",
+        "source_url": "https://budget.kerala.gov.in/build/budget_speech/2026rev/2026Eng.pdf",
+        "source_label": "Revised Kerala Budget, 19 June 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "budget"
       }
     ],
-    "stage": "promised"
+    "stage": "budget"
   },
   {
     "id": 48,
@@ -1368,7 +1401,7 @@
   {
     "id": 49,
     "slug": "welfare-schemes-special-schemes-will-be-formulated-for-the-upliftment-of-gig-and-onlin",
-    "title_en": "Special schemes will be formulated for the upliftment of gig and online platform workers.",
+    "title_en": "Special schemes will be formulated for the upliftment of gig and online platform workers",
     "verbatim": "Special schemes will be formulated for the upliftment of gig and online platform workers.",
     "category": "Social Welfare",
     "section": "Welfare Schemes",
@@ -1377,7 +1410,7 @@
       "Social Justice",
       "Labour"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
     "updates": [
       {
@@ -1386,14 +1419,25 @@
         "note_en": "Included in the UDF election manifesto. (Under: Welfare Schemes)",
         "source_label": "UDF Election Manifesto, 2 April 2026",
         "contributed_by": "github:maintainer"
+      },
+      {
+        "date": "2026-06-19",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Formulation of special schemes dedicated to the welfare and advancement of gig workers and online platform workers",
+        "source_url": "https://budget.kerala.gov.in/build/budget_speech/2026rev/2026Eng.pdf",
+        "source_label": "Revised Kerala Budget, 19 June 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "budget"
       }
     ],
-    "stage": "promised"
+    "stage": "budget"
   },
   {
     "id": 50,
     "slug": "welfare-schemes-a-special-task-force-and-more-courts-will-be-formed-to-take-strict-act",
-    "title_en": "A special task force and more courts will be formed to take strict action against violence against young children.",
+    "title_en": "A special task force and more courts will be formed to take strict action against violence against young children",
     "verbatim": "A special task force and more courts will be formed to take strict action against violence against young children.",
     "category": "Social Welfare",
     "section": "Welfare Schemes",
@@ -1402,7 +1446,7 @@
       "Social Justice",
       "Labour"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
     "updates": [
       {
@@ -1411,9 +1455,20 @@
         "note_en": "Included in the UDF election manifesto. (Under: Welfare Schemes)",
         "source_label": "UDF Election Manifesto, 2 April 2026",
         "contributed_by": "github:maintainer"
+      },
+      {
+        "date": "2026-06-19",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Adoption of a zero-tolerance approach towards crimes against children, backed by the establishment of confidential toll-free helplines and a dedicated reporting portal",
+        "source_url": "https://budget.kerala.gov.in/build/budget_speech/2026rev/2026Eng.pdf",
+        "source_label": "Revised Kerala Budget, 19 June 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "budget"
       }
     ],
-    "stage": "promised"
+    "stage": "budget"
   },
   {
     "id": 51,
