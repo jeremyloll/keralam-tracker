@@ -8,5 +8,5 @@
   "term_start": "2026-05-20",
   "term_end": "2031-05-20",
   "active": true,
-  "stats": { "total": 1300, "fulfilled": 5, "progress": 34, "evaded": 0, "pending": 1261 }
+  "stats": { "total": 1300, "fulfilled": 6, "progress": 46, "evaded": 0, "pending": 1248 }
 }
