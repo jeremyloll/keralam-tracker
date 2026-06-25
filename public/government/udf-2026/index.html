@@ -18,6 +18,9 @@
   --gold-700:#9a6e1a;--gold-500:#c8922a;--gold-200:#f0d090;--gold-50:#fffbf2;
   --red-700:#8b1f1f;--red-500:#c0392b;--red-100:#fdf0f0;
   --blue-600:#1a4e7a;--blue-100:#e8f0fb;
+  --chrome-grad:linear-gradient(135deg,#143E5F 0%,#2E6FA3 100%);
+  --chrome-solid:#1d5278;
+  --chrome-accent:#7ec4f0;
   --ink:#1a1a1a;--ink-2:#3a3a3a;--ink-3:#666;--ink-4:#999;
   --border:#e0ddd5;--border-light:#eceae4;
   --surface:#f5f3ee;--surface-2:#faf9f6;--white:#fff;
@@ -32,7 +35,7 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 
 /* ── TOP NAV ── */
 .topnav{
-  background:var(--green-900);
+  background:var(--chrome-grad);
   padding:0.75rem var(--pad);
   display:flex;align-items:center;gap:1rem;
   position:sticky;top:0;z-index:200;
@@ -50,7 +53,7 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 .topnav-right{margin-left:auto;display:flex;align-items:center;gap:0.75rem}
 .topnav-countdown{
   font-family:var(--font-display);font-size:12px;
-  color:var(--green-400);letter-spacing:0.02em;
+  color:var(--chrome-accent);letter-spacing:0.02em;
   font-variant-numeric:tabular-nums;
 }
 .topnav-live{
@@ -63,13 +66,13 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 
 /* ── HERO ── */
 .hero{
-  background:var(--green-900);
+  background:var(--chrome-grad);
   padding:2.5rem var(--pad) 0;
   position:relative;overflow:hidden;
 }
 .hero::before{
   content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 70% 50% at 60% 0%,rgba(61,184,106,0.1),transparent);
+  background:radial-gradient(ellipse 70% 50% at 60% 0%,rgba(46,111,163,0.18),transparent);
   pointer-events:none;
 }
 .hero-inner{
@@ -79,7 +82,7 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 }
 .hero-coalition{
   font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
-  color:var(--green-400);margin-bottom:0.5rem;font-weight:600;
+  color:var(--chrome-accent);margin-bottom:0.5rem;font-weight:600;
 }
 .hero-title{
   font-family:var(--font-display);
@@ -94,7 +97,7 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
   background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);
   border-radius:20px;padding:4px 12px;
 }
-.hero-chip .dot{width:6px;height:6px;border-radius:50%;background:var(--green-400);flex-shrink:0}
+.hero-chip .dot{width:6px;height:6px;border-radius:50%;background:var(--chrome-accent);flex-shrink:0}
 .hero-portrait{
   width:160px;height:210px;
   border-radius:var(--radius-lg) var(--radius-lg) 0 0;
@@ -115,7 +118,7 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 
 /* ── TAB BAR ── */
 .tab-bar-wrap{
-  background:var(--green-900);
+  background:var(--chrome-grad);
   border-bottom:1px solid rgba(255,255,255,0.08);
   position:sticky;top:49px;z-index:190;
 }
@@ -131,7 +134,7 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
   font-family:var(--font-body);letter-spacing:0.01em;white-space:nowrap;
 }
 .tab-btn:hover{color:rgba(255,255,255,0.85)}
-.tab-btn.active{color:white;border-bottom-color:var(--green-400)}
+.tab-btn.active{color:white;border-bottom-color:var(--chrome-accent)}
 
 /* ── SECTION WRAPPER ── */
 .tab-section{display:none}
@@ -285,6 +288,7 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 .dot-evaded{background:var(--red-500)}
 .dot-pending{background:#ccc}
 .pc-title{font-size:14px;font-weight:500;color:var(--ink);line-height:1.4}
+.pc-id{font-size:11px;font-weight:400;color:var(--ink-4);font-variant-numeric:tabular-nums}
 .pc-section{font-size:11px;color:var(--ink-4);margin-top:2px}
 .pc-badge-wrap{display:flex;gap:5px;align-items:center;flex-shrink:0}
 .pc-chevron{
@@ -458,7 +462,7 @@ body{font-family:var(--font-body);background:var(--surface);color:var(--ink);fon
 
 /* ── CONTRIBUTE ── */
 .contribute{
-  background:var(--green-900);padding:1.25rem var(--pad);margin-top:1rem;
+  background:var(--chrome-grad);padding:1.25rem var(--pad);margin-top:1rem;
 }
 .contribute-inner{
   max-width:var(--max-w);margin:0 auto;
@@ -724,8 +728,8 @@ footer a:hover{text-decoration:underline}
    DATA & CONFIG
 ═══════════════════════════════════════════ */
 const DATA_PATH = '/data/udf-2026/';
-const TERM_START = new Date('2026-05-20');
-const TERM_END   = new Date('2031-05-20');
+const TERM_START = new Date('2026-05-18');
+const TERM_END   = new Date('2031-05-18');
 const PAGE_SIZE  = 50;
 
 const MINISTERS_DATA = [
@@ -1115,7 +1119,7 @@ function promiseCard(p) {
     <div class="pc-header">
       <span class="pc-status-dot dot-${p.status}"></span>
       <div>
-        <div class="pc-title">${esc(p.title_en)}</div>
+        <div class="pc-title">${esc(p.title_en)} <span class="pc-id">#${esc(p.id)}</span></div>
         <div class="pc-section">${esc(p.section || '')}${depts ? ' · ' + esc(depts) : ''}</div>
       </div>
       <div class="pc-badge-wrap">
