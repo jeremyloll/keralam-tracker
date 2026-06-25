@@ -2084,8 +2084,8 @@
   {
     "id": 75,
     "slug": "welfare-schemes-to-bring-about-timely-changes-in-the-activities-of-the-technical-commi",
-    "title_en": "To bring about timely changes in the activities of the Technical Committee of the Mithai Project and to prevent misap...",
-    "verbatim": "To bring about timely changes in the activities of the Technical Committee of the Mithai Project and to prevent misappropriation of the funds allocated for the project, arrangements will be made to provide the services of endocrine doctors at Mithai Satellite Centers in all districts.",
+    "title_en": "Restructuring the Mittai Project Technical Committee, Eliminating Fund Misappropriation, and Deploying Endocrine Doctors to All District Satellite Centers",
+    "verbatim": "To bring about timely changes in the activities of the Technical Committee of the Mittai Project and to prevent misappropriation of the funds allocated for the project, arrangements will be made to provide the services of endocrine doctors at Mittai Satellite Centers in all districts.",
     "category": "Social Welfare",
     "section": "Welfare Schemes",
     "section_type": "promise",
@@ -2102,9 +2102,20 @@
         "note_en": "Included in the UDF election manifesto. (Under: Welfare Schemes)",
         "source_label": "UDF Election Manifesto, 2 April 2026",
         "contributed_by": "github:maintainer"
+      },
+      {
+        "date": "2026-06-19",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Introduction of reforms in the 'Mittai scheme' to prevent the diversion of allocated funds, ensure the availability of quality medicines, and secure the services of endocrinologists at Mittai Satellite Centres across all districts",
+        "source_url": "https://budget.kerala.gov.in/build/budget_speech/2026rev/2026Eng.pdf",
+        "source_label": "Revised Kerala Budget, 19 June 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "budget"
       }
     ],
-    "stage": "promised"
+    "stage": "budget"
   },
   {
     "id": 76,
@@ -2470,7 +2481,7 @@
   {
     "id": 90,
     "slug": "healthcare-the-health-sector-will-be-given-first-priority-the-state-budget-alloca",
-    "title_en": "The health sector will be given first priority. The state budget allocation for health will be increased. Steps will ...",
+    "title_en": "Prioritizing the Health Sector by Increasing State Budget Allocations for Essential Medicines and Diagnostic Testing",
     "verbatim": "The health sector will be given first priority. The state budget allocation for health will be increased. Steps will be taken to allocate a proper budget allocation for medicines and disease tests.",
     "category": "Healthcare",
     "section": "Healthcare",
@@ -2478,7 +2489,7 @@
     "departments": [
       "Health"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
     "updates": [
       {
@@ -2487,9 +2498,20 @@
         "note_en": "Included in the UDF election manifesto. (Under: Healthcare)",
         "source_label": "UDF Election Manifesto, 2 April 2026",
         "contributed_by": "github:maintainer"
+      },
+      {
+        "date": "2026-06-19",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Prioritization of the health sector with a ₹2,076.02-crore allocation for Medical Care and Public Health, including a review of KMSCL medicine procurement efficiency, guaranteed availability of medicines for rare diseases like Spinal Muscular Atrophy (SMA), and a new financial assistance scheme for annual health check-ups for individuals aged 40 and above to enable early disease detection",
+        "source_url": "https://budget.kerala.gov.in/build/budget_speech/2026rev/2026Eng.pdf",
+        "source_label": "Revised Kerala Budget, 19 June 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "budget"
       }
     ],
-    "stage": "promised"
+    "stage": "budget"
   },
   {
     "id": 91,
