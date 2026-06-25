@@ -2048,7 +2048,7 @@
   {
     "id": 74,
     "slug": "welfare-schemes-steps-will-be-taken-to-provide-quality-insulin-to-children-with-type-1",
-    "title_en": "Steps will be taken to provide quality insulin to children with type 1 diabetes, insulin pumps to children with brigh...",
+    "title_en": "Providing Free Insulin, Advanced Insulin Pumps, and Continuous Glucose Monitoring (CGM) Sensors for Children with Type 1 and Brittle Diabetes",
     "verbatim": "Steps will be taken to provide quality insulin to children with type 1 diabetes, insulin pumps to children with bright diabetes, and continuous glucose monitoring sensors to children facing more challenges.",
     "category": "Social Welfare",
     "section": "Welfare Schemes",
@@ -2057,7 +2057,7 @@
       "Social Justice",
       "Labour"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
     "updates": [
       {
@@ -2066,9 +2066,20 @@
         "note_en": "Included in the UDF election manifesto. (Under: Welfare Schemes)",
         "source_label": "UDF Election Manifesto, 2 April 2026",
         "contributed_by": "github:maintainer"
+      },
+      {
+        "date": "2026-06-19",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Measures to provide quality insulin, insulin pumps, and Continuous Glucose Monitoring (CGM) sensors to children affected by Type 1, brittle, and exigent-circumstance diabetes, alongside government assistance for the indigenous manufacture of insulin pumps",
+        "source_url": "https://budget.kerala.gov.in/build/budget_speech/2026rev/2026Eng.pdf",
+        "source_label": "Revised Kerala Budget, 19 June 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "budget"
       }
     ],
-    "stage": "promised"
+    "stage": "budget"
   },
   {
     "id": 75,
@@ -2148,8 +2159,8 @@
   {
     "id": 78,
     "slug": "welfare-schemes-steps-will-be-taken-to-make-the-material-collection-facilities-associa",
-    "title_en": "Steps will be taken to make the material collection facilities associated with the Green Karma Sena more scientific a...",
-    "verbatim": "Steps will be taken to make the material collection facilities associated with the Green Karma Sena more scientific and to provide vehicle facilities for waste removal.",
+    "title_en": "Upgrading Haritha Karma Sena Material Collection Facilities with Scientific Systems and Modern Waste Transport Vehicles",
+    "verbatim": "Steps will be taken to make the material collection facilities associated with the Haritha Karma Sena more scientific and to provide vehicle facilities for waste removal.",
     "category": "Social Welfare",
     "section": "Welfare Schemes",
     "section_type": "promise",
@@ -2173,8 +2184,8 @@
   {
     "id": 79,
     "slug": "welfare-schemes-necessary-interventions-will-be-made-to-simplify-the-attendance-proces",
-    "title_en": "Necessary interventions will be made to simplify the attendance process to address the difficulties faced by job-guar...",
-    "verbatim": "Necessary interventions will be made to simplify the attendance process to address the difficulties faced by job-guaranteed workers due to the method of taking photos to record their attendance.",
+    "title_en": "Simplifying the 'Thozhilurappu' Attendance Process and Reforming Photo-Based Registration to Support MGNREGS Workers",
+    "verbatim": "Necessary interventions will be made to simplify the attendance process to address the difficulties faced by 'Thozhilurappu' workers due to the method of taking photos to record their attendance.",
     "category": "Social Welfare",
     "section": "Welfare Schemes",
     "section_type": "promise",
@@ -2198,7 +2209,7 @@
   {
     "id": 80,
     "slug": "welfare-schemes-steps-will-be-taken-to-study-and-resolve-the-problems-of-cookingcateri",
-    "title_en": "Steps will be taken to study and resolve the problems of cooking/catering workers.",
+    "title_en": "Steps will be taken to study and resolve the problems of cooking/catering workers",
     "verbatim": "Steps will be taken to study and resolve the problems of cooking/catering workers.",
     "category": "Social Welfare",
     "section": "Welfare Schemes",
@@ -2223,8 +2234,8 @@
   {
     "id": 81,
     "slug": "welfare-schemes-the-government-which-is-facing-a-crisis-will-take-steps-to-resolve-the",
-    "title_en": "The government, which is facing a crisis, will take steps to resolve the problems of contractors.",
-    "verbatim": "The government, which is facing a crisis, will take steps to resolve the problems of contractors.",
+    "title_en": "Steps will be taken to resolve the problems of government contractors who are facing a crisis",
+    "verbatim": "Steps will be taken to resolve the problems of government contractors who are facing a crisis.",
     "category": "Social Welfare",
     "section": "Welfare Schemes",
     "section_type": "promise",
@@ -2348,7 +2359,7 @@
   {
     "id": 86,
     "slug": "welfare-schemes-remedial-measures-will-be-initiated-under-the-leadership-of-appropriat",
-    "title_en": "Remedial measures will be initiated under the leadership of appropriate social work professionals to address mental h...",
+    "title_en": "Deploying Social Work Professionals and Specialized Welfare Programs to Combat Mental Health Deterioration and Reduce Domestic Homicides",
     "verbatim": "Remedial measures will be initiated under the leadership of appropriate social work professionals to address mental health deterioration, which is one of the main causes of the alarming increase in domestic homicides. Special programs will be implemented for mental well-being.",
     "category": "Social Welfare",
     "section": "Welfare Schemes",
@@ -2357,7 +2368,7 @@
       "Social Justice",
       "Labour"
     ],
-    "status": "pending",
+    "status": "progress",
     "timeline_promised": null,
     "updates": [
       {
@@ -2366,9 +2377,20 @@
         "note_en": "Included in the UDF election manifesto. (Under: Welfare Schemes)",
         "source_label": "UDF Election Manifesto, 2 April 2026",
         "contributed_by": "github:maintainer"
+      },
+      {
+        "date": "2026-06-19",
+        "prev_status": "pending",
+        "new_status": "progress",
+        "note_en": "Provision of professional social work support across the state to address the significant increase in mental health issues arising from financial, family, and health-related causes",
+        "source_url": "https://budget.kerala.gov.in/build/budget_speech/2026rev/2026Eng.pdf",
+        "source_label": "Revised Kerala Budget, 19 June 2026",
+        "source_tier": 1,
+        "contributed_by": "github:maintainer",
+        "stage": "budget"
       }
     ],
-    "stage": "promised"
+    "stage": "budget"
   },
   {
     "id": 87,
